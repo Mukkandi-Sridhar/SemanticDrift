@@ -23,8 +23,7 @@
   </a>
 </p>
 
-> [!NOTE]
-> This repository currently contains the research proposal and pilot study. The full empirical study, implementation, datasets, and benchmark results will be released in future versions.
+> **Status:** Research Proposal & Pilot Study. This repository contains the first public release of the SemanticDrift research proposal and pilot study. The full implementation, empirical evaluation, datasets, and benchmark results will be released in future versions.
 
 ## Abstract
 As Agentic AI systems increasingly rely on the Model Context Protocol (MCP) for tool invocation, the semantic alignment between tool descriptions and model interpretation becomes critical. We introduce "Semantic Drift," a phenomenon where an LLM's understanding of a tool's purpose diverges from the developer's intent due to contextual variations, prompting nuances, or descriptive ambiguity. This research proposes a framework to quantify and mitigate Semantic Drift, ensuring robust tool execution in complex agentic workflows.
@@ -84,9 +83,9 @@ SemanticDrift/
 └── examples/        # Examples of Semantic Drift
 ```
 
-## Paper Download
-- [Download PDF](paper/SemanticDrift.pdf)
-- [Download DOCX](paper/SemanticDrift.docx)
+## Paper
+- [SemanticDrift.pdf (Direct Link)](paper/SemanticDrift.pdf)
+- [SemanticDrift.docx (Word Source)](paper/SemanticDrift.docx)
 
 ## Citation
 If you find this research helpful, please cite us:
