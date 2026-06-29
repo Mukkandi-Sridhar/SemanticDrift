@@ -1,0 +1,33 @@
+name: Repository Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check for required paper files
+      run: |
+        if [ ! -f "paper/SemanticDrift.pdf" ]; then
+          echo "Error: paper/SemanticDrift.pdf not found!"
+          exit 1
+        fi
+        if [ ! -f "paper/SemanticDrift.docx" ]; then
+          echo "Error: paper/SemanticDrift.docx not found!"
+          exit 1
+        fi
+        echo "Paper files exist."
+
+    - name: Check Markdown links
+      uses: gaurav-nelson/github-action-markdown-link-check@v1
+      with:
+        use-quiet-mode: 'yes'
+        folder-path: '.'
+        file-extension: '.md'

@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this research or code, please cite it as below."
+authors:
+- family-names: "Sridhar"
+  given-names: "Mukkandi"
+  affiliation: "Department of Artificial Intelligence, Rajeev Gandhi Memorial College of Engineering and Technology, Nandyal, Andhra Pradesh, India"
+  email: "sridharraoyalls@gmail.com"
+title: "Semantic Drift: A Novel Reliability Challenge in MCP Tool Descriptions"
+version: 0.1.0
+date-released: 2026-06-29
+url: "https://github.com/Mukkandi-Sridhar/SemanticDrift"
+repository-code: "https://github.com/Mukkandi-Sridhar/SemanticDrift"
+abstract: >
+  This repository contains the research proposal and pilot study introducing "Semantic Drift", a phenomenon where an LLM's understanding of a tool's purpose diverges from the developer's intent due to contextual variations, prompting nuances, or descriptive ambiguity within the Model Context Protocol (MCP).
+license: CC-BY-4.0
