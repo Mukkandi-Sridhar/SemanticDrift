@@ -1,0 +1,10 @@
+# Deterministic seed 20261124: six conflicting near-misses, six remaining singles; 4/3/1 no-tool strata.
+run_id = "pilot"
+k = 2
+models_file = "models.toml"
+models = ["gpt-6.2-astra", "claude-opus-5-5", "gpt-6.2-sol", "claude-sonnet-5-5", "gpt-6-luna", "claude-haiku-5-5", "deepseek-flash", "qwen/qwen3.8-27b"]
+variants = ["V0", "P1", "P2", "P3", "MG", "MS"]
+seed = 20261124
+estimated_output_tokens = 300
+bootstrap_resamples = 10000
+task_ids = ["T007", "T011", "T017", "T040", "T043", "T051", "T054", "T061", "T064", "T080", "T099", "T114", "T115", "T122", "T127", "T128", "T132", "T134", "T137", "T140"]

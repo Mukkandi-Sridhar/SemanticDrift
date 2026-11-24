@@ -1,0 +1,11 @@
+# $20 budget plan (2026-11-24): 7 cost-efficient models, see research/02-design/MODELS.md
+# Deterministic seed 20261124: six conflicting near-misses, six remaining singles; 4/3/1 no-tool strata.
+run_id = "budget_pilot"
+k = 1
+models_file = "models.toml"
+models = ["gpt-6-luna", "gpt-6.1-terra", "anthropic/claude-haiku-5.5", "deepseek/deepseek-v4.1-flash-1017", "qwen/qwen3.8-27b-fp8", "mistralai/mistral-small-2603", "google/gemini-3.1-flash-lite"]
+variants = ["V0", "P1", "P2", "P3", "MG", "MS"]
+seed = 20261124
+estimated_output_tokens = 150
+bootstrap_resamples = 10000
+task_ids = ["T007", "T011", "T017", "T040", "T043", "T051", "T054", "T061", "T064", "T080", "T099", "T114", "T115", "T122", "T127", "T128", "T132", "T134", "T137", "T140"]

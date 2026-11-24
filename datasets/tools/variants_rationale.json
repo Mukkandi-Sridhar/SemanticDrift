@@ -1,0 +1,1232 @@
+[
+  {
+    "tool": "sites",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "asset_ids",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "asset_detail",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "measured_sensors",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "installed_sensors",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "assets",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "find_assets_by_sensors",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "stream_extent",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "history",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "latest_reading",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "sensor_coverage",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "sensor_stats",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "json_reader",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_sensor_catalog",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_asset_catalog",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_failure_mode_catalog",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "current_date_time",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "current_time_english",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_failure_modes",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "generate_failure_modes",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "add_failure_modes",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "list_workorders",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_workorder",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_workorder_tasks",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_workorder_costs",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_workorder_actuals_vs_planned",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_workorder_kpis",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_schedule_calendar",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_my_assigned_workorders",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "get_failure_codes",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "generate_work_order",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "update_workorder",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "approve_workorder",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "assign_technician",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "close_workorder",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "cancel_workorder",
+    "variant": "V0",
+    "change_summary": "Unchanged cleaned source docstring; baseline."
+  },
+  {
+    "tool": "sites",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "asset_ids",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "asset_detail",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "measured_sensors",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "installed_sensors",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "assets",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "find_assets_by_sensors",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "stream_extent",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "history",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "latest_reading",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "sensor_coverage",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "sensor_stats",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "json_reader",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_sensor_catalog",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_asset_catalog",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_failure_mode_catalog",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "current_date_time",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "current_time_english",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_failure_modes",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "generate_failure_modes",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "add_failure_modes",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "list_workorders",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_workorder",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_workorder_tasks",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_workorder_costs",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_workorder_actuals_vs_planned",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_workorder_kpis",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_schedule_calendar",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_my_assigned_workorders",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "get_failure_codes",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "generate_work_order",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "update_workorder",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "approve_workorder",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "assign_technician",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "close_workorder",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "cancel_workorder",
+    "variant": "P1",
+    "change_summary": "Plain prose rewrite within original lines/sections; protected syntax retained; tool-side agency explicit."
+  },
+  {
+    "tool": "sites",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "asset_ids",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "asset_detail",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "measured_sensors",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "installed_sensors",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "assets",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "find_assets_by_sensors",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "stream_extent",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "history",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "latest_reading",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "sensor_coverage",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "sensor_stats",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "json_reader",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_sensor_catalog",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_asset_catalog",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_failure_mode_catalog",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "current_date_time",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "current_time_english",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_failure_modes",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "generate_failure_modes",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "add_failure_modes",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "list_workorders",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_workorder",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_workorder_tasks",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_workorder_costs",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_workorder_actuals_vs_planned",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_workorder_kpis",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_schedule_calendar",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_my_assigned_workorders",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "get_failure_codes",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "generate_work_order",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "update_workorder",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "approve_workorder",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "assign_technician",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "close_workorder",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "cancel_workorder",
+    "variant": "P2",
+    "change_summary": "Clause ordering changed within original sections; section order and line/indent skeleton preserved; tool-side normalization remains tool-side."
+  },
+  {
+    "tool": "sites",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "asset_ids",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "asset_detail",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "measured_sensors",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "installed_sensors",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "assets",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "find_assets_by_sensors",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "stream_extent",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "history",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "latest_reading",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "sensor_coverage",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "sensor_stats",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "json_reader",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_sensor_catalog",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_asset_catalog",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_failure_mode_catalog",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "current_date_time",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "current_time_english",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_failure_modes",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "generate_failure_modes",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "add_failure_modes",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "list_workorders",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_workorder",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_workorder_tasks",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_workorder_costs",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_workorder_actuals_vs_planned",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_workorder_kpis",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_schedule_calendar",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_my_assigned_workorders",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "get_failure_codes",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "generate_work_order",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "update_workorder",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "approve_workorder",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "assign_technician",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "close_workorder",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "cancel_workorder",
+    "variant": "P3",
+    "change_summary": "Formal prose within original sections and line layout; protected references retained; constraints and agency audited."
+  },
+  {
+    "tool": "sites",
+    "variant": "MG",
+    "change_summary": "Widened purpose: registry membership. Exact edit: 'available in the asset registry' -> 'available for asset operations'. Args/Returns unchanged."
+  },
+  {
+    "tool": "asset_ids",
+    "variant": "MG",
+    "change_summary": "Widened purpose: registered identifiers to associated identifiers. Exact edit: 'registered at one site' -> 'associated with one site'. Args/Returns unchanged."
+  },
+  {
+    "tool": "asset_detail",
+    "variant": "MG",
+    "change_summary": "Widened purpose: registry-only information. Exact edit: 'registry details' -> 'asset details'. Args/Returns unchanged."
+  },
+  {
+    "tool": "measured_sensors",
+    "variant": "MG",
+    "change_summary": "Widened purpose: observed-only measurement names. Exact edit: \"measurement fields observed in an asset's telemetry stream\" -> 'measurement fields associated with asset telemetry'. Args/Returns unchanged."
+  },
+  {
+    "tool": "installed_sensors",
+    "variant": "MG",
+    "change_summary": "Widened purpose: assigned-only sensor relationship. Exact edit: 'sensor names assigned to an asset in the registry' -> 'sensor names associated with an asset in the registry'. Args/Returns unchanged."
+  },
+  {
+    "tool": "assets",
+    "variant": "MG",
+    "change_summary": "Widened purpose: compact metadata subset. Exact edit: 'compact registry metadata' -> 'registry metadata'. Args/Returns unchanged."
+  },
+  {
+    "tool": "find_assets_by_sensors",
+    "variant": "MG",
+    "change_summary": "Widened purpose: registered-only asset scope. Exact edit: 'Searches only assets registered at `site_name`.' -> 'Searches assets associated with `site_name`.'. Args/Returns unchanged."
+  },
+  {
+    "tool": "stream_extent",
+    "variant": "MG",
+    "change_summary": "Widened purpose: one-asset stream scope. Exact edit: \"an asset's telemetry stream\" -> 'asset telemetry streams'. Args/Returns unchanged."
+  },
+  {
+    "tool": "history",
+    "variant": "MG",
+    "change_summary": "Widened purpose: chronological ordering requirement. Exact edit: 'one chronological page' -> 'one page'. Args/Returns unchanged."
+  },
+  {
+    "tool": "latest_reading",
+    "variant": "MG",
+    "change_summary": "Widened purpose: newest-only record selection in all purpose sentences. Exact edit: 'newest' -> 'available'. Args/Returns unchanged."
+  },
+  {
+    "tool": "sensor_coverage",
+    "variant": "MG",
+    "change_summary": "Widened the purpose by removing the every-sensor requirement, allowing summaries for subsets. Preserved the full-stream scan, non-null rules, offset rules and every Args/Returns line."
+  },
+  {
+    "tool": "sensor_stats",
+    "variant": "MG",
+    "change_summary": "Widened purpose: one-or-all selection, allowing intermediate subsets. Exact edit: 'one or all measured sensors' -> 'measured sensors'. Args/Returns unchanged."
+  },
+  {
+    "tool": "json_reader",
+    "variant": "MG",
+    "change_summary": "Widened purpose: JSON-only input format. Exact edit: 'a JSON file' -> 'a data file'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_sensor_catalog",
+    "variant": "MG",
+    "change_summary": "Widened purpose: catalog membership in the purpose. Exact edit: 'Return cataloged sensor types.' -> 'Return available sensor types.'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_asset_catalog",
+    "variant": "MG",
+    "change_summary": "Widened purpose: catalog membership in the purpose. Exact edit: 'Return cataloged asset classes and categories.' -> 'Return asset classes and associated categories.'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_failure_mode_catalog",
+    "variant": "MG",
+    "change_summary": "Widened purpose: catalog membership in the purpose. Exact edit: 'Return cataloged failure modes by asset category.' -> 'Return failure modes grouped by asset category.'. Args/Returns unchanged."
+  },
+  {
+    "tool": "current_date_time",
+    "variant": "MG",
+    "change_summary": "Widened purpose: present-time-only date/time. Exact edit: 'the current date time' -> 'the requested date time'. Args/Returns unchanged."
+  },
+  {
+    "tool": "current_time_english",
+    "variant": "MG",
+    "change_summary": "Widened purpose: English-only language. Exact edit: 'in English text' -> 'as readable text'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_failure_modes",
+    "variant": "MG",
+    "change_summary": "Widened 'the known failure modes' to 'failure-mode information' (no longer limited to stored modes). Revised after Sridhar's manual review on 2026-11-24: the earlier wording 'potential failure modes' implied generation or discovery."
+  },
+  {
+    "tool": "generate_failure_modes",
+    "variant": "MG",
+    "change_summary": "Widened the purpose from a single asset class to multiple asset classes in one generation request. Preserved the no-database-write guarantee, stored-context rules, and every Args/Returns line."
+  },
+  {
+    "tool": "add_failure_modes",
+    "variant": "MG",
+    "change_summary": "Widened the purpose from a single asset class to multiple asset classes in one persistence request. Preserved existing-mode retention, merge/reporting semantics, and every Args/Returns line."
+  },
+  {
+    "tool": "list_workorders",
+    "variant": "MG",
+    "change_summary": "Widened purpose: closed filter-dimension enumeration. Exact edit: 'optional filters (site, status, asset, priority, dates)' -> 'optional filters (including site, status, asset, priority, dates)'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_workorder",
+    "variant": "MG",
+    "change_summary": "Widened purpose: requirement for both lookup identifiers. Exact edit: 'a single work order by number and site' -> 'a work order by number or site'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_workorder_tasks",
+    "variant": "MG",
+    "change_summary": "Widened purpose: child-parent-only task relationship. Exact edit: 'the child tasks of a parent work order' -> 'the related tasks of a work order'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_workorder_costs",
+    "variant": "MG",
+    "change_summary": "Widened purpose: actual-only spending. Exact edit: 'Actual labor/material/service/tool cost breakdown' -> 'Labor/material/service/tool cost breakdown'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_workorder_actuals_vs_planned",
+    "variant": "MG",
+    "change_summary": "Widened purpose: estimated-versus-actual comparison baseline. Exact edit: 'Estimated vs actual hours and cost variance' -> 'Comparative hours and cost variance'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_workorder_kpis",
+    "variant": "MG",
+    "change_summary": "Widened purpose: single-site KPI aggregation. Exact edit: 'Site KPIs:' -> 'Operational KPIs:'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_schedule_calendar",
+    "variant": "MG",
+    "change_summary": "Widened purpose: non-terminal-only status. Exact edit: 'Scheduled (non-terminal) work orders' -> 'Scheduled work orders'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_my_assigned_workorders",
+    "variant": "MG",
+    "change_summary": "Widened purpose: assigned-only relationship. Exact edit: 'assigned to a given technician' -> 'associated with a given technician'. Args/Returns unchanged."
+  },
+  {
+    "tool": "get_failure_codes",
+    "variant": "MG",
+    "change_summary": "Widened purpose: CouchDB-only source in the purpose. Exact edit: 'from CouchDB' -> 'from available stores'. Args/Returns unchanged."
+  },
+  {
+    "tool": "generate_work_order",
+    "variant": "MG",
+    "change_summary": "Widened purpose: fixed WAPPR initial status. Exact edit: '(status WAPPR)' -> '(initial status)'. Args/Returns unchanged."
+  },
+  {
+    "tool": "update_workorder",
+    "variant": "MG",
+    "change_summary": "Widened purpose: mutable-only attributes. Exact edit: 'mutable fields' -> 'recorded fields'. Args/Returns unchanged."
+  },
+  {
+    "tool": "approve_workorder",
+    "variant": "MG",
+    "change_summary": "Widened the object scope from a work order to a maintenance record, retaining the singular operation and APPR transition. Removed the unsupported multiple-order claim; the input schema still identifies one work order."
+  },
+  {
+    "tool": "assign_technician",
+    "variant": "MG",
+    "change_summary": "Widened purpose: single-technician assignment. Exact edit: 'a technician' -> 'technical staff'. Args/Returns unchanged."
+  },
+  {
+    "tool": "close_workorder",
+    "variant": "MG",
+    "change_summary": "Widened purpose: mandatory actuals-and-resolution detail. Exact edit: 'with actuals and resolution' -> 'with completion details'. Args/Returns unchanged."
+  },
+  {
+    "tool": "cancel_workorder",
+    "variant": "MG",
+    "change_summary": "Widened the object from 'a work order' to 'a maintenance record' (a superset). Revised after Sridhar's manual review on 2026-11-24: the earlier wording 'multiple work orders' invented an unsupported batch capability."
+  },
+  {
+    "tool": "sites",
+    "variant": "MS",
+    "change_summary": "Narrowed the purpose to decommissioning workflows; commissioning task T001 is a valid V0 use explicitly excluded by the MS purpose. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T001"
+    ]
+  },
+  {
+    "tool": "asset_ids",
+    "variant": "MS",
+    "change_summary": "Narrowed the purpose to pump asset identifiers; unrestricted MAIN identifier tasks also request Chiller 6 and compressor mp_1. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T003",
+      "T004",
+      "T005",
+      "T006"
+    ]
+  },
+  {
+    "tool": "asset_detail",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: pump assets only. Exact edit: 'Return registry details for one asset.' -> 'Return registry details for one pump asset.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T007",
+      "T008"
+    ]
+  },
+  {
+    "tool": "measured_sensors",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: temperature measurements only. Exact edit: \"List measurement fields observed in an asset's telemetry stream.\" -> \"List temperature measurement fields observed in an asset's telemetry stream.\". Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T009",
+      "T010",
+      "T011",
+      "T012"
+    ]
+  },
+  {
+    "tool": "installed_sensors",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: chiller assets only. Exact edit: 'List sensor names assigned to an asset in the registry.' -> 'List sensor names assigned to a chiller asset in the registry.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T013",
+      "T014",
+      "T015",
+      "T016"
+    ]
+  },
+  {
+    "tool": "assets",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: compressor assets only. Exact edit: 'List assets at one site with compact registry metadata.' -> 'List compressor assets at one site with compact registry metadata.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T017",
+      "T019",
+      "T020"
+    ]
+  },
+  {
+    "tool": "find_assets_by_sensors",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: observed rather than installed sensor source. Exact edit: 'Find site assets by installed or measured sensor names.' -> 'Find site assets by measured sensor names.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T022"
+    ]
+  },
+  {
+    "tool": "stream_extent",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: temperature streams only. Exact edit: \"Inspect the size and timestamp span of an asset's telemetry stream.\" -> \"Inspect the size and timestamp span of an asset's temperature telemetry stream.\". Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T023",
+      "T024",
+      "T025",
+      "T026"
+    ]
+  },
+  {
+    "tool": "history",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: hourly sampling only. Exact edit: 'Return one chronological page of telemetry observations for an asset.' -> 'Return one chronological page of hourly telemetry observations for an asset.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T027",
+      "T028",
+      "T029",
+      "T030",
+      "T128"
+    ]
+  },
+  {
+    "tool": "latest_reading",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: temperature telemetry only. Exact edit: 'Return the newest telemetry observation for an asset.' -> 'Return the newest temperature telemetry observation for an asset.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T031",
+      "T032",
+      "T034"
+    ]
+  },
+  {
+    "tool": "sensor_coverage",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: temperature sensors only. Exact edit: 'Summarize non-null observation coverage for every measured sensor.' -> 'Summarize non-null observation coverage for every measured temperature sensor.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T035",
+      "T036",
+      "T037",
+      "T038"
+    ]
+  },
+  {
+    "tool": "sensor_stats",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: single sensor, excluding all-field summaries. Exact edit: 'Compute numeric statistics for one or all measured sensors.' -> 'Compute numeric statistics for one measured sensor.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T040",
+      "T042"
+    ]
+  },
+  {
+    "tool": "json_reader",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: calibration files only. Exact edit: 'Reads a JSON file, parses its content, and returns the parsed data.' -> 'Reads a calibration JSON file, parses its content, and returns the parsed data.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T043",
+      "T044"
+    ]
+  },
+  {
+    "tool": "get_sensor_catalog",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: temperature types only. Exact edit: 'Return cataloged sensor types.' -> 'Return cataloged temperature sensor types.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T045",
+      "T046"
+    ]
+  },
+  {
+    "tool": "get_asset_catalog",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: rotating equipment only. Exact edit: 'Return cataloged asset classes and categories.' -> 'Return cataloged rotating-asset classes and categories.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T047",
+      "T048"
+    ]
+  },
+  {
+    "tool": "get_failure_mode_catalog",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: mechanical failures only. Exact edit: 'Return cataloged failure modes by asset category.' -> 'Return cataloged mechanical failure modes by asset category.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T049",
+      "T050"
+    ]
+  },
+  {
+    "tool": "current_date_time",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: inspection recording only. Exact edit: 'Provides the current date time as a JSON object.' -> 'Provides current date time as JSON for inspections.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T051"
+    ]
+  },
+  {
+    "tool": "current_time_english",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: shift handovers only. Exact edit: 'Returns the current time in English text.' -> 'Returns current time in English for handovers.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T053"
+    ]
+  },
+  {
+    "tool": "get_failure_modes",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: pump classes only. Exact edit: 'READ the known failure modes for an asset class.' -> 'READ the known failure modes for a pump asset class.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T056",
+      "T058"
+    ]
+  },
+  {
+    "tool": "generate_failure_modes",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: compressor classes only. Exact edit: 'GENERATE a new or extended failure-mode list for an asset class.' -> 'GENERATE a new or extended failure-mode list for a compressor asset class.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T059",
+      "T061"
+    ]
+  },
+  {
+    "tool": "add_failure_modes",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: complete/exhaustive lists only. Exact edit: 'WRITE failure modes for an asset class to the database.' -> 'WRITE exhaustive failure modes for an asset class to the database.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T063",
+      "T064"
+    ]
+  },
+  {
+    "tool": "list_workorders",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: open orders only. Exact edit: 'List work orders with optional filters' -> 'List open work orders with optional filters'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T065",
+      "T066",
+      "T067",
+      "T068"
+    ]
+  },
+  {
+    "tool": "get_workorder",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: approved orders only. Exact edit: 'Get a single work order by number and site.' -> 'Get an approved work order by number and site.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T069",
+      "T071",
+      "T072"
+    ]
+  },
+  {
+    "tool": "get_workorder_tasks",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: corrective parent orders only. Exact edit: 'List the child tasks of a parent work order.' -> 'List the child tasks of a corrective parent work order.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T073"
+    ]
+  },
+  {
+    "tool": "get_workorder_costs",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: completed orders only. Exact edit: 'for a work order.' -> 'for a completed work order.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T075",
+      "T077",
+      "T078"
+    ]
+  },
+  {
+    "tool": "get_workorder_actuals_vs_planned",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: preventive orders only. Exact edit: 'for a work order.' -> 'for a preventive work order.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T080",
+      "T081"
+    ]
+  },
+  {
+    "tool": "get_workorder_kpis",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: three-month reporting windows only. Exact edit: 'Site KPIs:' -> 'Quarterly site KPIs:'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T084"
+    ]
+  },
+  {
+    "tool": "get_schedule_calendar",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: preventive work only. Exact edit: 'Scheduled (non-terminal) work orders' -> 'Scheduled preventive (non-terminal) work orders'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T085"
+    ]
+  },
+  {
+    "tool": "get_my_assigned_workorders",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: open orders only. Exact edit: 'Work orders assigned' -> 'Open work orders assigned'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T088"
+    ]
+  },
+  {
+    "tool": "get_failure_codes",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: bearing failures only. Exact edit: 'Read the FCC failure-code reference catalog from CouchDB.' -> 'Read the FCC bearing-failure-code reference catalog from CouchDB.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T089",
+      "T090"
+    ]
+  },
+  {
+    "tool": "generate_work_order",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: preventive work only. Exact edit: 'Create a work order' -> 'Create a preventive work order'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T091",
+      "T092"
+    ]
+  },
+  {
+    "tool": "update_workorder",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: draft/unapproved orders only. Exact edit: 'on a work order.' -> 'on a draft work order.'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T094"
+    ]
+  },
+  {
+    "tool": "approve_workorder",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: corrective-maintenance work only. Exact edit: 'Approve a work order' -> 'Approve a CM work order'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T095"
+    ]
+  },
+  {
+    "tool": "assign_technician",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: HVAC technicians only. Exact edit: 'Assign a technician' -> 'Assign an HVAC technician'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T097"
+    ]
+  },
+  {
+    "tool": "close_workorder",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: corrective-maintenance work only. Exact edit: 'Close a work order' -> 'Close a CM work order'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T099"
+    ]
+  },
+  {
+    "tool": "cancel_workorder",
+    "variant": "MS",
+    "change_summary": "Narrowed purpose: draft/unapproved orders only. Exact edit: 'Cancel a work order' -> 'Cancel a draft work order'. Args/Returns unchanged.",
+    "conflicting_task_ids": [
+      "T102"
+    ]
+  }
+]

@@ -1,0 +1,422 @@
+[
+ {
+  "tool": "sites",
+  "date": "2026-03-02",
+  "len_ratio": 0.38,
+  "similarity": 0.28,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "sites",
+  "date": "2026-06-23",
+  "len_ratio": 1.13,
+  "similarity": 0.46,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "sites",
+  "date": "2026-07-14",
+  "len_ratio": 1.69,
+  "similarity": 0.4,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 2,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "sites",
+  "date": "2026-07-14",
+  "len_ratio": 1.67,
+  "similarity": 0.48,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "sites",
+  "date": "2026-07-14",
+  "len_ratio": 1.48,
+  "similarity": 0.55,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "sites",
+  "date": "2026-07-14",
+  "len_ratio": 1.48,
+  "similarity": 0.52,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "sites",
+  "date": "2026-07-14",
+  "len_ratio": 0.97,
+  "similarity": 0.92,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "asset_ids",
+  "date": "2026-07-14",
+  "len_ratio": 0.97,
+  "similarity": 0.1,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 2,
+  "sibling_refs_v0": 2
+ },
+ {
+  "tool": "asset_ids",
+  "date": "2026-07-14",
+  "len_ratio": 0.31,
+  "similarity": 0.04,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 2
+ },
+ {
+  "tool": "asset_ids",
+  "date": "2026-07-14",
+  "len_ratio": 1.59,
+  "similarity": 0.17,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 2
+ },
+ {
+  "tool": "asset_ids",
+  "date": "2026-07-14",
+  "len_ratio": 1.36,
+  "similarity": 0.38,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 2
+ },
+ {
+  "tool": "asset_ids",
+  "date": "2026-07-14",
+  "len_ratio": 1.44,
+  "similarity": 0.43,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 2
+ },
+ {
+  "tool": "asset_ids",
+  "date": "2026-07-14",
+  "len_ratio": 1.49,
+  "similarity": 0.43,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 2
+ },
+ {
+  "tool": "asset_ids",
+  "date": "2026-07-14",
+  "len_ratio": 1.15,
+  "similarity": 0.49,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 2
+ },
+ {
+  "tool": "asset_detail",
+  "date": "2026-07-14",
+  "len_ratio": 1.31,
+  "similarity": 0.52,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "measured_sensors",
+  "date": "2026-07-14",
+  "len_ratio": 1.08,
+  "similarity": 0.48,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 2,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "measured_sensors",
+  "date": "2026-07-14",
+  "len_ratio": 1.11,
+  "similarity": 0.47,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 2,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "measured_sensors",
+  "date": "2026-07-14",
+  "len_ratio": 1.65,
+  "similarity": 0.44,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "installed_sensors",
+  "date": "2026-07-14",
+  "len_ratio": 1.29,
+  "similarity": 0.51,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "installed_sensors",
+  "date": "2026-07-14",
+  "len_ratio": 1.72,
+  "similarity": 0.52,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "assets",
+  "date": "2026-07-14",
+  "len_ratio": 0.44,
+  "similarity": 0.18,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "assets",
+  "date": "2026-07-14",
+  "len_ratio": 0.38,
+  "similarity": 0.15,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "assets",
+  "date": "2026-07-14",
+  "len_ratio": 0.81,
+  "similarity": 0.17,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "assets",
+  "date": "2026-07-14",
+  "len_ratio": 1.11,
+  "similarity": 0.5,
+  "has_args": false,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "assets",
+  "date": "2026-07-14",
+  "len_ratio": 1.17,
+  "similarity": 0.52,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "assets",
+  "date": "2026-07-14",
+  "len_ratio": 1.2,
+  "similarity": 0.51,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "assets",
+  "date": "2026-07-14",
+  "len_ratio": 1.01,
+  "similarity": 0.56,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "find_assets_by_sensors",
+  "date": "2026-07-14",
+  "len_ratio": 1.1,
+  "similarity": 0.25,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 1,
+  "sibling_refs_v0": 1
+ },
+ {
+  "tool": "stream_extent",
+  "date": "2026-07-14",
+  "len_ratio": 1.14,
+  "similarity": 0.49,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "stream_extent",
+  "date": "2026-07-14",
+  "len_ratio": 1.11,
+  "similarity": 0.49,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "stream_extent",
+  "date": "2026-07-14",
+  "len_ratio": 1.1,
+  "similarity": 0.52,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "stream_extent",
+  "date": "2026-07-14",
+  "len_ratio": 1.11,
+  "similarity": 0.66,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "history",
+  "date": "2026-07-14",
+  "len_ratio": 1.34,
+  "similarity": 0.2,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 4,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "latest_reading",
+  "date": "2026-07-14",
+  "len_ratio": 1.18,
+  "similarity": 0.67,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 4,
+  "sibling_refs_v0": 4
+ },
+ {
+  "tool": "sensor_coverage",
+  "date": "2026-07-14",
+  "len_ratio": 1.52,
+  "similarity": 0.36,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 4,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "sensor_coverage",
+  "date": "2026-07-14",
+  "len_ratio": 1.4,
+  "similarity": 0.5,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 3,
+  "sibling_refs_v0": 3
+ },
+ {
+  "tool": "sensor_stats",
+  "date": "2026-07-14",
+  "len_ratio": 1.22,
+  "similarity": 0.41,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 4,
+  "sibling_refs_v0": 4
+ },
+ {
+  "tool": "sensor_stats",
+  "date": "2026-07-14",
+  "len_ratio": 1.28,
+  "similarity": 0.77,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 4,
+  "sibling_refs_v0": 4
+ },
+ {
+  "tool": "get_sensor_catalog",
+  "date": "2026-07-09",
+  "len_ratio": 0.92,
+  "similarity": 0.75,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "get_failure_mode_catalog",
+  "date": "2026-07-08",
+  "len_ratio": 0.41,
+  "similarity": 0.36,
+  "has_args": false,
+  "v0_args": false,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "get_failure_modes",
+  "date": "2026-07-09",
+  "len_ratio": 0.96,
+  "similarity": 0.98,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ },
+ {
+  "tool": "generate_failure_modes",
+  "date": "2026-07-09",
+  "len_ratio": 0.97,
+  "similarity": 0.93,
+  "has_args": true,
+  "v0_args": true,
+  "sibling_refs_old": 0,
+  "sibling_refs_v0": 0
+ }
+]

@@ -1,0 +1,1212 @@
+[
+  {
+    "name": "sites",
+    "server": "iot",
+    "access": "read",
+    "description": "Show registered site identifiers in sorted order.\n\nReturns:\n    SitesResult: Unique site identifiers; `[\"MAIN\"]` is supplied if the registry\n    has no entries.",
+    "input_schema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "asset_ids",
+    "server": "iot",
+    "access": "read",
+    "description": "Show the identifiers of assets registered at a site.\n\nChoose `assets()` if you need registry metadata too.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n\nReturns:\n    AssetsResult: Asset identifiers sorted, plus the total count.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "site_name"
+      ]
+    }
+  },
+  {
+    "name": "asset_detail",
+    "server": "iot",
+    "access": "read",
+    "description": "Fetch one asset’s details from the registry.\n\nCovers identity, type, description, location, status, installation date,\nvintage plus the installed-sensor total. Get names with `installed_sensors()`.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n\nReturns:\n    AssetDetail: Available fields from the registry; optional values become null\n    if missing.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "measured_sensors",
+    "server": "iot",
+    "access": "read",
+    "description": "Show the measurement fields seen in asset telemetry.\n\nCombines the entire stream into a sorted union, leaving out record metadata.\nChoose `installed_sensors()` for assigned sensor names; those can differ.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n\nReturns:\n    SensorsResult: Names of observed measurement fields, plus their count.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "installed_sensors",
+    "server": "iot",
+    "access": "read",
+    "description": "Show an asset’s registry-assigned sensor names.\n\nChoose `measured_sensors()` for telemetry-observed fields; its list can\nbe different.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n\nReturns:\n    SensorsResult: Names ordered as in the registry, plus their count.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "assets",
+    "server": "iot",
+    "access": "read",
+    "description": "Show a site’s assets with brief registry metadata.\n\nChoose `asset_ids()` for just identifiers; `asset_detail()` supplies further fields\nfor an individual asset.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    assettype: Optional type filter requiring exact matching with case preserved, e.g.\n        `PUMP`, alternatively `COMPRESSOR`.\n\nReturns:\n    AssetsWithMetadataResult: Entries ordered by identifier, including description,\n    type, vintage plus the total of installed sensors.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "assettype": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "site_name"
+      ]
+    }
+  },
+  {
+    "name": "find_assets_by_sensors",
+    "server": "iot",
+    "access": "read",
+    "description": "Locate site assets using assigned or observed sensor names.\n\nOnly assets registered under `site_name` are searched. Repeated queries are\nremoved, retaining the order of their first occurrence.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    sensors: Names to search, or name fragments if `substring` is enabled.\n    match: `all` needs each query; `any` needs one or more.\n    substring: Match fragments without regard to case, replacing exact,\n        case-sensitive comparison.\n    source: `measured` checks observed fields; `installed` checks\n        registry sensor assignments. The default is `measured`.\n\nReturns:\n    FindAssetsResult: Search settings and matched assets, including the actual\n    sensor names that matched.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "sensors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "match": {
+          "type": "string",
+          "default": "all"
+        },
+        "substring": {
+          "type": "boolean",
+          "default": false
+        },
+        "source": {
+          "type": "string",
+          "default": "measured"
+        }
+      },
+      "required": [
+        "site_name",
+        "sensors"
+      ]
+    }
+  },
+  {
+    "name": "stream_extent",
+    "server": "iot",
+    "access": "read",
+    "description": "Check asset telemetry record count and timestamp extent.\n\nOptional filters select a measured sensor plus a ISO 8601 half-open interval:\n`start` is included, whereas `end` is excluded. Sensor-filtered records qualify\nonly with that field non-null and present. Bounds and observation timestamps\nmust uniformly carry timezone offsets or uniformly omit them; aware timestamps undergo\ncomparison as instants, even with differing offsets.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n    sensor: An optional precise field name obtained through `measured_sensors()`.\n        Reserved metadata names, including `asset_id` and `timestamp`, cannot be\n        used as sensor identifiers.\n    start: Optional lower boundary, included, as an date or datetime formatted using ISO 8601.\n    end: Optional upper boundary, excluded, as an date or datetime formatted using ISO 8601.\n\nReturns:\n    StreamExtentResult: First and last qualifying timestamps, record\n    count, an indication of whether it exceeds a page of 1000 records, and average\n    spacing derived from the count and temporal extent.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        },
+        "sensor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "history",
+    "server": "iot",
+    "access": "read",
+    "description": "Fetch asset telemetry observations, one page ordered chronologically.\n\nOptional bounds define a ISO 8601 half-open interval. Select using `sensors` the\nprecise measured fields; leave it out to include every measured field present per\nrow. Each row retains `asset_id` and `timestamp`, omitting all remaining record\nbookkeeping metadata.\n\nFor page one, omit `cursor`. If `has_more` is true, resubmit the\nidentical query using `next_cursor`. Each cursor is opaque, tied to their query. Timestamp\noffsets follow the rules of `stream_extent()`.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n    start: An optional ISO 8601 lower boundary, included.\n    end: Optional ISO 8601 upper boundary, excluded.\n    sensors: Optional list specifying precise measured names; it cannot be empty. Duplicate\n        names are discarded, retaining their order.\n    limit: Observation ceiling for this page, between 1 and 1000.\n    cursor: The opaque `next_cursor` obtained on the preceding page for this identical query.\n\nReturns:\n    HistoryResult: Observations after projection, their count, bounds echoed back,\n    and fields for advancing to the subsequent page.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sensors": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "limit": {
+          "type": "integer",
+          "default": 1000
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "latest_reading",
+    "server": "iot",
+    "access": "read",
+    "description": "Fetch an asset’s most recent telemetry observation.\n\nLeave `sensor` out to get every measured field of the latest record. If a sensor gets\nspecified, the tool selects the most recent record containing a non-null value in that field.\nParsed timestamps determine record order according to `stream_extent()`.\n\n`age_seconds` subtracts the reading timestamp from UTC time now.\nOffsetless timestamps are treated as UTC; negative age\nmeans the observation timestamp lies ahead of now.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n    sensor: An optional precise field name obtained through `measured_sensors()`. Reserved\n        metadata names cannot serve as sensors.\n\nReturns:\n    LatestReadingResult: Chosen timestamp and values, plus age measured in seconds.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        },
+        "sensor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "sensor_coverage",
+    "server": "iot",
+    "access": "read",
+    "description": "Summarize every measured sensor’s coverage of observations that are not null.\n\nScans the entire timestamped stream. `non_null_count` counts any present,\nvalues that are non-null, irrespective of type. Exclusively null-valued fields receive zero\ncount with null boundaries. Timestamp offsets follow `stream_extent()`.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n\nReturns:\n    SensorCoverageResult: Scanned timestamped-record total and counts per sensor\n    with chronological boundaries, ordered by field name.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "sensor_stats",
+    "server": "iot",
+    "access": "read",
+    "description": "Calculate numerical summaries for one measured sensor or every measured sensor.\n\nLeave `sensor` out to summarize each measured field. The optional bounds define a\nISO 8601 half-open interval. Timestamp offsets follow `stream_extent()`.\n\nFinite numbers, including numeric strings, enter the numerical summaries.\nPresent booleans, nulls, non-finite and non-numeric values enter\n`null_count`; absent fields enter neither count. Here, `stddev` denotes\npopulation standard deviation: one numeric observation yields `0.0`; none yields null.\n\nArgs:\n    site_name: Supply an exact site identifier, e.g. `MAIN`; `sites()` can\n        show which identifiers are valid.\n    asset_id: Supply the exact identifier from `asset_ids()`, e.g. `Chiller 6`.\n    sensor: An optional precise field name obtained through `measured_sensors()`. Leave it out to\n        summarize each measured field.\n    start: Optional ISO 8601 lower boundary, included.\n    end: Optional ISO 8601 upper boundary, excluded.\n\nReturns:\n    SensorStatsResult: Counts of numeric/null values per field, mean, range,\n    population standard deviation, with first/last timestamps of numeric observations.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_name": {
+          "type": "string"
+        },
+        "asset_id": {
+          "type": "string"
+        },
+        "sensor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "site_name",
+        "asset_id"
+      ]
+    }
+  },
+  {
+    "name": "json_reader",
+    "server": "utilities",
+    "access": "read",
+    "description": "Opens a file containing JSON, parses its contents, and supplies the resulting data.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "file_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file_name"
+      ]
+    }
+  },
+  {
+    "name": "get_sensor_catalog",
+    "server": "utilities",
+    "access": "read",
+    "description": "Fetch the sensor types in the catalog.\n\nEntries include `sensor` plus `description`. Leave sensor out for every cataloged\nsensor type, or supply sensor to find an exactly matching name.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "sensor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      }
+    }
+  },
+  {
+    "name": "get_asset_catalog",
+    "server": "utilities",
+    "access": "read",
+    "description": "Fetch asset classes with categories recorded in the catalog.\n\nEntries include `category`, `category_description`, `asset`, plus\n`description`. Leave filters out for the complete class catalog, or supply\nasset, category, or both for exact matching.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "category": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      }
+    }
+  },
+  {
+    "name": "get_failure_mode_catalog",
+    "server": "utilities",
+    "access": "read",
+    "description": "Fetch cataloged failure modes grouped by asset category.\n\nThese entries include `category`, `failure_mode`, plus `description`. Leave filters out\nto enumerate every cataloged mode, or supply failure_mode, category, or both\nto request exact matching.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "failure_mode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "category": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      }
+    }
+  },
+  {
+    "name": "current_date_time",
+    "server": "utilities",
+    "access": "read",
+    "description": "Gives the present date and time in JSON representation.",
+    "input_schema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "current_time_english",
+    "server": "utilities",
+    "access": "read",
+    "description": "Gives the present time using English wording.",
+    "input_schema": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "get_failure_modes",
+    "server": "fmsr",
+    "access": "read",
+    "description": "READ known failure modes associated with the specified class of assets.\n\nArgs:\n    asset_class: Requested class, e.g. \"pump\". The tool normalizes case, whitespace,\n        digits, hyphens and underscores before the lookup.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "asset_class": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset_class"
+      ]
+    }
+  },
+  {
+    "name": "generate_failure_modes",
+    "server": "fmsr",
+    "access": "read",
+    "description": "GENERATE failure modes associated with an asset class, starting or extending a list.\n\nThis tool makes no database writes. If normalized `asset_class`\nis stored, its existing modes provide context\nfor the LLM to produce further modes. With no stored modes, the LLM\nstarts a fresh list.\n\nArgs:\n    asset_class: Class to consider, e.g. \"pump\". The tool normalizes case,\n        whitespace, digits, hyphens and underscores before\n        sending the LLM prompt.\n    max_modes: Upper limit on new failure modes requested from the LLM.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "asset_class": {
+          "type": "string"
+        },
+        "max_modes": {
+          "type": "integer",
+          "default": 10
+        }
+      },
+      "required": [
+        "asset_class"
+      ]
+    }
+  },
+  {
+    "name": "add_failure_modes",
+    "server": "fmsr",
+    "access": "write",
+    "description": "WRITE an asset class’s failure modes into the database.\n\nPreserves existing modes and merges incoming modes without case sensitivity,\nreporting just the additions. Use when generated or curated\nmodes should be retrievable through later `get_failure_modes` retrieval.\n\nArgs:\n    asset_class: Class to modify, e.g. \"pump\". The tool normalizes case, whitespace,\n        digits, hyphens and underscores before saving.\n    failure_modes: Modes being added for this asset class.\n    exhaustive: Use true only if the stored set is believed complete. When\n        unspecified, the prior value remains; newly created records default to false.\n    source: Provenance, optionally attached to the stored set.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "asset_class": {
+          "type": "string"
+        },
+        "failure_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exhaustive": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "asset_class",
+        "failure_modes"
+      ]
+    }
+  },
+  {
+    "name": "list_workorders",
+    "server": "wo",
+    "access": "read",
+    "description": "Find work orders, optionally filtering by site, asset, status, priority or dates.\nstatus allows OPEN / APPROVED_PENDING; setting page_size=0 retrieves every match together.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "asset_num": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "priority": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "date_from": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "date_to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "page_size": {
+          "type": "integer",
+          "default": 50
+        },
+        "page_num": {
+          "type": "integer",
+          "default": 1
+        }
+      }
+    }
+  },
+  {
+    "name": "get_workorder",
+    "server": "wo",
+    "access": "read",
+    "description": "Fetch one work order using its number plus site.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "get_workorder_tasks",
+    "server": "wo",
+    "access": "read",
+    "description": "Show subordinate tasks under one parent work order.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "get_workorder_costs",
+    "server": "wo",
+    "access": "read",
+    "description": "Break down a work order’s actual spending: labor, material, service and tools.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "get_workorder_actuals_vs_planned",
+    "server": "wo",
+    "access": "read",
+    "description": "Compare work-order estimates with actual hours and costs; give variances.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "get_workorder_kpis",
+    "server": "wo",
+    "access": "read",
+    "description": "Site KPIs covering totals, backlog, overdue work, mean completion, priority/asset distributions.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "type": "string"
+        },
+        "period_months": {
+          "type": "integer",
+          "default": 3
+        }
+      },
+      "required": [
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "get_schedule_calendar",
+    "server": "wo",
+    "access": "read",
+    "description": "Group scheduled work orders by day within a time window, excluding terminal ones.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "type": "string"
+        },
+        "date_from": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "date_to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "group_by": {
+          "type": "string",
+          "default": "date"
+        }
+      },
+      "required": [
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "get_my_assigned_workorders",
+    "server": "wo",
+    "access": "read",
+    "description": "Show work orders allocated to the specified technician’s labor code.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "labor_code": {
+          "type": "string"
+        },
+        "site_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "open_only": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "required": [
+        "labor_code"
+      ]
+    }
+  },
+  {
+    "name": "get_failure_codes",
+    "server": "wo",
+    "access": "read",
+    "description": "Read the FCC catalog of failure codes stored in CouchDB.\n\nLeave ``code`` unspecified to enumerate every available failure code; supply an exact code\nlike ``FC001`` for matching without case sensitivity; CouchDB metadata is excluded\nfrom results.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      }
+    }
+  },
+  {
+    "name": "generate_work_order",
+    "server": "wo",
+    "access": "write",
+    "description": "Open a work order with WAPPR status; attach agent/trigger/evidence provenance through aob_source.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "asset_num": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "default": 3
+        },
+        "work_type": {
+          "type": "string",
+          "default": "CM"
+        },
+        "reported_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "wonum": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "aob_source": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "description",
+        "asset_num",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "update_workorder",
+    "server": "wo",
+    "access": "write",
+    "description": "Modify a work order’s editable fields.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "priority": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "asset_num": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "failure_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "approve_workorder",
+    "server": "wo",
+    "access": "write",
+    "description": "Authorize a work order, setting APPR.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "assign_technician",
+    "server": "wo",
+    "access": "write",
+    "description": "Allocate a technician, adding one wplabor entry.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        },
+        "labor_code": {
+          "type": "string"
+        },
+        "craft": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "start_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "hours_planned": {
+          "type": "number",
+          "default": 8.0
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id",
+        "labor_code"
+      ]
+    }
+  },
+  {
+    "name": "close_workorder",
+    "server": "wo",
+    "access": "write",
+    "description": "Complete a work order, setting COMP and recording actuals plus resolution.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        },
+        "actual_hours": {
+          "type": "number",
+          "default": 0.0
+        },
+        "failure_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "resolution_notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  },
+  {
+    "name": "cancel_workorder",
+    "server": "wo",
+    "access": "write",
+    "description": "Cancel the work order, setting CAN.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "wonum": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "wonum",
+        "site_id"
+      ]
+    }
+  }
+]

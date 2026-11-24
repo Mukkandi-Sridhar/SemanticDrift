@@ -1,0 +1,857 @@
+{
+  "pinned_commit": "0d044061ab3ffd4b213ddf6a0868c360d7e9667c",
+  "summary": {
+    "pinned_commit": "0d044061ab3ffd4b213ddf6a0868c360d7e9667c",
+    "catalogs": {
+      "h1_earliest.json": {
+        "changed_tools": [
+          "sites",
+          "asset_ids",
+          "asset_detail",
+          "measured_sensors",
+          "installed_sensors",
+          "assets",
+          "find_assets_by_sensors",
+          "stream_extent",
+          "history",
+          "latest_reading",
+          "sensor_coverage",
+          "sensor_stats",
+          "get_sensor_catalog",
+          "get_failure_mode_catalog",
+          "get_failure_modes",
+          "generate_failure_modes"
+        ],
+        "n_changed": 16
+      },
+      "h2_midpoint.json": {
+        "changed_tools": [
+          "sites",
+          "asset_ids",
+          "asset_detail",
+          "measured_sensors",
+          "installed_sensors",
+          "assets",
+          "find_assets_by_sensors",
+          "stream_extent",
+          "history",
+          "latest_reading",
+          "sensor_coverage",
+          "sensor_stats",
+          "get_sensor_catalog",
+          "get_failure_mode_catalog",
+          "get_failure_modes",
+          "generate_failure_modes"
+        ],
+        "n_changed": 16
+      },
+      "h3_previous.json": {
+        "changed_tools": [
+          "sites",
+          "asset_ids",
+          "asset_detail",
+          "measured_sensors",
+          "installed_sensors",
+          "assets",
+          "find_assets_by_sensors",
+          "stream_extent",
+          "history",
+          "latest_reading",
+          "sensor_coverage",
+          "sensor_stats",
+          "get_sensor_catalog",
+          "get_failure_mode_catalog",
+          "get_failure_modes",
+          "generate_failure_modes"
+        ],
+        "n_changed": 16
+      }
+    }
+  },
+  "versions": {
+    "sites": [
+      {
+        "commit": "de6fc915746c396aa56d7312e67cc259e2cf450a",
+        "committed_at": "2026-03-02T10:37:02-05:00",
+        "description": "Retrieves a list of sites. Each site is represented by a name.",
+        "description_sha256": "def6f04f61c2b085ead587ae9b4071bcbb20c7c0cdba388bb830bcb81a460ba4",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "a26a152a2e7137be969950c1a47b9434cef7e779",
+        "committed_at": "2026-06-23T18:20:59-04:00",
+        "description": "Retrieves the list of sites, discovered dynamically from the asset registry (the distinct\n`siteid` across asset profiles). Falls back to the default only if the registry has no assets.",
+        "description_sha256": "a2c787f99b16569bccd1c411ff78b1a53e4b4fa2b60fbf9b01619898ae116f66",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "a76db9634d4e48236f8c7b078efe332cf67ed8a0",
+        "committed_at": "2026-07-14T14:59:44-04:00",
+        "description": "List known site names from the asset registry.\n\nSites are discovered from distinct `siteid` values in asset profiles. If the registry is\nunavailable or empty, the tool returns the default site list so callers still have a valid\nstarting point for `asset_ids()` and `assets()`.",
+        "description_sha256": "5c32512977085b39d5bfd7ae215d186a4af595c9facdea25030b7e226f1b7158",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "44dece3221426328ea8dd5327802f08ed7ec6d8f",
+        "committed_at": "2026-07-14T15:12:04-04:00",
+        "description": "Description:\nList known site names from the asset registry.\n\nInput:\nNone.\n\nReturns:\nSitesResult with `sites`, a sorted list of distinct `siteid` values from\nasset profiles. If CouchDB is unavailable or the registry has no sites,\nreturns the default site list (`[\"MAIN\"]`).",
+        "description_sha256": "16eb98652348c95b8e40190f4e1ee0b21b2e30f12515f5c3a667a3b21e3210df",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "6570f50f10b1a303ce0b9aaaf02c9a14a42a93b8",
+        "committed_at": "2026-07-14T15:15:16-04:00",
+        "description": "List known site names from the asset registry.\n\nReturns:\n    SitesResult: `sites` contains sorted distinct `siteid` values from\n    asset profiles. If CouchDB is unavailable or the registry has no sites,\n    `sites` falls back to `[\"MAIN\"]`.",
+        "description_sha256": "a43220435dc37aeade7716e695941bd6dbc8bea194e620a00187a8576cd9b83d",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "a8297deccee7d01ba4d2ecf034b60e0f2bd7d601",
+        "committed_at": "2026-07-14T15:18:27-04:00",
+        "description": "List known site names from the asset registry.\n\nReturns:\n    SitesResult: `sites` contains sorted distinct `siteid` values from\n    asset profiles. If the registry database is unavailable or has no sites,\n    `sites` falls back to `[\"MAIN\"]`.",
+        "description_sha256": "e48f0f8fd6b344b29df4c0890a161301b7994d5ab094072ee941dd3c70df54b0",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "List sorted site identifiers available in the asset registry.\n\nReturns:\n    SitesResult: Distinct site identifiers, or `[\"MAIN\"]` when none are\n    available.",
+        "description_sha256": "fc5493bf3b22097d2c95138af2cf9edb5e9d48a9bdb62f2ce51551ce3c60e201",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "c7e17e51ba0abb96cc5a73066c0ce78c1f83e8e5",
+        "committed_at": "2026-10-02T11:30:54-04:00",
+        "description": "List sorted site identifiers available in the asset registry.\n\nReturns:\n    SitesResult: Distinct site identifiers, or `[\"MAIN\"]` when the registry\n    lists none.",
+        "description_sha256": "71b4f55e623592c51e61596562da480c2c33087a8f116140f104a15c52cc4ee0",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "asset_ids": [
+      {
+        "commit": "69a99f0c245a3dad2a382cddd1a123727ae91ee5",
+        "committed_at": "2026-07-14T14:25:59-04:00",
+        "description": "Returns the asset IDs registered at a given site, from the asset registry filtered by `siteid`.\nEach returned id is the asset's telemetry id (`iot_asset_id`) where it has one, otherwise its\nregistry `assetnum` — so the id works with sensors()/history() when telemetry exists.",
+        "description_sha256": "0cde651a970fc48fe829d1cc49938c734a36bf2658fd7571b12aae4ccd446362",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "4bb7e9456a2faf9719dec10d2a40f087e57fda97",
+        "committed_at": "2026-07-14T14:39:49-04:00",
+        "description": "Return bare asset ids registered at a site.\n\nEach returned id is the registry `assetnum`.",
+        "description_sha256": "778c87ebb355f3617af877fe91d2cb849a388f763cd9bae9756321a3e0f3aadb",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "a76db9634d4e48236f8c7b078efe332cf67ed8a0",
+        "committed_at": "2026-07-14T14:59:44-04:00",
+        "description": "List only the asset identifiers for a site.\n\nUse this lightweight lookup when you only need valid `assetnum` values, for example to\npopulate a selector, validate an asset reference, or choose an id for another workflow.\nThe response contains no metadata beyond `site_name`, `total_assets`, the sorted `assets`\nid list, and a human-readable summary. Use `assets()` instead when you need descriptions,\nasset types, vintages, or installed sensor counts.",
+        "description_sha256": "919e5913e76a71fba5f590f716de9fa866b14607080a91989d9cbf3267843149",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "44dece3221426328ea8dd5327802f08ed7ec6d8f",
+        "committed_at": "2026-07-14T15:12:04-04:00",
+        "description": "Description:\nList only asset identifiers for one site.\n\nInput:\nsite_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n    discover valid site ids.\n\nReturns:\nAssetsResult with `site_name`, `total_assets`, `assets`, and `message`.\nThe `assets` field is a sorted list of asset registry `assetnum` values.\nReturns ErrorResult when the site is unknown or CouchDB is unavailable.",
+        "description_sha256": "6058268dbde921d53952a05b0b61cec6ad2968afec398c3862b15824acc3e8e8",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "6570f50f10b1a303ce0b9aaaf02c9a14a42a93b8",
+        "committed_at": "2026-07-14T15:15:16-04:00",
+        "description": "List only asset identifiers for one site.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n\nReturns:\n    AssetsResult: Contains `site_name`, `total_assets`, `assets`, and\n    `message`. The `assets` field is a sorted list of asset registry\n    `assetnum` values.\n    ErrorResult: Returned when the site is unknown or CouchDB is\n    unavailable.",
+        "description_sha256": "6dbaa057e53f166ffc7d092d537fdb15abc782c8c3bc7118ff10cf7737b78814",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "a8297deccee7d01ba4d2ecf034b60e0f2bd7d601",
+        "committed_at": "2026-07-14T15:18:27-04:00",
+        "description": "List only asset identifiers for one site.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n\nReturns:\n    AssetsResult: Contains `site_name`, `total_assets`, `assets`, and\n    `message`. The `assets` field is a sorted list of asset registry\n    `assetnum` values.\n    ErrorResult: Returned when the site is unknown or the registry database\n    is unavailable.",
+        "description_sha256": "45b359837148c8f53a9061c5b42748d01f7027d95fa601538b7eaabf0b085b2d",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "8a1ad8cf4210113e4eef781ab1b78ed8892b34cb",
+        "committed_at": "2026-07-14T15:21:48-04:00",
+        "description": "List only asset identifiers for one site.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n\nReturns:\n    AssetsResult: Contains `site_name`, `total_assets`, `assets`, and\n    `message`. The `assets` field is a sorted list of asset registry\n    `assetnum` values.",
+        "description_sha256": "c003c243c8dec1892781f6b3fc15dac96cbc2a7a78bb0f22aedca5e8d0a4d4f6",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "List asset identifiers registered at one site.\n\nUse `assets()` when registry metadata is also needed.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n\nReturns:\n    AssetsResult: Sorted asset identifiers and their count.",
+        "description_sha256": "fe9176b25fd370b1a9a3c5ed9d6a51f5ec2124c219076c80b193de8644940e47",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "asset_detail": [
+      {
+        "commit": "b64de2b39b69ec384c38dd2b13eaa7e8a7c363e2",
+        "committed_at": "2026-07-14T16:54:37-04:00",
+        "description": "Return registry details for one asset.\n\nThis tool reads the asset registry from `asset_db` (`ASSET_DBNAME`, default\n`asset`) and returns nameplate fields for one asset record. Use\n`installed_sensors()` when you only need the registry sensor inventory.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    AssetDetail: Contains `site_name`, `asset_id`, `description`,\n    `assettype`, `status`, `location`, `installdate`, `vintage`,\n    `n_installed_sensors`, and `message`.",
+        "description_sha256": "3fd08560f9623e49e62261d80660ae8b19187be0540a61c99b545d0c1f96454f",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "Return registry details for one asset.\n\nIncludes identity, description, type, status, location, installation date,\nvintage, and installed-sensor count. Use `installed_sensors()` for names.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    AssetDetail: The available registry fields; optional values are null\n    when absent.",
+        "description_sha256": "aae5fda4f88da84f5a766ba4bc1ec24d958126b604d6b582bde1b0586f777777",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "measured_sensors": [
+      {
+        "commit": "fea41609916b891def78f1d76423727c827d0b25",
+        "committed_at": "2026-07-14T15:34:32-04:00",
+        "description": "List measured sensor fields for one asset at one site.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorsResult: Contains `site_name`, `asset_id`, `total_sensors`,\n    `sensors`, and `message`. The `sensors` field is a sorted list of\n    telemetry record fields observed for the asset, excluding structural\n    fields such as `asset_id` and `timestamp`.",
+        "description_sha256": "320577cc64f7a6000943644159d53a83ed3fefcf2c54a1ff5e1361a405c01f76",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "aba73b4b790e1d89b5cac1d635d38f8c93d85749",
+        "committed_at": "2026-07-14T15:46:07-04:00",
+        "description": "List measured sensor fields for one asset at one site.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorsResult: Contains `site_name`, `asset_id`, `total_sensors`,\n    `sensors`, and `message`. The `sensors` field is a sorted list of\n    telemetry record fields observed for the asset, excluding structural\n    fields such as `asset_id`, `timestamp`, and `dataset`.",
+        "description_sha256": "a41cee94620ad4f2a0c3270df45a12f54b837a7f0d8cdfeb0c734fd6313ec59f",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "b1d0611dcfc6e13d43948cf071dde4566aa66ea1",
+        "committed_at": "2026-07-14T16:03:45-04:00",
+        "description": "List telemetry fields actually measured for one asset.\n\nThis tool reads IoT records from `iot_db` (`IOT_DBNAME`, default `iot`).\nIt scans records matching `asset_id` and returns the union of observed\nmeasurement fields. Use `installed_sensors()` instead when you need the\nasset registry inventory.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorsResult: Contains `site_name`, `asset_id`, `total_sensors`,\n    `sensors`, and `message`. The `sensors` field is a sorted list of\n    observed telemetry fields, excluding record metadata such as `_id`,\n    `_rev`, `asset_id`, `timestamp`, `dataset`, `type`, and `doctype`.",
+        "description_sha256": "4b6c481956736afd13d1820b0fd1ddf17df4c4f250125a976030ac41445c14a8",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "List measurement fields observed in an asset's telemetry stream.\n\nReturns the sorted union across the full stream, excluding record metadata.\nUse `installed_sensors()` for assigned sensors, which may differ.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorsResult: Observed measurement field names and their count.",
+        "description_sha256": "c66e7d17830f9bf3b84f234c1480e91b79b3db27dcf81b657374c22c80d0c3e2",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "installed_sensors": [
+      {
+        "commit": "804cc8d21bf7f484c3e410ebcaca061edff0502d",
+        "committed_at": "2026-07-14T15:54:55-04:00",
+        "description": "List installed sensor names for one asset from the asset registry.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorsResult: Contains `site_name`, `asset_id`, `total_sensors`,\n    `sensors`, and `message`. The `sensors` field is the registry\n    inventory for the asset, distinct from `measured_sensors()`, which\n    lists fields observed in IoT telemetry records.",
+        "description_sha256": "acf2f3464872d61d9eac8023b6c050dfbb961bef71f46d6920de89bd3df98a37",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "b1d0611dcfc6e13d43948cf071dde4566aa66ea1",
+        "committed_at": "2026-07-14T16:03:45-04:00",
+        "description": "List sensor names installed on one asset according to the registry.\n\nThis tool reads the asset registry from `asset_db` (`ASSET_DBNAME`, default\n`asset`) and returns the asset record's `sensors` inventory. Use\n`measured_sensors()` instead when you need fields actually observed in IoT\ntelemetry records.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorsResult: Contains `site_name`, `asset_id`, `total_sensors`,\n    `sensors`, and `message`. The `sensors` field preserves the registry\n    sensor inventory order from the asset record.",
+        "description_sha256": "97718e335336654604ba00d64693a5214e0a2774cf5be4442aad344853187c14",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "List sensor names assigned to an asset in the registry.\n\nUse `measured_sensors()` for fields observed in telemetry; the two lists may\ndiffer.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorsResult: Sensor names in registry order and their count.",
+        "description_sha256": "52962de2c86f71e4907a7dbcc441e4a3135e0c00c744fffcc3d39c37be60f056",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "assets": [
+      {
+        "commit": "de6fc915746c396aa56d7312e67cc259e2cf450a",
+        "committed_at": "2026-03-02T10:37:02-05:00",
+        "description": "Returns a list of assets for a given site. Each asset includes an id and a name.",
+        "description_sha256": "655f7a2721fa0eac8fa54b05bf4983bafbc55b3be110cef9558c71861f4f2160",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "52aca636e3abae3ff49dcb505dfca9d7ed57253b",
+        "committed_at": "2026-06-23T18:27:10-04:00",
+        "description": "Returns the assets registered at a given site, from the asset registry filtered by `siteid`.\nEach returned id is the asset's telemetry id (`iot_asset_id`) where it has one, otherwise its\nregistry `assetnum` — so the id works with sensors()/history() when telemetry exists.",
+        "description_sha256": "fb3398527157ae9488a7ac4e803396918b5b10c054c07dba1acacaf0eb211073",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "69a99f0c245a3dad2a382cddd1a123727ae91ee5",
+        "committed_at": "2026-07-14T14:25:59-04:00",
+        "description": "List assets at a site with metadata: description, assettype, vintage, and installed sensor\ncount. Optionally filter by `assettype` (e.g. 'PUMP', 'COMPRESSOR'). For just the bare IDs to\npass to other tools, use `asset_ids`.",
+        "description_sha256": "6c04d83e2c662f3ed137ff84ccc40982124d144c6b05d523da65f77bb157d7a3",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "4bb7e9456a2faf9719dec10d2a40f087e57fda97",
+        "committed_at": "2026-07-14T14:39:49-04:00",
+        "description": "Return registry assets with metadata.\n\nThe result includes description, assettype, vintage, and installed sensor count. Optionally\nfilter by `assettype`, for example `PUMP` or `COMPRESSOR`.",
+        "description_sha256": "2165cac80faa335ced717df3e1e6127b190e61d8a0c6849618a35186f000771f",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "a76db9634d4e48236f8c7b078efe332cf67ed8a0",
+        "committed_at": "2026-07-14T14:59:44-04:00",
+        "description": "List asset registry records for a site with compact metadata.\n\nUse this when you need more than ids: each row includes `asset_id` (the registry\n`assetnum`), `description`, `assettype`, `vintage`, and `n_sensors` derived from the\ninstalled sensor list. Pass `assettype` to restrict results to one asset class, such as\n`PUMP` or `COMPRESSOR`. Use `asset_ids()` instead when a compact list of ids is enough.",
+        "description_sha256": "6d67538e6cb0143e2d585bdcedea1b55575467fed088531ce5bb7d1aa9f4d359",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "44dece3221426328ea8dd5327802f08ed7ec6d8f",
+        "committed_at": "2026-07-14T15:12:04-04:00",
+        "description": "Description:\nList asset registry records for one site with compact metadata.\n\nInput:\nsite_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n    discover valid site ids.\nassettype: Optional exact asset type filter, such as `PUMP` or\n    `COMPRESSOR`.\n\nReturns:\nAssetsWithMetadataResult with `site_name`, `total_assets`, `assets`, and\n`message`. Each item in `assets` includes `asset_id` (the registry\n`assetnum`), `description`, `assettype`, `vintage`, and `n_sensors`.\nReturns ErrorResult when the site is unknown or CouchDB is unavailable.",
+        "description_sha256": "250676432ca7746d378adf10fd081728998f7f609940bc9a1d9086df04a53bab",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "6570f50f10b1a303ce0b9aaaf02c9a14a42a93b8",
+        "committed_at": "2026-07-14T15:15:16-04:00",
+        "description": "List asset registry records for one site with compact metadata.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    assettype: Optional exact asset type filter, such as `PUMP` or\n        `COMPRESSOR`.\n\nReturns:\n    AssetsWithMetadataResult: Contains `site_name`, `total_assets`,\n    `assets`, and `message`. Each item in `assets` includes `asset_id`\n    (the registry `assetnum`), `description`, `assettype`, `vintage`, and\n    `n_sensors`.\n    ErrorResult: Returned when the site is unknown or CouchDB is\n    unavailable.",
+        "description_sha256": "b206ede4c1f5464974171851a74c065f5ed15fed29f04d1e8d47684ce8393dc4",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "a8297deccee7d01ba4d2ecf034b60e0f2bd7d601",
+        "committed_at": "2026-07-14T15:18:27-04:00",
+        "description": "List asset registry records for one site with compact metadata.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    assettype: Optional exact asset type filter, such as `PUMP` or\n        `COMPRESSOR`.\n\nReturns:\n    AssetsWithMetadataResult: Contains `site_name`, `total_assets`,\n    `assets`, and `message`. Each item in `assets` includes `asset_id`\n    (the registry `assetnum`), `description`, `assettype`, `vintage`, and\n    `n_sensors`.\n    ErrorResult: Returned when the site is unknown or the registry database\n    is unavailable.",
+        "description_sha256": "425a3604e2695ae791c072d567bd6dbe6cc5e2a9a893a61282c3b80f59901956",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "8a1ad8cf4210113e4eef781ab1b78ed8892b34cb",
+        "committed_at": "2026-07-14T15:21:48-04:00",
+        "description": "List asset registry records for one site with compact metadata.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    assettype: Optional exact asset type filter, such as `PUMP` or\n        `COMPRESSOR`.\n\nReturns:\n    AssetsWithMetadataResult: Contains `site_name`, `total_assets`,\n    `assets`, and `message`. Each item in `assets` includes `asset_id`\n    (the registry `assetnum`), `description`, `assettype`, `vintage`, and\n    `n_sensors`.",
+        "description_sha256": "1b901b08ece9afc07cd2aef30f86649cb27c03aaa0bef85e64fc03a9524bffc7",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "List assets at one site with compact registry metadata.\n\nUse `asset_ids()` for identifiers only and `asset_detail()` for more fields\nabout one asset.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    assettype: Optional exact, case-sensitive asset type filter, such as\n        `PUMP` or `COMPRESSOR`.\n\nReturns:\n    AssetsWithMetadataResult: Assets sorted by identifier, with description,\n    type, vintage, and installed-sensor count.",
+        "description_sha256": "f66bd3bc516f7bb256477b94f8eded29ad219bb2a318bba90f3bb6b328c56007",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "find_assets_by_sensors": [
+      {
+        "commit": "b64de2b39b69ec384c38dd2b13eaa7e8a7c363e2",
+        "committed_at": "2026-07-14T16:54:37-04:00",
+        "description": "Return assets at a site that match the requested sensor names.\n\nThe search is limited to assets registered at `site_name`. Duplicate query\nsensors are ignored while preserving the first occurrence order.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    sensors: One or more sensor names or, when `substring` is true, sensor\n        name fragments to search for.\n    match: `all` requires every listed sensor; `any` requires at least one.\n    substring: If true, match sensor names case-insensitively by substring.\n    source: `measured` checks telemetry fields; `installed` checks the\n        asset registry inventory.\n\nReturns:\n    FindAssetsResult: Contains the deduplicated query sensors, matching\n    asset ids, and the concrete sensor names that matched each asset.",
+        "description_sha256": "b5d674a368c8256ab407f3c4be1f53d5743d5a62344cfc7d1966a7e325ff6f26",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "Find site assets by installed or measured sensor names.\n\nSearches only assets registered at `site_name`. Duplicate queries are\nremoved while preserving first occurrence order.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    sensors: Sensor names, or fragments when `substring` is true.\n    match: `all` requires every query; `any` requires at least one.\n    substring: Use case-insensitive fragment matching instead of exact,\n        case-sensitive matching.\n    source: `measured` searches observed fields; `installed` searches\n        registry assignments. Defaults to `measured`.\n\nReturns:\n    FindAssetsResult: Query settings and matching assets with the concrete\n    sensor names found.",
+        "description_sha256": "c28f63af2e7e94950d3bacb7ba9f82cb4ed6cd9187a7deb50dd115d7141ce3bc",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "stream_extent": [
+      {
+        "commit": "6ef435de8e95efa80cfada38f1a11f00e3916454",
+        "committed_at": "2026-07-14T17:02:59-04:00",
+        "description": "Return count and observed time bounds for one asset's telemetry stream.\n\nThe tool scans all matching telemetry records across CouchDB pages. `start`\nis inclusive and `end` is exclusive. When `sensor` is provided, only records\nwhere that telemetry field exists and is not null are counted.\n\nTimestamp bounds are validated as ISO 8601 and sent to CouchDB as the same\nstrings provided by the caller. Use the timestamp granularity and timezone\nstyle stored in the telemetry records, such as `2024-01-15T00:00:00` for\ndatetime streams or `2024-01-15` for date-only streams.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional telemetry field name from `measured_sensors()`.\n        Reserved metadata fields such as `asset_id` and `timestamp` are not\n        valid sensor names.\n    start: Optional inclusive ISO 8601 timestamp lower bound.\n    end: Optional exclusive ISO 8601 timestamp upper bound.\n\nReturns:\n    StreamExtentResult: Contains first and last matching timestamps,\n    `total_records`, whether the result exceeds the server page size, and\n    the approximate interval between matching records.",
+        "description_sha256": "f0b4c312eb7ff17952733962621df6666b0be9bd6b0fb0ef594793c77162cb70",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "9a4ece388ac91bed36ebd095f67f9755f73fd001",
+        "committed_at": "2026-07-14T17:10:03-04:00",
+        "description": "Return count and observed time bounds for one asset's telemetry stream.\n\nThe tool scans all matching telemetry records. `start` is inclusive and\n`end` is exclusive. When `sensor` is provided, only records where that\ntelemetry field exists and is not null are counted.\n\nTimestamp bounds are validated as ISO 8601 and applied as the same strings\nprovided by the caller. Use the timestamp granularity and timezone style\nstored in the telemetry records, such as `2024-01-15T00:00:00` for datetime\nstreams or `2024-01-15` for date-only streams.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional telemetry field name from `measured_sensors()`.\n        Reserved metadata fields such as `asset_id` and `timestamp` are not\n        valid sensor names.\n    start: Optional inclusive ISO 8601 timestamp lower bound.\n    end: Optional exclusive ISO 8601 timestamp upper bound.\n\nReturns:\n    StreamExtentResult: Contains first and last matching timestamps,\n    `total_records`, whether the result exceeds the server page size, and\n    the approximate interval between matching records.",
+        "description_sha256": "dc126daaad1bf228f4d899a2dd0931c04f17172d021a680484f779521727cf6c",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "56515c7016ff212bde7bcda88c4df29185aaff67",
+        "committed_at": "2026-07-14T17:27:55-04:00",
+        "description": "Return count and observed time bounds for one asset's telemetry stream.\n\nThe tool scans all matching telemetry records. `start` is inclusive and\n`end` is exclusive. When `sensor` is provided, only records where that\ntelemetry field exists and is not null are counted.\n\nTimestamp bounds are validated as ISO 8601 and compared chronologically\nafter parsing. Different explicit UTC offsets are supported. Bounds and\ntelemetry timestamps must either all include timezone offsets or all omit\nthem; ambiguous mixtures return an error.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional telemetry field name from `measured_sensors()`.\n        Reserved metadata fields such as `asset_id` and `timestamp` are not\n        valid sensor names.\n    start: Optional inclusive ISO 8601 timestamp lower bound.\n    end: Optional exclusive ISO 8601 timestamp upper bound.\n\nReturns:\n    StreamExtentResult: Contains first and last matching timestamps,\n    `total_records`, whether the result exceeds the server page size, and\n    the approximate interval between matching records.",
+        "description_sha256": "d887e40b2e2556d2ca44e2b96a27db0e0a5950bca3c94a789db4514450f2ca27",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "ec6d05a8f237c818fd6c7bcc9ca9a797ff598c7b",
+        "committed_at": "2026-07-14T17:55:54-04:00",
+        "description": "Inspect the size and timestamp span of an asset's telemetry stream.\n\nOptionally restrict the stream to one measured sensor and/or an ISO 8601\nwindow. Sensor-filtered records count only when the field is present and\nnon-null. The window is half-open: `start` is inclusive and `end` is\nexclusive. Bounds and telemetry timestamps must consistently include or\nomit timezone offsets; explicit offsets may differ and compare by instant.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional exact field name from `measured_sensors()`.\n        Reserved metadata fields such as `asset_id` and `timestamp` are not\n        valid sensor names.\n    start: Optional inclusive ISO 8601 date or datetime lower bound.\n    end: Optional exclusive ISO 8601 date or datetime upper bound.\n\nReturns:\n    StreamExtentResult: `start_time` and `end_time` are the earliest and\n    latest matching timestamps. `total_records` is the matching count,\n    `exceeds_page_limit` indicates more than one server page, and\n    `approx_interval_seconds` is the average spacing implied by the span and\n    count.",
+        "description_sha256": "052a82e0b3eaf027a0d2bb74d3bb8a9cda18af228b4fa62b44093cedd54e0911",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "Inspect the size and timestamp span of an asset's telemetry stream.\n\nOptionally filter by one measured sensor and a half-open ISO 8601 window:\n`start` is inclusive and `end` is exclusive. Sensor-filtered records count\nonly when the field is present and non-null. Bounds and record timestamps\nmust consistently include or omit timezone offsets; aware timestamps are\ncompared by instant even when their offsets differ.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional exact field name from `measured_sensors()`.\n        Reserved metadata fields such as `asset_id` and `timestamp` are not\n        valid sensor names.\n    start: Optional inclusive ISO 8601 date or datetime lower bound.\n    end: Optional exclusive ISO 8601 date or datetime upper bound.\n\nReturns:\n    StreamExtentResult: Earliest and latest matching timestamps, record\n    count, whether the count exceeds one 1000-record page, and average\n    interval implied by the span and count.",
+        "description_sha256": "8bca961b3695abfdee4c83d9c1aef8f5dd53208a910531ad6e24ce7b8353bc41",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "history": [
+      {
+        "commit": "de6fc915746c396aa56d7312e67cc259e2cf450a",
+        "committed_at": "2026-03-02T10:37:02-05:00",
+        "description": "Returns a list of historical sensor values for the specified asset(s) at a site within a given time range (start to final).",
+        "description_sha256": "1f0a18c5eb0566705e8c9d1c40c569acce16825be46f82172974d9845f15168f",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "ec6d05a8f237c818fd6c7bcc9ca9a797ff598c7b",
+        "committed_at": "2026-07-14T17:55:54-04:00",
+        "description": "Return one chronological page of telemetry observations for an asset.\n\nOptional bounds form a half-open ISO 8601 window: `start` is inclusive and\n`end` is exclusive. Use `sensors` to project exact fields from\n`measured_sensors()`. Every row includes `asset_id` and `timestamp`; other\nmetadata and internal record identifiers are excluded. Omit `sensors` to\nreturn every measured field present in each row.\n\n`limit` must be between 1 and 1000. Leave `cursor` unset for the first page.\nWhen `has_more` is true, repeat the same query arguments with `next_cursor`.\nCursors are opaque and bound to the site, asset, window, and sensor list.\nTimestamp offset rules match `stream_extent()`; history returns an error if\ntimestamp representations cannot be emitted in chronological order.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    start: Optional inclusive ISO 8601 date or datetime lower bound.\n    end: Optional exclusive ISO 8601 date or datetime upper bound.\n    sensors: Optional non-empty list of exact measured field names. Duplicate\n        names are removed while preserving order.\n    limit: Maximum observations in this page, from 1 through 1000.\n    cursor: Opaque `next_cursor` from the previous page of the same query.\n\nReturns:\n    HistoryResult: `observations` contains the projected chronological rows,\n    `returned` is the page size, and `has_more`/`next_cursor` control paging.\n    `start` and `end` echo the requested window.",
+        "description_sha256": "1ab6a027de7599ffcf6ed16bd2a442001b543f1ca9d527fbb761576ecd1124f9",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "Return one chronological page of telemetry observations for an asset.\n\nOptional bounds form a half-open ISO 8601 window. Use `sensors` to project\nexact measured fields; omit it to return all measured fields present in each\nrow. Every row includes `asset_id` and `timestamp` and excludes other record\nmetadata.\n\nLeave `cursor` unset for the first page. When `has_more` is true, repeat the\nsame query with `next_cursor`. Cursors are opaque and query-bound. Timestamp\noffset rules match `stream_extent()`.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    start: Optional inclusive ISO 8601 lower bound.\n    end: Optional exclusive ISO 8601 upper bound.\n    sensors: Optional non-empty list of exact measured field names. Duplicate\n        names are removed while preserving order.\n    limit: Maximum observations in this page, from 1 to 1000.\n    cursor: Opaque `next_cursor` from the previous page of the same query.\n\nReturns:\n    HistoryResult: Projected observations, returned count, echoed bounds,\n    and cursor fields for the next page.",
+        "description_sha256": "71ac2efbff2494716562ebf3fd8d7e149ec5eb8d5de8221e7d2a3b1e16d1809e",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "latest_reading": [
+      {
+        "commit": "ec6d05a8f237c818fd6c7bcc9ca9a797ff598c7b",
+        "committed_at": "2026-07-14T17:55:54-04:00",
+        "description": "Return the newest telemetry observation for an asset.\n\nOmit `sensor` to return every measured field present in the newest record.\nProvide an exact field name from `measured_sensors()` to return the newest\nrecord where that field is present and non-null. The newest record is chosen\nby parsed timestamp rather than string order, using the same timestamp rules\nas `stream_extent()`.\n\n`age_seconds` is the difference between the current UTC time and the reading\ntimestamp. Offset-free timestamps are interpreted as UTC; a negative value\nindicates a timestamp in the future.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional exact field name from `measured_sensors()`. Reserved\n        metadata fields are not valid sensor names.\n\nReturns:\n    LatestReadingResult: Contains the selected observation timestamp,\n    requested sensor values, age in seconds, and a compact message.",
+        "description_sha256": "cbb2974a55ba86d3e0a4e41cb6007d74630f90874feb0e21ed1309118431e74a",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "Return the newest telemetry observation for an asset.\n\nOmit `sensor` for all measured fields in the newest record. When a sensor is\nprovided, returns the newest record where that field is present and non-null.\nRecords are compared by parsed timestamp using the `stream_extent()` rules.\n\n`age_seconds` is the difference between the current UTC time and the reading\ntimestamp. Offset-free timestamps are interpreted as UTC; a negative value\nindicates a timestamp in the future.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional exact field name from `measured_sensors()`. Reserved\n        metadata fields are not valid sensor names.\n\nReturns:\n    LatestReadingResult: Selected timestamp, values, and age in seconds.",
+        "description_sha256": "01930d06cfc7b2fee33a046a32384485cfe9ba34894d3cf03c6de03aae1e3ae2",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "sensor_coverage": [
+      {
+        "commit": "b016eeca449de35f2b417374394b172b2bc9ef36",
+        "committed_at": "2026-07-14T17:43:08-04:00",
+        "description": "Return per-sensor non-null counts and observed time coverage.\n\nCoverage is calculated from timestamped telemetry records in chronological\nterms, using the same timestamp parsing and timezone-consistency rules as\n`stream_extent()` and `sensor_stats()`. Every observed telemetry field is\nreturned, including fields seen only with null values.\n\nThe tool scans the full paged stream with constant memory so returned counts\nand time bounds are complete. Non-null values of any type contribute to\n`non_null_count`; first and last timestamps identify the earliest and latest\nnon-null samples.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorCoverageResult: Contains `docs_scanned` and sorted per-sensor\n    non-null counts with chronological first/last non-null timestamps.",
+        "description_sha256": "589036177577b482ba329029d755c2b79afbd77346617b6b1c2f45cdf449248b",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "ec6d05a8f237c818fd6c7bcc9ca9a797ff598c7b",
+        "committed_at": "2026-07-14T17:55:54-04:00",
+        "description": "Summarize non-null observation coverage for every measured sensor.\n\nScans the asset's full timestamped stream; use `stream_extent()` first when\nyou need to estimate its size. `non_null_count` includes present non-null\nvalues of any type. Fields observed only with null values are returned with\nzero count and null time bounds. First and last timestamps are selected\nchronologically. Mixed offset-aware and offset-free timestamps return an\nerror.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorCoverageResult: `docs_scanned` is the number of timestamped records\n    examined. `sensors` is sorted by field name and contains each field's\n    non-null count and earliest/latest non-null timestamps.",
+        "description_sha256": "1318ba07aaca12ec4f6d3bf5e9908df797f6372dfc0b4f3e690527353df9c772",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "Summarize non-null observation coverage for every measured sensor.\n\nScans the full timestamped stream. `non_null_count` includes present,\nnon-null values of any type. Fields observed only with null values have zero\ncount and null bounds. Timestamp offset rules match `stream_extent()`.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n\nReturns:\n    SensorCoverageResult: Timestamped records scanned and per-sensor counts\n    and chronological bounds, sorted by field name.",
+        "description_sha256": "acc34a28ee46d0e92f659b912de60d6358a8d7e3d77b69ace62a8186aec8828e",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "sensor_stats": [
+      {
+        "commit": "9a38b98026f5896e4a7dcda5d40a4d0c3d4d16d0",
+        "committed_at": "2026-07-14T17:37:25-04:00",
+        "description": "Return numeric sensor statistics over an optional time window.\n\nThe window is half-open: `start` is inclusive and `end` is exclusive.\nTimestamps are parsed and compared chronologically with the same timezone\nhandling as `stream_extent()`. Omit `sensor` to summarize every measured\ntelemetry field for the asset.\n\nNumeric values and numeric strings contribute to `count`, `min`, `max`,\n`mean`, and population `stddev`. Present values that are null, boolean,\nnon-numeric, or non-finite contribute to `null_count`. Missing fields do not\ncontribute to either count. First and last timestamps identify the earliest\nand latest numeric samples included in the statistics.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional exact field name from `measured_sensors()`. Omit it to\n        summarize every measured field.\n    start: Optional inclusive ISO 8601 timestamp lower bound.\n    end: Optional exclusive ISO 8601 timestamp upper bound.\n\nReturns:\n    SensorStatsResult: Contains one `SensorStat` per requested field with\n    finite numeric counts, null counts, range, mean, population standard\n    deviation, and first/last numeric sample timestamps.",
+        "description_sha256": "26dd92fa03a30d0d260c651d94414b110487f20da1db74cd449f07548286e42c",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "ec6d05a8f237c818fd6c7bcc9ca9a797ff598c7b",
+        "committed_at": "2026-07-14T17:55:54-04:00",
+        "description": "Compute numeric statistics for one or all measured sensors.\n\nOmit `sensor` to summarize every field returned by `measured_sensors()`.\nOptional bounds form a half-open ISO 8601 window: `start` is inclusive and\n`end` is exclusive. Timestamp offset rules match `stream_extent()`.\n\nFinite numbers and numeric strings contribute to the numeric statistics.\nPresent null, boolean, non-numeric, and non-finite values contribute to\n`null_count`; missing fields contribute to neither count. `stddev` is the\npopulation standard deviation: `0.0` for one numeric value and null for none.\nFirst and last timestamps identify the earliest and latest numeric samples.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional exact field name from `measured_sensors()`. Omit it to\n        summarize all measured fields.\n    start: Optional inclusive ISO 8601 date or datetime lower bound.\n    end: Optional exclusive ISO 8601 date or datetime upper bound.\n\nReturns:\n    SensorStatsResult: `stats` contains one entry per requested field, sorted\n    by field name when `sensor` is omitted. Each entry includes numeric and\n    null counts, range, mean, population standard deviation, and\n    earliest/latest numeric sample timestamps.",
+        "description_sha256": "86a45c26ef2d7a9521e38b2f1066d16d3d45ac58c72ac47686741609a50980eb",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "2228cfc6b21ff4c70007499ce46575f01002ae58",
+        "committed_at": "2026-07-14T18:10:15-04:00",
+        "description": "Compute numeric statistics for one or all measured sensors.\n\nOmit `sensor` to summarize every measured field. Optional bounds form a\nhalf-open ISO 8601 window. Timestamp offset rules match `stream_extent()`.\n\nFinite numbers and numeric strings contribute to the numeric statistics.\nPresent null, boolean, non-numeric, and non-finite values contribute to\n`null_count`; missing fields contribute to neither count. `stddev` is the\npopulation standard deviation: `0.0` for one numeric value and null for none.\n\nArgs:\n    site_name: Exact site id to query, such as `MAIN`. Use `sites()` to\n        discover valid site ids.\n    asset_id: Exact asset id from `asset_ids()`, such as `Chiller 6`.\n    sensor: Optional exact field name from `measured_sensors()`. Omit it to\n        summarize all measured fields.\n    start: Optional inclusive ISO 8601 lower bound.\n    end: Optional exclusive ISO 8601 upper bound.\n\nReturns:\n    SensorStatsResult: Per-field numeric and null counts, range, mean,\n    population standard deviation, and earliest/latest numeric timestamps.",
+        "description_sha256": "a8d08a18cefc0793f52dc02a3594546adb6d998f160043cad8235ba296f63a37",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "json_reader": [
+      {
+        "commit": "de6fc915746c396aa56d7312e67cc259e2cf450a",
+        "committed_at": "2026-03-02T10:37:02-05:00",
+        "description": "Reads a JSON file, parses its content, and returns the parsed data.",
+        "description_sha256": "ffdcec9685879529acbaa31c7edca3dee6fb32c77a0012c518fd6a301528eb96",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_sensor_catalog": [
+      {
+        "commit": "6b7798da6b8f4955be199c99294bd10f1d94abd2",
+        "committed_at": "2026-07-08T16:01:09-04:00",
+        "description": "Return sensor catalog entries. Pass sensor for an exact sensor-name lookup.",
+        "description_sha256": "2dfe07619b49f5ba6365112565eb922188bdda478d4cd4ee6e51aa1df9f8b8e5",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "b5a944788b195882414937dd7a5d7c26ce01d3b0",
+        "committed_at": "2026-07-09T17:00:42-04:00",
+        "description": "Return cataloged sensor names and descriptions.\n\nWithout a sensor argument, returns all cataloged sensor entries. Pass sensor\nfor an exact sensor-name lookup.",
+        "description_sha256": "a1ca651a9c9fe769dba1631caad35c8eebf500cae685048f1acebdef0bd5b131",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "42dc0d8d369ed9516c4c0b3b8d0c3101b0d4cb2e",
+        "committed_at": "2026-07-09T17:05:39-04:00",
+        "description": "Return cataloged sensor types.\n\nEntries contain `sensor` and `description`. Omit sensor to list all cataloged\nsensor types, or pass sensor for an exact sensor-name lookup.",
+        "description_sha256": "80037b87ad33c5bdb2429adf52a3aa037dc7d385b4a65425f1a73ff54a943ed8",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_asset_catalog": [
+      {
+        "commit": "6b7798da6b8f4955be199c99294bd10f1d94abd2",
+        "committed_at": "2026-07-08T16:01:09-04:00",
+        "description": "Return asset catalog entries. Pass asset and/or category for exact lookups.",
+        "description_sha256": "8b97e37c66cd3a4e31af968780be7633d8eccad55bc895b7d6beff6e28c3a9fd",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "42dc0d8d369ed9516c4c0b3b8d0c3101b0d4cb2e",
+        "committed_at": "2026-07-09T17:05:39-04:00",
+        "description": "Return cataloged asset classes and categories.\n\nEntries contain `category`, `category_description`, `asset`, and\n`description`. Omit filters to list all cataloged asset classes, or pass\nasset and/or category for exact lookups.",
+        "description_sha256": "0077122d45606f34cddf38c918ecb4a04f628e05cea203b956450f638cf9847a",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_failure_mode_catalog": [
+      {
+        "commit": "a007f72c2134c3969774753eedc30fe295c2109a",
+        "committed_at": "2026-07-08T16:02:10-04:00",
+        "description": "Return failure-mode catalog entries.\n\nPass failure_mode and/or category for exact lookups.",
+        "description_sha256": "b9f82bdbd4ca1d976fafffcfb09dbdc3547baa1bc31f10056d89ebb7ad931857",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "42dc0d8d369ed9516c4c0b3b8d0c3101b0d4cb2e",
+        "committed_at": "2026-07-09T17:05:39-04:00",
+        "description": "Return cataloged failure modes by asset category.\n\nEntries contain `category`, `failure_mode`, and `description`. Omit filters\nto list all cataloged failure modes, or pass failure_mode and/or category\nfor exact lookups.",
+        "description_sha256": "f269d5ec2fcbc6a879907daa1d687c5c973fa74753c35d4811bd52442789efcd",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "current_date_time": [
+      {
+        "commit": "de6fc915746c396aa56d7312e67cc259e2cf450a",
+        "committed_at": "2026-03-02T10:37:02-05:00",
+        "description": "Provides the current date time as a JSON object.",
+        "description_sha256": "73d9f6da9de4cdba090d9ac5ac3d01da8e3b332bf3f26604f94019b66d5317cd",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "current_time_english": [
+      {
+        "commit": "de6fc915746c396aa56d7312e67cc259e2cf450a",
+        "committed_at": "2026-03-02T10:37:02-05:00",
+        "description": "Returns the current time in English text.",
+        "description_sha256": "1fbc22dc8e30e985d5217855682e303927eb8b8aaf3a078d5cfd9575a3f611d3",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_failure_modes": [
+      {
+        "commit": "de6fc915746c396aa56d7312e67cc259e2cf450a",
+        "committed_at": "2026-03-02T10:37:02-05:00",
+        "description": "Returns a list of known failure modes for the given asset.\nFor chillers and AHUs returns a curated list. For other assets queries the LLM.",
+        "description_sha256": "e51fc67594859ddcbb953ab57a2d445c8732d03139bed446c5da78d0346f7913",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "49a11a044533dde124e7d4e9028b9488331a8c07",
+        "committed_at": "2026-07-08T16:18:53-04:00",
+        "description": "READ the known failure modes for an asset from CouchDB (collection 'failure_mode'). The list\nmay be partial: check `exhaustive` — if false, call generate_failure_modes to supplement.\nDoes NOT call the LLM. Returns an error if the class is not in the DB.",
+        "description_sha256": "0cb377c1b400823bfeada3d3e8f1dd93bfae0aba58945139cb6d63ce0c3de331",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "34a618c3ee70127ae3e81bbe266d03e02ea3e190",
+        "committed_at": "2026-07-09T16:18:56-04:00",
+        "description": "READ the known failure modes for an asset class.\n\nArgs:\n    asset_class: Asset class to look up, such as \"pump\". Case, whitespace,\n        underscores, and hyphens are normalized before querying.",
+        "description_sha256": "4b8583fdc8f174000f8a30c72f5cbaf7d8dd39135004d05f670558c66469cc83",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "564c2cff05b2494e4b9a9ccb733a2c49f6541008",
+        "committed_at": "2026-07-09T16:51:35-04:00",
+        "description": "READ the known failure modes for an asset class.\n\nArgs:\n    asset_class: Asset class to look up, such as \"pump\". Case, whitespace,\n        digits, underscores, and hyphens are normalized before querying.",
+        "description_sha256": "a88419aa4134153504d3a14f76887cf306e0f8e11f071bdd1e3bf53bcdd8c829",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "generate_failure_modes": [
+      {
+        "commit": "49a11a044533dde124e7d4e9028b9488331a8c07",
+        "committed_at": "2026-07-08T16:18:53-04:00",
+        "description": "GENERATE failure modes for an asset via the LLM, EXTENDING the known (partial) list. The DB\nlist is usually not exhaustive, so this asks the LLM for ADDITIONAL modes beyond what is already\nknown. If `known` is omitted, the current DB list for the class is used as context; if there is\nno known list, it generates from scratch. Generated modes already present in `known` are dropped.\nNothing is persisted — call add_failure_modes to save the new ones.",
+        "description_sha256": "cd9cae6d26b1f39a4d47599c3732c51a16619c67102e3e390f14a50bcdd7640b",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "34a618c3ee70127ae3e81bbe266d03e02ea3e190",
+        "committed_at": "2026-07-09T16:18:56-04:00",
+        "description": "GENERATE a new or extended failure-mode list for an asset class.\n\nThis tool does not write to CouchDB. If `known` is omitted, the current\nCouchDB failure modes for `asset_class` are used as context when available.\nIf no stored modes exist, the LLM generates a new list from scratch.\n\nArgs:\n    asset_class: Asset class to reason about, such as \"pump\". Case,\n        whitespace, underscores, and hyphens are normalized before prompting\n        the LLM.\n    known: Optional known failure modes to extend. When provided, this list\n        is used instead of reading the current CouchDB list.\n    max_modes: Maximum number of new failure modes to request from the LLM.",
+        "description_sha256": "142d76c6e6dc07ce3e5fb0e1d6220e9703497cfd8eda4ee92250158a5f563454",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "0debdefa092d4985418be6b223843929d90e528d",
+        "committed_at": "2026-07-09T16:22:30-04:00",
+        "description": "GENERATE a new or extended failure-mode list for an asset class.\n\nThis tool does not write to CouchDB. If the normalized `asset_class` exists\nin CouchDB, the current stored failure modes are used as context and the LLM\ngenerates additional modes. If no stored modes exist, the LLM generates a\nnew list from scratch.\n\nArgs:\n    asset_class: Asset class to reason about, such as \"pump\". Case,\n        whitespace, underscores, and hyphens are normalized before prompting\n        the LLM.\n    max_modes: Maximum number of new failure modes to request from the LLM.",
+        "description_sha256": "2b806dc8158fe1728144330ed89d6b207dd43d1cf5cc52ba035cb36c85d1d0ac",
+        "schema_matches_v0": true,
+        "is_v0": false
+      },
+      {
+        "commit": "564c2cff05b2494e4b9a9ccb733a2c49f6541008",
+        "committed_at": "2026-07-09T16:51:35-04:00",
+        "description": "GENERATE a new or extended failure-mode list for an asset class.\n\nThis tool does not write to the database. If the normalized `asset_class`\nexists in the database, the current stored failure modes are used as context\nand the LLM generates additional modes. If no stored modes exist, the LLM\ngenerates a new list from scratch.\n\nArgs:\n    asset_class: Asset class to reason about, such as \"pump\". Case,\n        whitespace, digits, underscores, and hyphens are normalized before\n        prompting the LLM.\n    max_modes: Maximum number of new failure modes to request from the LLM.",
+        "description_sha256": "759505643fedf1f5e53f927ffc790ed8517624cefc6371b61f43e15d2ad1fb35",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "add_failure_modes": [
+      {
+        "commit": "49a11a044533dde124e7d4e9028b9488331a8c07",
+        "committed_at": "2026-07-08T16:18:53-04:00",
+        "description": "WRITE: persist/augment the failure modes for a class in CouchDB. Merges with any existing list\n(union, de-duplicated). Use to save generated or curated modes so future get_failure_modes calls\nreturn them. Set exhaustive=true only if the list is now believed complete.",
+        "description_sha256": "0b5ff55cf5f394ede6ada883a1672d1da11f775221a2ba0f076f68768d6b2397",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "564c2cff05b2494e4b9a9ccb733a2c49f6541008",
+        "committed_at": "2026-07-09T16:51:35-04:00",
+        "description": "WRITE failure modes for an asset class to the database.\n\nExisting modes are preserved, incoming modes are merged case-insensitively,\nand only newly added modes are reported. Use this after curated or generated\nmodes should become available to future `get_failure_modes` calls.\n\nArgs:\n    asset_class: Asset class to update, such as \"pump\". Case, whitespace,\n        digits, underscores, and hyphens are normalized before writing.\n    failure_modes: Failure modes to add for the asset class.\n    exhaustive: Set true only when the stored list is believed complete. If\n        omitted, the existing value is preserved; new records default false.\n    source: Optional provenance for the stored list.",
+        "description_sha256": "2c0ee0480fba49339308b045e7f09164f34711364baa9db8bd5764a942688934",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "list_workorders": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "List work orders with optional filters (site, status, asset, priority, dates).\nstatus accepts OPEN / APPROVED_PENDING; page_size=0 returns all matches in one call.",
+        "description_sha256": "dc74f1348a671c09dc861a239bb735d6e477b5254f8a5a02679d4697eb778712",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_workorder": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Get a single work order by number and site.",
+        "description_sha256": "e95e432387b19d5bbda684bb6c0a67fa154650c9a95df85b417556ad08baea29",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_workorder_tasks": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "List the child tasks of a parent work order.",
+        "description_sha256": "93934c351dc88df5800fa6232c1fe51e2d1d2fb47cd66362a45718098c397509",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_workorder_costs": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Actual labor/material/service/tool cost breakdown for a work order.",
+        "description_sha256": "73ace9723092c7186299634b59e5cf1ba8cc69f7daaf6b6214ee08031ee7636c",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_workorder_actuals_vs_planned": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Estimated vs actual hours and cost variance for a work order.",
+        "description_sha256": "cd6b5daeb51e491678a5bd88225518dd62a472a6fc42050075ff04164f0d10ec",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_workorder_kpis": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Site KPIs: totals, backlog, overdue, avg completion, priority/asset breakdowns.",
+        "description_sha256": "bd95009a47581edcd8e995a71d9bd9dc886246607e2bf7d72b8e9e5edefda33e",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_schedule_calendar": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Scheduled (non-terminal) work orders in a date window, bucketed by day.",
+        "description_sha256": "967b25ada9e8bdf9d6d9e79e305b5830906d83168cc555338ed35ddc32353c73",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_my_assigned_workorders": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Work orders assigned to a given technician (labor code).",
+        "description_sha256": "344ca7ffcef9fa148eafb838d595b5be88cc892e432c90626a1bc715b7ff56dc",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "get_failure_codes": [
+      {
+        "commit": "01526d4616915fcc982c970de785334b8e078ecf",
+        "committed_at": "2026-03-04T14:18:02-05:00",
+        "description": "Retrieve all available failure codes with their categories and descriptions.",
+        "description_sha256": "76fb679e1dc7f711702cb1760b3a7fa825a4e450c9248e4e6d13a2f7bd888934",
+        "schema_matches_v0": false,
+        "is_v0": false
+      },
+      {
+        "commit": "6d5b49fc0d1c562591eb0b7b680c3440f47ac26d",
+        "committed_at": "2026-07-15T14:38:52-04:00",
+        "description": "Read the FCC failure-code reference catalog from CouchDB.\n\nOmit ``code`` to list all available failure codes, or pass an exact code\nsuch as ``FC001``. Matching is case-insensitive and CouchDB metadata is not\nreturned.",
+        "description_sha256": "60574d376d2824f79e0ea95acbcc72804a4fbdf43eb5a2852a93424585fb1486",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "generate_work_order": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Create a work order (status WAPPR). Attach aob_source provenance (agent/trigger/evidence).",
+        "description_sha256": "aa3e27976d72d2cf10c02e2c2adfc5cebc9eca976e5e0559761efb72b3db198e",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "update_workorder": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Update mutable fields on a work order.",
+        "description_sha256": "fd81005765295427393bda054aa3a648ce49988f82a270e9f762285a59415b27",
+        "schema_matches_v0": false,
+        "is_v0": true
+      }
+    ],
+    "approve_workorder": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Approve a work order (-> APPR).",
+        "description_sha256": "2a9945585183d9b50ebe2a2dcafc8113c7e87ef41cd563b94d60b176ee8636e4",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "assign_technician": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Assign a technician (adds a wplabor line).",
+        "description_sha256": "660998d27c172ed73a696822bee6272485b9c63197cefcadad2743418b0145d9",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "close_workorder": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Close a work order (-> COMP) with actuals and resolution.",
+        "description_sha256": "e00af10a60986944ec19e7f9e3db62cb5eed5162530d9212c50c53a37ac59172",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ],
+    "cancel_workorder": [
+      {
+        "commit": "eec179de8ef1247871b30b4e2d4858c97165773b",
+        "committed_at": "2026-06-07T19:41:39-04:00",
+        "description": "Cancel a work order (-> CAN).",
+        "description_sha256": "ee77b8a1893df103f52f34833622c8d838cf4a76cf00adbba27c73ea36815180",
+        "schema_matches_v0": true,
+        "is_v0": true
+      }
+    ]
+  }
+}

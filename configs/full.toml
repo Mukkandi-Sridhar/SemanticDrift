@@ -1,0 +1,9 @@
+run_id = "full"
+k = 5
+batch_providers = ["openai", "anthropic"]
+models_file = "models.toml"
+models = ["gpt-6.2-astra", "claude-opus-5-5", "gpt-6.2-sol", "claude-sonnet-5-5", "gpt-6-luna", "claude-haiku-5-5", "deepseek-flash", "qwen/qwen3.8-27b"]
+variants = ["V0", "P1", "P2", "P3", "MG", "MS"]
+seed = 20261124
+estimated_output_tokens = 300
+bootstrap_resamples = 10000

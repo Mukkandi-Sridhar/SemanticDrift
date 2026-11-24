@@ -1,0 +1,6 @@
+run_id = "judge"
+models_file = "models.toml"
+models = ["gpt-6.2-sol", "claude-sonnet-5-5"]
+variants = ["P1", "P2", "P3"]
+k = 1
+seed = 20261124

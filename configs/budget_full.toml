@@ -1,0 +1,10 @@
+# $20 budget plan (2026-11-24): 7 cost-efficient models, see research/02-design/MODELS.md
+run_id = "budget_full"
+k = 3
+batch_providers = []  # $20 plan: direct calls; OpenAI prefix caching instead of batch
+models_file = "models.toml"
+models = ["gpt-6-luna", "gpt-6.1-terra", "anthropic/claude-haiku-5.5", "deepseek/deepseek-v4.1-flash-1017", "qwen/qwen3.8-27b-fp8", "mistralai/mistral-small-2603", "google/gemini-3.1-flash-lite"]
+variants = ["V0", "P1", "P2", "P3", "MG", "MS"]
+seed = 20261124
+estimated_output_tokens = 150
+bootstrap_resamples = 10000

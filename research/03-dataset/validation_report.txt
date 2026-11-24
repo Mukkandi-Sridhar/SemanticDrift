@@ -1,0 +1,124 @@
+PASS upstream commit pin
+PASS V0 source reconstruction
+PASS unique tool names
+PASS six catalogs
+PASS V0 ordered names
+PASS V0 identical non-description fields
+PASS V0 nonempty descriptions
+PASS P1 ordered names
+PASS P1 identical non-description fields
+PASS P1 nonempty descriptions
+PASS P1 word length ±30%
+PASS P1 character length ±30%
+PASS P1 no unexempted 4-word reuse
+PASS P1 line/indent/section layout
+PASS P1 protected backticks/references
+PASS P1 parameter/result prefixes
+PASS P1 required section headers
+PASS P1 descriptions changed
+PASS P2 ordered names
+PASS P2 identical non-description fields
+PASS P2 nonempty descriptions
+PASS P2 word length ±30%
+PASS P2 character length ±30%
+PASS P2 no unexempted 4-word reuse
+PASS P2 line/indent/section layout
+PASS P2 protected backticks/references
+PASS P2 parameter/result prefixes
+PASS P2 required section headers
+PASS P2 descriptions changed
+PASS P3 ordered names
+PASS P3 identical non-description fields
+PASS P3 nonempty descriptions
+PASS P3 word length ±30%
+PASS P3 character length ±30%
+PASS P3 no unexempted 4-word reuse
+PASS P3 line/indent/section layout
+PASS P3 protected backticks/references
+PASS P3 parameter/result prefixes
+PASS P3 required section headers
+PASS P3 descriptions changed
+PASS MG ordered names
+PASS MG identical non-description fields
+PASS MG nonempty descriptions
+PASS MG word length ±30%
+PASS MG character length ±30%
+PASS MG required section headers
+PASS MG verbatim Args/Returns
+PASS MG descriptions changed
+PASS MS ordered names
+PASS MS identical non-description fields
+PASS MS nonempty descriptions
+PASS MS word length ±30%
+PASS MS character length ±30%
+PASS MS required section headers
+PASS MS verbatim Args/Returns
+PASS MS descriptions changed
+PASS JSON Schema emitted-vocabulary validity and default types
+PASS rationale exact coverage
+PASS scenario source traceability
+PASS unique task IDs
+PASS task labels, access, type, references
+PASS task leakage
+COUNT sites: 2 (minimum 2)
+COUNT asset_ids: 4 (minimum 4)
+COUNT asset_detail: 2 (minimum 2)
+COUNT measured_sensors: 4 (minimum 4)
+COUNT installed_sensors: 4 (minimum 4)
+COUNT assets: 4 (minimum 4)
+COUNT find_assets_by_sensors: 2 (minimum 2)
+COUNT stream_extent: 4 (minimum 4)
+COUNT history: 5 (minimum 4)
+COUNT latest_reading: 4 (minimum 4)
+COUNT sensor_coverage: 4 (minimum 4)
+COUNT sensor_stats: 4 (minimum 4)
+COUNT json_reader: 2 (minimum 2)
+COUNT get_sensor_catalog: 2 (minimum 2)
+COUNT get_asset_catalog: 2 (minimum 2)
+COUNT get_failure_mode_catalog: 2 (minimum 2)
+COUNT current_date_time: 2 (minimum 2)
+COUNT current_time_english: 2 (minimum 2)
+COUNT get_failure_modes: 4 (minimum 4)
+COUNT generate_failure_modes: 4 (minimum 4)
+COUNT add_failure_modes: 2 (minimum 2)
+COUNT list_workorders: 4 (minimum 4)
+COUNT get_workorder: 4 (minimum 4)
+COUNT get_workorder_tasks: 2 (minimum 2)
+COUNT get_workorder_costs: 4 (minimum 4)
+COUNT get_workorder_actuals_vs_planned: 4 (minimum 4)
+COUNT get_workorder_kpis: 2 (minimum 2)
+COUNT get_schedule_calendar: 2 (minimum 2)
+COUNT get_my_assigned_workorders: 2 (minimum 2)
+COUNT get_failure_codes: 2 (minimum 2)
+COUNT generate_work_order: 2 (minimum 2)
+COUNT update_workorder: 2 (minimum 2)
+COUNT approve_workorder: 2 (minimum 2)
+COUNT assign_technician: 2 (minimum 2)
+COUNT close_workorder: 2 (minimum 2)
+COUNT cancel_workorder: 2 (minimum 2)
+PASS per-tool minimum coverage
+PASS near-miss sibling annotations
+PASS task counts — 103 single_tool + 37 no_tool = 140; target ≈95 + 25
+PASS single-tool ms_conflict booleans
+PASS MS conflict for every tool
+PASS MS rationale conflict witnesses
+PASS no-tool subtypes
+PASS tempting no-tool count — 12
+PASS tempting queries omit steering hints
+PASS at least 25 source-adapted single-tool tasks — 25
+PASS source anchor syntax
+QUERY LENGTH whitespace words: min=6 max=16; 6–20=103/103
+PASS lexical covariate freshness and exact coverage
+OVERLAP V0: 0.348103
+OVERLAP P1: 0.352260
+OVERLAP P2: 0.346935
+OVERLAP P3: 0.329691
+OVERLAP MG: 0.334021
+OVERLAP MS: 0.354964
+PASS benign-catalog overlap spread <=0.03 — 0.022569
+PASS 108 meaning-audit records
+PASS meaning audit description hashes current
+PASS meaning audit Markdown exists
+PASS protected originals unchanged
+SEMANTIC REVIEW: Sridhar completed the 18-item manual review on 2026-11-24 (research/LOG.md); independent two-way equivalence judging remains pending. Later author corrections are not human approval; structural PASS is not semantic approval.
+SUMMARY: 0 failed checks

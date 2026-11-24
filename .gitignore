@@ -47,3 +47,9 @@ venv.bak/
 
 # Logs
 *.log
+
+# Upstream source checkouts (not committed)
+vendor/
+
+# Experiment outputs (committed deliberately later, not dry-run noise)
+results/

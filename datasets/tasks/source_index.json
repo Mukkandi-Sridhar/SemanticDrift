@@ -1,0 +1,72 @@
+{
+  "src/couchdb/scenarios_data/default/question.txt#1": {
+    "path": "src/couchdb/scenarios_data/default/question.txt",
+    "record_id": null,
+    "line": 1,
+    "sha256": "b3a22ee5bf163b48adad736c133f04e2a06245c4fe4b448a6f310ee49dd33d13",
+    "original_text": "What sites are available at Main?"
+  },
+  "src/couchdb/scenarios_data/scenario_3/question.txt#12": {
+    "path": "src/couchdb/scenarios_data/scenario_3/question.txt",
+    "record_id": null,
+    "line": 12,
+    "sha256": "ab0147071bed7eedfa76659f1f4ee807c006b84e2b5e58d43c77aeb062e70e98",
+    "original_text": "2. Look up that asset in the asset registry and use the name recorded there."
+  },
+  "src/scenarios/local/vibration_utterance.json#309": {
+    "path": "src/scenarios/local/vibration_utterance.json",
+    "record_id": 309,
+    "line": null,
+    "sha256": "e0fc9ea84df260be0360f8a1d88b1be4798e9b12ce1d34953b9e656848be58fa",
+    "original_text": "What vibration sensors are available for Motor_01 at site PLANT_A?"
+  },
+  "src/couchdb/scenarios_data/scenario_3/question.txt#21": {
+    "path": "src/couchdb/scenarios_data/scenario_3/question.txt",
+    "record_id": null,
+    "line": 21,
+    "sha256": "ab0147071bed7eedfa76659f1f4ee807c006b84e2b5e58d43c77aeb062e70e98",
+    "original_text": "Count as observations only those records that carry a value for that measurement;"
+  },
+  "src/scenarios/local/vibration_utterance.json#308": {
+    "path": "src/scenarios/local/vibration_utterance.json",
+    "record_id": 308,
+    "line": null,
+    "sha256": "e0fc9ea84df260be0360f8a1d88b1be4798e9b12ce1d34953b9e656848be58fa",
+    "original_text": "Fetch vibration sensor data from Motor_01, sensor Vibration_X, from 2024-01-15 to 2024-01-15T01:00:00 at site PLANT_A."
+  },
+  "src/scenarios/local/vibration_utterance.json#322": {
+    "path": "src/scenarios/local/vibration_utterance.json",
+    "record_id": 322,
+    "line": null,
+    "sha256": "e0fc9ea84df260be0360f8a1d88b1be4798e9b12ce1d34953b9e656848be58fa",
+    "original_text": "A maintenance technician reports that Motor_01 vibrates more than usual. Fetch the Vibration_X sensor data from 2024-01-15 to 2024-01-15T00:30:00 at site PLANT_A, compute the FFT spectrum (top 5 peaks), assess severity, and explain what the dominant frequencies suggest."
+  },
+  "src/couchdb/scenarios_data/scenario_3/question.txt#13": {
+    "path": "src/couchdb/scenarios_data/scenario_3/question.txt",
+    "record_id": null,
+    "line": 13,
+    "sha256": "ab0147071bed7eedfa76659f1f4ee807c006b84e2b5e58d43c77aeb062e70e98",
+    "original_text": "3. Retrieve the full available sensor history for that asset, limited to that single"
+  },
+  "src/couchdb/scenarios_data/scenario_1/question.txt#1": {
+    "path": "src/couchdb/scenarios_data/scenario_1/question.txt",
+    "record_id": null,
+    "line": 1,
+    "sha256": "604f1cb3deb924c1e21865a0e580bb7c1fe61e39f0df3993d755b2000ffa066c",
+    "original_text": "During a site-level maintenance review, reliability engineers are separating work belonging to the primary plant from work recorded against other facilities. Please count how many work orders are logged at the main site, including every work order regardless of status, priority, or work type. Exclude any work order recorded against a different site. Return only the final count as a single integer. Do not include anything beyond this."
+  },
+  "src/couchdb/scenarios_data/scenario_3/question.txt#9": {
+    "path": "src/couchdb/scenarios_data/scenario_3/question.txt",
+    "record_id": null,
+    "line": 9,
+    "sha256": "ab0147071bed7eedfa76659f1f4ee807c006b84e2b5e58d43c77aeb062e70e98",
+    "original_text": "1. Find the work order at the MAIN site that is still awaiting approval and asks for an"
+  },
+  "src/scenarios/local/vibration_utterance.json#303": {
+    "path": "src/scenarios/local/vibration_utterance.json",
+    "record_id": 303,
+    "line": null,
+    "sha256": "e0fc9ea84df260be0360f8a1d88b1be4798e9b12ce1d34953b9e656848be58fa",
+    "original_text": "How does the ISO 10816 vibration severity classification work?"
+  }
+}

@@ -1,19 +1,2 @@
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# Markdown files
-*.md text diff=markdown
-
-# Paper / Documentation
-*.pdf binary
-*.docx binary
-*.png binary
-*.jpg binary
-*.jpeg binary
-
-# Code
-*.py text eol=lf
-*.sh text eol=lf
-*.json text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
+# Hashed research data must keep its exact bytes (MANIFEST.json SHA-256)
+datasets/** -text
