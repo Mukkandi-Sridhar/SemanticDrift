@@ -4,10 +4,10 @@ from typing import Any
 
 
 def build(model: dict[str, Any], tools: list[dict[str, Any]], query: str) -> dict[str, Any]:
-    from . import anthropic_adapter, openai_adapter, openai_compat_adapter
+    from . import anthropic_adapter, openai_compat_adapter, openai_responses_adapter
 
     adapter = {
-        "openai": openai_adapter,
+        "openai": openai_responses_adapter,
         "anthropic": anthropic_adapter,
         "deepseek": openai_compat_adapter,
         "openrouter": openai_compat_adapter,

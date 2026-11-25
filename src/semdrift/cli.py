@@ -4,8 +4,9 @@ import argparse
 import json
 from typing import Any
 
-from . import batch, cost, judge, runner, score
+from . import analysis, batch, cost, judge, probe, runner, score
 from .config import load_config
+from .transport import load_env_file
 
 
 def _summarize_run(config: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
@@ -55,13 +56,23 @@ def _dispatch(
             "repeats": config["k"],
         }
     elif args.command == "run":
-        result = runner.run(config, args.dry_run, stage=_stage(args))
+        result = runner.run(config, args.dry_run, stage=_stage(args), max_spend=args.max_spend)
     elif args.command == "batch-build":
         result = batch.build(config, args.dry_run)
     elif args.command == "batch-merge":
         if not args.input:
             parser.error("--input is required for batch-merge")
         result = batch.merge(config, args.input, args.dry_run)
+    elif args.command == "analyze":
+        run_dir = config["root"] / "results/raw" / (
+            config["run_id"] + ("-dryrun" if args.dry_run else "")
+        )
+        output = analysis.analyze(runner.read_records(run_dir), config["root"], run_dir)
+        path = config["root"] / "results/analysis" / run_dir.name / "analysis.json"
+        runner.write_json(path, output)
+        result = {"saved": str(path), "records": output["n_records"]}
+    elif args.command == "probe":
+        result = probe.run_probe(config, args.models.split(",") if args.models else None)
     elif args.command == "judge":
         result = judge.build(config, args.dry_run)
     else:
@@ -72,7 +83,11 @@ def _dispatch(
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Tool selection only; never executes tools.")
     parser.add_argument(
-        "command", choices=["plan", "run", "batch-build", "batch-merge", "score", "cost", "judge"]
+        "command",
+        choices=[
+            "plan", "run", "probe", "analyze", "batch-build", "batch-merge", "score", "cost",
+            "judge",
+        ],
     )
     parser.add_argument("--config", required=True)
     parser.add_argument("--dry-run", action="store_true")
@@ -80,8 +95,12 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--tasks", help="run: comma-separated task IDs (one stage of the run)")
     parser.add_argument("--repeats", help="run: comma-separated repeat indices, e.g. 0")
     parser.add_argument("--models", help="run: comma-separated model keys")
+    parser.add_argument(
+        "--max-spend", type=float, help="run: stop this stage once its spend reaches this many USD"
+    )
     args = parser.parse_args(argv)
     config = load_config(args.config)
+    load_env_file(config["root"] / ".env")
     try:
         result = _dispatch(config, args, parser)
         print(json.dumps(result, indent=2, allow_nan=False))

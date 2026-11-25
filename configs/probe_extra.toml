@@ -1,0 +1,12 @@
+# Main experiment (Tier B, pre-registered in research/PREREG.md). Run it in stages with
+#   python -m semdrift.cli run --config configs/main.toml --tasks ... --repeats ... --models ...
+# Every stage (smoke, pilot, repeat 1, repeats 2-3) adds to this one run, so no trial is wasted.
+run_id = "probe_extra"
+k = 3
+batch_providers = []
+models_file = "models.toml"
+models = ["google/gemini-4-argon", "google/gemini-4-argon-flex"]
+variants = ["V0", "V0R", "P1", "P2", "P3", "MG", "MS", "H1", "H3"]
+seed = 20261124
+estimated_output_tokens = 150
+bootstrap_resamples = 10000

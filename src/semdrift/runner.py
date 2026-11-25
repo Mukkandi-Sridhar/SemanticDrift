@@ -1,7 +1,10 @@
 """Plan, resume, and record selection-only experiment trials."""
 
+import gzip
 import json
 import os
+import subprocess
+import sys
 import time
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -175,9 +178,15 @@ def run_lock(directory: Path) -> Iterator[None]:
         lock.unlink()
 
 
+# Run-level logs that live next to the per-model trial files but are not trial records.
+BOOKKEEPING_FILES = {"ledger.jsonl", "errors.jsonl"}
+
+
 def read_records(directory: Path) -> list[dict[str, Any]]:
     records = []
     for path in sorted(Path(directory).glob("*.jsonl")):
+        if path.name in BOOKKEEPING_FILES:
+            continue
         for line in path.read_text().splitlines():
             if line.strip():
                 records.append(json.loads(line))
@@ -218,7 +227,13 @@ def append_record(directory: Path, record: dict[str, Any]) -> None:
 
 
 def _called_tools(raw: dict[str, Any], model: dict[str, Any]) -> list[str | None]:
-    if model["provider"] == "anthropic":
+    if model["provider"] == "openai":
+        call_names = [
+            item.get("name")
+            for item in raw.get("output") or []
+            if item.get("type") == "function_call"
+        ]
+    elif model["provider"] == "anthropic":
         call_names = [
             call.get("name") for call in raw.get("content") or [] if call.get("type") == "tool_use"
         ]
@@ -254,6 +269,34 @@ def _record_estimate(
         examples.add(trial["model"])
 
 
+MAX_CONSECUTIVE_FAILURES = 3
+
+
+def _save_request(directory: Path, body: dict[str, Any]) -> None:
+    """Keep every request body (compressed: each repeats the ~24 KB tool catalog)."""
+    path = directory / "requests" / (digest(body) + ".json.gz")
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(gzip.compress(json.dumps(body, ensure_ascii=False).encode(), mtime=0))
+
+
+def _append_jsonl(path: Path, value: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a") as stream:
+        stream.write(json.dumps(value, ensure_ascii=False, allow_nan=False) + "\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+
+
+def _trial_cost(record: dict[str, Any], model: dict[str, Any]) -> float:
+    from .cost import charge
+
+    try:
+        return charge(record["usage"], model["prices"])
+    except ValueError:
+        return 0.0  # unpriced token category; the provider-reported cost is logged separately
+
+
 def _execute_trial(
     config: dict[str, Any],
     dataset: dict[str, Any],
@@ -262,9 +305,9 @@ def _execute_trial(
     directory: Path,
     dry_run: bool,
     transport: FakeTransport | RealTransport,
-) -> None:
+) -> dict[str, Any]:
     if not dry_run:
-        write_json(directory / "requests" / (digest(body) + ".json"), body)
+        _save_request(directory, body)
     start = time.monotonic()
     raw = transport.send(config["model_settings"][trial["model"]], body)
     record = make_record(
@@ -277,6 +320,69 @@ def _execute_trial(
         dry_run,
     )
     append_record(directory, record)
+    return record
+
+
+class _Progress:
+    """Spend, errors and per-model failure streaks for one invocation (thread-safe)."""
+
+    def __init__(self, max_spend: float | None) -> None:
+        import threading
+
+        self.max_spend = max_spend
+        self.spend: dict[str, float] = {}
+        self.errors: dict[str, int] = {}
+        self.streaks: dict[str, int] = {}
+        self.disabled: set[str] = set()
+        self.stopped_for_budget = False
+        self.completed = 0
+        self.lock = threading.Lock()
+
+    @property
+    def total(self) -> float:
+        with self.lock:
+            return sum(self.spend.values())
+
+    def over_budget(self) -> bool:
+        return self.max_spend is not None and self.total >= self.max_spend
+
+    def mark_budget_stop(self) -> None:
+        with self.lock:
+            self.stopped_for_budget = True
+
+    def succeeded(self, model: str, cost: float) -> None:
+        with self.lock:
+            self.spend[model] = self.spend.get(model, 0.0) + cost
+            self.streaks[model] = 0
+            self.completed += 1
+            report = self.completed % PROGRESS_EVERY == 0
+            total, errors = sum(self.spend.values()), sum(self.errors.values())
+        if report:
+            print(
+                f"[{self.completed} new trials] spend ${total:.4f}; errors {errors}",
+                file=sys.stderr,
+                flush=True,
+            )
+
+    def log_error(self, directory: Path, trial: dict[str, Any], exc: Exception) -> None:
+        with self.lock:
+            _append_jsonl(
+                directory / "errors.jsonl",
+                {
+                    "trial_id": trial["trial_id"],
+                    "model": trial["model"],
+                    "variant": trial["variant"],
+                    "task_id": trial["task_id"],
+                    "repeat": trial["repeat"],
+                    "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+                    "error": str(exc),
+                },
+            )
+            model = trial["model"]
+            self.errors[model] = self.errors.get(model, 0) + 1
+            self.streaks[model] = self.streaks.get(model, 0) + 1
+            if self.streaks[model] >= MAX_CONSECUTIVE_FAILURES:
+                self.disabled.add(model)
 
 
 def _run_trials(
@@ -288,10 +394,16 @@ def _run_trials(
     dry_run: bool,
     transport: FakeTransport | RealTransport,
     existing: dict[str, dict[str, Any]],
+    progress: _Progress,
 ) -> tuple[int, list[dict[str, Any]]]:
-    estimates = []
-    examples = set()
-    added = 0
+    """Run each model's trials in its own thread, in cache-friendly order within the model.
+
+    Models are independent (separate providers and caches), so running them side by side cuts
+    wall-clock time roughly by the number of models. Dry runs stay sequential (deterministic).
+    """
+    estimates: list[dict[str, Any]] = []
+    examples: set = set()
+    pending_by_model: dict[str, list[tuple[dict[str, Any], dict[str, Any]]]] = {}
     for trial in trials:
         body = request(config, dataset, trial, orders)
         if dry_run:
@@ -301,13 +413,55 @@ def _run_trials(
             if previous["request_sha256"] != digest(body):
                 raise ValueError("Request changed on resume; use a new run_id")
             continue
-        if not dry_run and config["model_settings"][trial["model"]]["provider"] in config.get(
-            "batch_providers", []
-        ):
+        model = config["model_settings"][trial["model"]]
+        if not dry_run and model["provider"] in config.get("batch_providers", []):
             continue  # Completed through batch-build / external submission / batch-merge.
-        _execute_trial(config, dataset, trial, body, directory, dry_run, transport)
-        added += 1
+        pending_by_model.setdefault(trial["model"], []).append((trial, body))
+
+    def work(model_key: str) -> int:
+        model = config["model_settings"][model_key]
+        done = 0
+        for trial, body in pending_by_model[model_key]:
+            if model_key in progress.disabled:
+                break  # remaining trials stay pending; rerun after fixing the cause
+            if progress.over_budget():
+                progress.mark_budget_stop()
+                break
+            try:
+                record = _execute_trial(
+                    config, dataset, trial, body, directory, dry_run, transport
+                )
+            except (RuntimeError, ValueError) as exc:
+                # Never lose a failure: log it (messages are redacted) and keep going.
+                progress.log_error(directory, trial, exc)
+                continue
+            progress.succeeded(model_key, _trial_cost(record, model))
+            done += 1
+        return done
+
+    if dry_run or len(pending_by_model) <= 1:
+        added = sum(work(model_key) for model_key in pending_by_model)
+    else:
+        from concurrent.futures import ThreadPoolExecutor
+
+        with ThreadPoolExecutor(max_workers=len(pending_by_model)) as pool:
+            added = sum(pool.map(work, list(pending_by_model)))
     return (added, estimates)
+
+
+PROGRESS_EVERY = 100
+
+
+def _git_commit(root: Path) -> str | None:
+    try:
+        return subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
 
 
 def run(
@@ -315,6 +469,7 @@ def run(
     dry_run: bool = False,
     transport: FakeTransport | RealTransport | None = None,
     stage: dict[str, Any] | None = None,
+    max_spend: float | None = None,
 ) -> dict[str, Any]:
     check_pin(config, dry_run)
     dataset = load(config["root"])
@@ -322,13 +477,15 @@ def run(
     trials = cache_friendly_order(select_stage(planned, **(stage or {})))
     directory = config["root"] / "results/raw" / (config["run_id"] + ("-dryrun" if dry_run else ""))
     transport = transport or (FakeTransport() if dry_run else RealTransport())
+    started = datetime.now(timezone.utc).isoformat()
+    progress = _Progress(max_spend)
     with run_lock(directory):
         prepare(config, dataset, orders, directory, dry_run)
         existing = {record["trial_id"]: record for record in read_records(directory)}
         if not existing.keys() <= {item["trial_id"] for item in planned}:
             raise ValueError("Unplanned records in run")
         added, estimates = _run_trials(
-            config, dataset, trials, orders, directory, dry_run, transport, existing
+            config, dataset, trials, orders, directory, dry_run, transport, existing, progress
         )
         result = {
             "run_id": directory.name,
@@ -338,7 +495,25 @@ def run(
             "completed_trials": len(existing) + added,
             "pending_trials": len(planned) - len(existing) - added,
             "dry_run": dry_run,
+            "stage_spend_usd": round(progress.total, 6),
+            "stage_spend_by_model": {k: round(v, 6) for k, v in progress.spend.items()},
+            "errors_by_model": progress.errors,
+            "models_stopped_after_repeated_errors": sorted(progress.disabled),
+            "stopped_for_budget": progress.stopped_for_budget,
         }
+        # One ledger line per invocation: what ran, from which code, and what it cost.
+        _append_jsonl(
+            directory / "ledger.jsonl",
+            {
+                **result,
+                "started_utc": started,
+                "finished_utc": datetime.now(timezone.utc).isoformat(),
+                "git_commit": _git_commit(config["root"]),
+                "stage": stage,
+                "max_spend_usd": max_spend,
+                "python": sys.version.split()[0],
+            },
+        )
         if dry_run:
             from .cost import estimate
 
@@ -377,13 +552,17 @@ def _task_outcome(
     }
 
 
-def _provider_served(model: dict[str, Any], raw: dict[str, Any], dry_run: bool) -> str | None:
-    served = raw.get("provider") if model["provider"] == "openrouter" else model["provider"]
-    if model["provider"] == "openrouter" and not dry_run and not served:
-        raise ValueError(
-            "OpenRouter response lacks provider attribution; verify adapter before continuing"
-        )
-    return served
+def _provider_served(model: dict[str, Any], raw: dict[str, Any], dry_run: bool) -> Any:
+    """Which host actually answered.
+
+    OpenRouter has no top-level `provider` field in its documented response; routing details
+    come back under `openrouter_metadata` when the request sends `X-OpenRouter-Metadata:
+    enabled` (see transport.py). The pin itself is enforced by `allow_fallbacks: false`, so a
+    missing attribution is recorded as None rather than aborting a paid run.
+    """
+    if model["provider"] != "openrouter":
+        return model["provider"]
+    return raw.get("provider") or raw.get("openrouter_metadata")
 
 
 def _request_metadata(

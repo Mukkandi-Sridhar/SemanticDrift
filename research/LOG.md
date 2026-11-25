@@ -176,3 +176,31 @@ Personal correspondence and planning notes are kept outside the repository.
 - Cost (my estimate; 6k input / 150 output tokens): with warm caches ≈ $35 total (OpenAI ≈ $13, OpenRouter ≈ $22); without caching ≈ $210. **The smoke test must confirm caching before the pilot.** OpenAI's existing $10 is not enough for all 3 OpenAI models: top up ~$10, or route gpt-6.x via OpenRouter.
 - Tests: all pass; validator 0 failures.
 - TODO (analysis code, before results): excess flip rate vs. placebo, indistinguishable pairs, variance decomposition, historical-subset analysis.
+
+## 2026-11-25: Pre-flight audit before spending (Claude)
+- Checked the official OpenAI and OpenRouter docs and OpenRouter's model metadata. **Found 5 problems that would have broken or overpaid the paid run, all fixed:**
+  1. gpt-6.1-terra: tool calling only via the **Responses API** → all OpenAI models moved to a new `openai_responses_adapter.py` (`store: false`).
+  2. gpt-6-luna: Chat Completions tools only with reasoning `none` → now `none` (its lowest).
+  3. OpenRouter responses have **no top-level `provider` field** → the runner would have aborted every OpenRouter call after paying. Attribution now comes from `openrouter_metadata` (header `X-OpenRouter-Metadata: enabled`) and is non-fatal; the pin is enforced by `allow_fallbacks: false`.
+  4. The OpenAI SDK path would have rejected OpenRouter-only fields (`reasoning`, `cache_control`, `session_id`) → replaced the SDK transport with a plain stdlib HTTPS client that sends the logged body verbatim (the SDKs weren't installed anyway), with `.env` loading and readable, redacted error messages.
+  5. **Default reasoning levels would have multiplied the cost** (Qwen defaults to `xhigh`, DeepSeek to `high`, Sonnet to `high`) → each model now uses its lowest accepted level (see PREREG Deviations, 2026-11-25); mandatory-reasoning models get max_tokens 4096.
+- Usage parsing is now None-safe; it records OpenRouter's billed `usage.cost` (used as the cost when present) and cache-write tokens.
+- Added `cli probe`: 2 identical real calls per model (≈ $0.05) to verify request acceptance and caching before the smoke stage. Wrote `research/RUNBOOK.md` (steps, commands, pass criteria, cost projection rule).
+- Coverage/power: 55 of 103 single-tool tasks have a gold tool whose description changed historically; per-model minimum detectable change ≈ 8 pp (historical subset) / ≈ 6 pp (all single-tool tasks), before pooling across models.
+- Tests: 25/25 pass; validator 0 failures; smoke-stage dry run OK (90 trials).
+- **Blocker:** the `.env` key values are currently empty.
+
+## 2026-11-25: Recording, safety and analysis plan
+- Runner: failures are logged to `errors.jsonl` instead of aborting; a per-model breaker pauses a model after 3 consecutive failures (its trials stay pending); `--max-spend` caps each stage on real spend; one `ledger.jsonl` line per stage (git commit, filters, spend by model, errors); request bodies saved gzip-compressed (~1 GB → a fraction); a progress line every 100 trials. Tests: 27/27 pass.
+- Wrote `research/ANALYSIS_PLAN.md` (confirmatory A1–A6 from PREREG; exploratory B1–B6: confusion matrices, tool-level attribution of real edits, edit features vs. effect, noise and position bias, cross-model agreement, severity, cost/latency frontier, robustness checks, qualitative examples; data preservation).
+- Started `research/FINDINGS.md` (append-only lab notebook), with the pre-data dataset observations.
+
+## 2026-11-25: Analysis module ready before data
+- `src/semdrift/analysis.py` + `cli analyze`: placebo-adjusted (V0R) excess flip rates with task-bootstrap CIs (all tasks and the historical subset), indistinguishable model pairs, per-tool attribution of the real historical edits, confusions, position bias, severity profiles, repeat agreement, billed cost and latency per correct decision. Works on partial stages. Tested on synthetic results (28/28 tests pass).
+- PREREG Deviations: clarified (pre-data) that McNemar uses per-task majority decisions and that Holm runs over all model × variant comparisons, matching the scorer.
+- `.env` keys still empty: the probe is waiting on them.
+
+## 2026-11-25: Probe done ($0.14 spent)
+- Keys in `.env`; balances OpenRouter $35.00, OpenAI $14.55.
+- Probe: 9/10 models OK; Gemini 4 Carbon (and Neon) banned for this account → Gemini 4 Argon on the flex tier (PREREG deviation recorded). Caching confirmed on 8 models. Projected full run: **$24.90**. Details in FINDINGS.md.
+- Runner: one thread per model (thread-safe progress and errors); 28/28 tests pass.

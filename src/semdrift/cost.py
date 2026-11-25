@@ -5,6 +5,8 @@ from typing import Any
 
 
 def charge(usage: dict[str, Any], prices: dict[str, Any], batch: bool = False) -> float:
+    if usage.get("cost") is not None:
+        return float(usage["cost"])  # amount the provider (OpenRouter) reports it billed
     if prices.get("estimate_only"):
         raise ValueError(
             "Host-specific prices not verified; update prices before costing actual usage"

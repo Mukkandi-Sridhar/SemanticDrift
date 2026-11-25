@@ -8,7 +8,7 @@ models_file = "models.toml"
 models = [
   "gpt-6-luna", "gpt-6.1-terra", "gpt-6.2-sol",
   "anthropic/claude-haiku-5.5", "anthropic/claude-sonnet-5.5",
-  "google/gemini-3.1-flash-lite", "google/gemini-4-carbon",
+  "google/gemini-3.1-flash-lite", "google/gemini-4-argon-flex",
   "deepseek/deepseek-v4.1-flash-1017", "qwen/qwen3.8-27b-fp8", "mistralai/mistral-small-2603",
 ]
 variants = ["V0", "V0R", "P1", "P2", "P3", "MG", "MS", "H1", "H3"]

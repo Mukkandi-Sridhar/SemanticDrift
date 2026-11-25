@@ -9,11 +9,11 @@ from pathlib import Path
 from typing import Any
 from unittest.mock import patch
 
-from semdrift import adapters, batch, cost, judge, runner, score
+from semdrift import adapters, analysis, batch, cost, judge, runner, score
 from semdrift.config import load_config
 from semdrift.data import ROOT, load, validate_arguments
 from semdrift.parse import parse, usage
-from semdrift.transport import FakeTransport, RealTransport, sanitize
+from semdrift.transport import FakeTransport, RealTransport, TransportError, sanitize
 
 
 # Every test is network-denied, including future tests added to this module.
@@ -43,6 +43,16 @@ def response(name: str | None = None, args: str = "{}", count: int = 1) -> dict[
         "model": "fixture",
         "choices": [{"message": message, "finish_reason": "tool_calls" if name else "stop"}],
         "usage": {"prompt_tokens": 10, "completion_tokens": 2},
+    }
+
+
+def responses_reply(name: str) -> dict[str, Any]:
+    """An OpenAI Responses API result calling one tool (OpenAI models use this API)."""
+    return {
+        "model": "fixture",
+        "status": "completed",
+        "output": [{"type": "function_call", "name": name, "arguments": "{}"}],
+        "usage": {"input_tokens": 10, "output_tokens": 2},
     }
 
 
@@ -98,13 +108,13 @@ class HarnessTests(unittest.TestCase):
 
     def test_parse_edge_cases(self) -> None:
         for count in (1, 3):
-            parsed = parse(response("sites", count=count), "openai")
+            parsed = parse(response("sites", count=count), "openrouter")
             self.assertEqual(parsed["n_tool_calls"], count)
             self.assertEqual(parsed["tool_name"], "sites")
             self.assertEqual(parsed["arguments"], {})
         for raw in (response(), {}, {"choices": []}, {"choices": [{"message": {"content": None}}]}):
-            self.assertEqual(parse(raw, "openai")["tool_name"], "NONE")
-        self.assertEqual(parse(response("sites", "{bad"), "openai")["arguments"], "{bad")
+            self.assertEqual(parse(raw, "openrouter")["tool_name"], "NONE")
+        self.assertEqual(parse(response("sites", "{bad"), "openrouter")["arguments"], "{bad")
         for content, count in [
             ([], 0),
             ([{"type": "text", "text": "x"}], 0),
@@ -114,7 +124,7 @@ class HarnessTests(unittest.TestCase):
             self.assertEqual(parse({"content": content}, "anthropic")["n_tool_calls"], count)
 
     def test_invalid_tool_name_is_not_abstention(self) -> None:
-        parsed = parse(response("NONE"), "openai")
+        parsed = parse(response("NONE"), "openrouter")
         self.assertEqual(parsed["action"], "tool")
         self.assertNotEqual(parsed["tool_name"], "NONE")
 
@@ -240,20 +250,121 @@ class HarnessTests(unittest.TestCase):
             40,
         )
 
-    def test_retry(self) -> None:
-        class Transient(Exception):
-            status_code = 429
+    def test_failures_are_logged_and_runs_continue(self) -> None:
+        class Failing:
+            calls = 0
 
-        transport = RealTransport(sleep=skip_sleep)
-        with patch.object(transport, "_request", side_effect=[Transient(), response()]) as mock:
-            self.assertEqual(
-                transport.send(self.config["model_settings"]["gpt-6-luna"], {}), response()
+            def send(self, model: dict[str, Any], body: dict[str, Any]) -> dict[str, Any]:
+                self.calls += 1
+                raise RuntimeError("Transport failed for gpt-6-luna: HTTP 400: bad field")
+
+        with (
+            tempfile.TemporaryDirectory() as temp,
+            patch("semdrift.runner.load", return_value=self.dataset),
+        ):
+            config = self.sandbox(temp)
+            failing = Failing()
+            result = runner.run(config, True, failing)
+            directory = Path(temp) / "results/raw/pilot-dryrun"
+            errors = (directory / "errors.jsonl").read_text().splitlines()
+            # Three consecutive failures stop that model; the rest stays pending, nothing is lost.
+            self.assertEqual((failing.calls, len(errors)), (3, 3))
+            self.assertEqual(result["models_stopped_after_repeated_errors"], ["gpt-6-luna"])
+            self.assertEqual(result["pending_trials"], 4)
+            ledger = (directory / "ledger.jsonl").read_text().splitlines()
+            self.assertEqual(len(ledger), 1)
+            self.assertEqual(runner.read_records(directory), [])
+
+    def test_spend_cap_stops_a_stage(self) -> None:
+        priced = response("sites")
+        priced["usage"]["cost"] = 1.0
+        with (
+            tempfile.TemporaryDirectory() as temp,
+            patch("semdrift.runner.load", return_value=self.dataset),
+        ):
+            config = self.sandbox(temp)
+            config["model_settings"]["gpt-6-luna"] = {
+                **config["model_settings"]["gpt-6-luna"],
+                "provider": "openrouter",
+                "provider_pin": "test",
+            }
+            result = runner.run(config, True, FakeTransport([priced] * 4), max_spend=2.0)
+            self.assertTrue(result["stopped_for_budget"])
+            self.assertEqual(result["new_trials"], 2)
+            self.assertEqual(result["stage_spend_usd"], 2.0)
+
+    def test_analysis_runs_on_partial_results(self) -> None:
+        with (
+            tempfile.TemporaryDirectory() as temp,
+            patch("semdrift.runner.load", return_value=self.dataset),
+            patch("semdrift.analysis.load", return_value=self.dataset),
+        ):
+            config = self.sandbox(temp)
+            config.update(variants=["V0", "V0R", "H1"], task_ids=["T001", "T002"])
+            # Trials run grouped by catalog (H1, V0, V0R), then repeat, then task.
+            # H1 differs from V0 on T001 in both repeats; V0 and V0R agree: a clear excess flip.
+            replies = [responses_reply("assets"), responses_reply("sites")] * 2  # H1
+            replies += [responses_reply("sites")] * 8  # V0, V0R
+            runner.run(config, True, FakeTransport(replies))
+            run_dir = Path(temp) / "results/raw/pilot-dryrun"
+            output = analysis.analyze(runner.read_records(run_dir), Path(temp), run_dir)
+            h1 = next(
+                row for row in output["excess_flip_rates_all_tasks"] if row["variant"] == "H1"
             )
+            self.assertEqual((h1["placebo_flip_rate"], h1["flip_rate"]), (0.0, 0.5))
+            self.assertEqual(h1["excess_flip_rate"], 0.5)
+            self.assertEqual(output["indistinguishable_pairs"]["n_pairs"], 0)
+            self.assertTrue(output["severity_profile"])
+
+    def test_retry(self) -> None:
+        transport = RealTransport(sleep=skip_sleep)
+        model = self.config["model_settings"]["gpt-6-luna"]
+        with patch.object(
+            transport, "_request", side_effect=[TransportError("busy", 429), response()]
+        ) as mock:
+            self.assertEqual(transport.send(model, {}), response())
             self.assertEqual(mock.call_count, 2)
-        with patch.object(transport, "_request", side_effect=ValueError("secret must not leak")):
-            with self.assertRaisesRegex(RuntimeError, "Transport failed") as error:
-                transport.send(self.config["model_settings"]["gpt-6-luna"], {})
-            self.assertNotIn("secret", str(error.exception))
+        with patch.object(
+            transport, "_request", side_effect=TransportError("HTTP 400: bad field", 400)
+        ) as mock:
+            with self.assertRaisesRegex(RuntimeError, "Transport failed.*HTTP 400"):
+                transport.send(model, {})
+            self.assertEqual(mock.call_count, 1)  # client errors are not retried
+
+    def test_responses_api_parsing(self) -> None:
+        raw = {
+            "status": "completed",
+            "output": [
+                {"type": "reasoning", "summary": []},
+                {"type": "function_call", "name": "sites", "arguments": "{}"},
+            ],
+            "usage": {
+                "input_tokens": 6000,
+                "input_tokens_details": {"cached_tokens": 5800},
+                "output_tokens": 40,
+                "output_tokens_details": None,
+            },
+        }
+        parsed = parse(raw, "openai")
+        self.assertEqual((parsed["action"], parsed["tool_name"]), ("tool", "sites"))
+        self.assertEqual(parsed["arguments"], {})
+        text_only = {"status": "incomplete", "incomplete_details": {"reason": "max_output_tokens"}}
+        self.assertEqual(parse(text_only, "openai")["tool_name"], "NONE")
+        self.assertEqual(parse(text_only, "openai")["raw_stop_reason"], "max_output_tokens")
+        counts = usage(raw, "openai")
+        self.assertEqual((counts["cached_input"], counts["reasoning"]), (5800, 0))
+
+    def test_openrouter_usage_reports_billed_cost(self) -> None:
+        raw = response("sites")
+        raw["usage"] = {
+            "prompt_tokens": 6000,
+            "completion_tokens": 30,
+            "prompt_tokens_details": {"cached_tokens": 5800, "cache_write_tokens": 0},
+            "completion_tokens_details": None,
+            "cost": 0.00042,
+        }
+        counts = usage(raw, "openrouter")
+        self.assertEqual((counts["cached_input"], counts["cost"]), (5800, 0.00042))
 
     def test_judge(self) -> None:
         with (
@@ -288,7 +399,7 @@ class HarnessTests(unittest.TestCase):
         trial = next(
             task
             for task in trials
-            if self.config["model_settings"][task["model"]]["provider"] == "openai"
+            if self.config["model_settings"][task["model"]]["provider"] == "openrouter"
         )
         body = runner.request(self.config, self.dataset, trial, orders)
         raw = response("sites")
