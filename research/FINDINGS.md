@@ -109,3 +109,24 @@ Template:
 - **Real historical edits:** judged meaning-changing for 15/16 tools (H1) and 14/16 (H3); none were strictly equivalent. The AssetOpsBench developers' revisions changed content (e.g., added cross-references to sibling tools), not just wording.
 - **Sensitivity check (single-tool tasks):** restricted to tasks whose gold tool's paraphrase is strictly equivalent (P1 57, P2 55, P3 46 tasks), mean excess flip vs. placebo is +0.003 / +0.002 / +0.007, and 2 of 30 model × catalog CIs exclude 0 (vs. +0.008 / +0.002 / +0.006 and 5 of 30 on all single-tool tasks).
 - **Interpretation:** confirmed meaning-preserving rewording moves decisions by about run-to-run noise. The clearer effects come from description changes that alter content: the real historical revisions and the scope changes (MG/MS). The paper should frame results this way, and present ranking changes among near-tied models with that caveat.
+
+## 2026-11-25 — Correction while drafting: paraphrases vs. history on the same tasks
+
+- On the 55 tasks whose gold tool has a recovered history, the full paraphrase catalogs move
+  decisions about as much as the historical catalogs: mean excess flip rate P1 0.012, P2 0.005,
+  P3 0.010 against H1 0.013, H3 0.009 (all ten models). For Luna, P1 (+0.048) exceeds H1 (+0.042).
+- So the earlier reading ("rewording ≈ noise, content changes matter") holds only for paraphrases
+  that both judges accepted as equivalent. That subset is selected by the judges, and tools with
+  smaller edits are probably more likely to pass, so it is not a clean contrast with history.
+- Judge count for the historical edits is 29 of 32 unanimous not-equivalent (H1 15, H3 14); the
+  other 3 are mixed. An earlier draft said 30.
+- Accuracy range across catalogs (round 1): ≤ 0.026 for seven models; Qwen and Mistral 0.039,
+  DeepSeek 0.053.
+- Paper framing changed accordingly: specific decisions move under all kinds of edits for four
+  smaller models; only judge-accepted paraphrases stay near noise; harmless edits are hard to
+  recognise in advance.
+- The judge sensitivity check (entry above) also needs a plainer reading: restricting to
+  strictly equivalent paraphrases leaves the mean excess almost unchanged (+0.003/+0.002/+0.007
+  vs. +0.008/+0.002/+0.006 on all single-tool tasks); the drop from 5 to 2 CIs above zero comes
+  with fewer tasks per interval. Judge-detected meaning change does not explain the paraphrase
+  effects.

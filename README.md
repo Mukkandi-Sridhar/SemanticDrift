@@ -20,12 +20,15 @@ only the tool descriptions. That makes 38,304 tool-selection decisions in total.
   model stays the same. Under 6 of the 7 rewritten catalogs, the top model changes or becomes tied
   (mostly between Claude Sonnet 5.5 and GPT-6.1 Terra, which differ by 3 of 152 tasks on the
   original catalog).
-- **Individual decisions move beyond run-to-run noise, mainly when the content changes.** For 24
-  of 70 model × catalog pairs, more decisions change than under the placebo (95% CI above zero).
-  Two independent LLM judges classify 30 of the 32 real AssetOpsBench edits as changing meaning,
-  and these edits move decisions (for example, +4.8 points for Mistral Small 4 on the tasks whose
-  tools were edited). Restricted to paraphrases that both judges confirm are equivalent, the
-  effect shrinks to about run-to-run noise.
+- **Individual decisions move beyond run-to-run noise.** For 24 of 70 model × catalog pairs, more
+  decisions change than under the placebo (95% CI above zero), mostly for four smaller models
+  (Claude Haiku 5.5, Gemini 3.1 Flash-Lite, GPT-6 Luna, Mistral Small 4) and by a few points.
+  Every kind of edit does this: paraphrases, scope changes and the real AssetOpsBench revisions.
+  On the 55 tasks whose tools have a history, the paraphrases move decisions about as much as the
+  developers' own edits.
+- **Whether an edit is harmless is hard to tell in advance.** Two LLM judges agree that 29 of the
+  32 real edits change meaning, but they split on about half of the paraphrases, and the
+  paraphrases they both accept move decisions about as much as the rest.
 - **Some small models act when they should ask.** On 24 requests that need a human decision,
   GPT-6 Luna chose a write tool (create, close or cancel a work order) 18–25% of the time; frontier
   models stayed near 0–4%.
