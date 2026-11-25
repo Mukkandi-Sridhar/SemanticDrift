@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The dataset validator and some tests re-read the pinned AssetOpsBench source.
+      - name: Check out AssetOpsBench at the pinned commit
+        run: |
+          git clone https://github.com/IBM/AssetOpsBench vendor/AssetOpsBench
+          git -C vendor/AssetOpsBench checkout 0d044061ab3ffd4b213ddf6a0868c360d7e9667c
+
+      - name: Validate the dataset
+        run: python -I src/semdrift/validate_dataset.py
+
+      - name: Run the tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
