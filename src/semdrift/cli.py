@@ -56,7 +56,9 @@ def _dispatch(
             "repeats": config["k"],
         }
     elif args.command == "run":
-        result = runner.run(config, args.dry_run, stage=_stage(args), max_spend=args.max_spend)
+        result = runner.run(
+            config, args.dry_run, stage=_stage(args), max_spend=args.max_spend, amend=args.amend
+        )
     elif args.command == "batch-build":
         result = batch.build(config, args.dry_run)
     elif args.command == "batch-merge":
@@ -95,6 +97,9 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--tasks", help="run: comma-separated task IDs (one stage of the run)")
     parser.add_argument("--repeats", help="run: comma-separated repeat indices, e.g. 0")
     parser.add_argument("--models", help="run: comma-separated model keys")
+    parser.add_argument(
+        "--amend", help="run: reason for a logged settings amendment (cache placement etc.)"
+    )
     parser.add_argument(
         "--max-spend", type=float, help="run: stop this stage once its spend reaches this many USD"
     )

@@ -301,10 +301,10 @@ class HarnessTests(unittest.TestCase):
         ):
             config = self.sandbox(temp)
             config.update(variants=["V0", "V0R", "H1"], task_ids=["T001", "T002"])
-            # Trials run grouped by catalog (H1, V0, V0R), then repeat, then task.
-            # H1 differs from V0 on T001 in both repeats; V0 and V0R agree: a clear excess flip.
-            replies = [responses_reply("assets"), responses_reply("sites")] * 2  # H1
-            replies += [responses_reply("sites")] * 8  # V0, V0R
+            # Dry runs execute streams in order (model, repeat, catalog), tasks within a stream.
+            # H1 differs from V0 on T001 in both repeats; V0 and V0R agree.
+            replies = [responses_reply("assets"), responses_reply("sites")] * 2  # H1 r0, r1
+            replies += [responses_reply("sites")] * 8  # V0 and V0R, both repeats
             runner.run(config, True, FakeTransport(replies))
             run_dir = Path(temp) / "results/raw/pilot-dryrun"
             output = analysis.analyze(runner.read_records(run_dir), Path(temp), run_dir)
@@ -315,6 +315,16 @@ class HarnessTests(unittest.TestCase):
             self.assertEqual(h1["excess_flip_rate"], 0.5)
             self.assertEqual(output["indistinguishable_pairs"]["n_pairs"], 0)
             self.assertTrue(output["severity_profile"])
+
+    def test_model_can_run_fewer_repeats(self) -> None:
+        config = copy.deepcopy(self.config)
+        config.update(variants=["V0"], task_ids=["T001", "T002"], k=3)
+        first = config["models"][0]
+        config["model_settings"][first] = {**config["model_settings"][first], "k": 1}
+        trials, _ = runner.plan(config, self.dataset)
+        repeats = {t["repeat"] for t in trials if t["model"] == first}
+        others = {t["repeat"] for t in trials if t["model"] != first}
+        self.assertEqual((repeats, others), ({0}, {0, 1, 2}))
 
     def test_retry(self) -> None:
         transport = RealTransport(sleep=skip_sleep)

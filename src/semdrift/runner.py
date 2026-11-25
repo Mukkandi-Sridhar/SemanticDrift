@@ -48,11 +48,13 @@ def plan(
     )
     trials = []
     for model in config["models"]:
+        # A model may run fewer repeats than the study default (e.g. for budget: PREREG §8).
+        model_k = config["model_settings"].get(model, {}).get("k", config["k"])
         for variant in config["variants"]:
             if variant not in dataset["catalogs"]:
                 raise ValueError("Unknown variant")
             for task_id in ids:
-                for order in orders:
+                for order in orders[:model_k]:
                     trial = {
                         "model": model,
                         "variant": variant,
@@ -202,7 +204,13 @@ def prepare(
     orders: list[dict[str, Any]],
     directory: Path,
     dry_run: bool,
+    amend: str | None = None,
 ) -> None:
+    """Freeze the run's configuration; a later change needs an explicit, logged amendment.
+
+    Amendments are for settings that cannot change what the model is asked (for example where
+    the prompt-cache breakpoint sits). Every amendment keeps the previous fingerprint.
+    """
     fingerprint = {
         "config": {k: v for k, v in config.items() if k != "root"},
         "dataset_manifest_sha256": dataset["manifest_sha256"],
@@ -211,9 +219,23 @@ def prepare(
         "dry_run": dry_run,
     }
     path = directory / "run.json"
-    if path.exists() and json.loads(path.read_text()) != fingerprint:
-        raise ValueError("Run configuration changed; use a new run_id")
-    write_json(path, fingerprint)
+    amendments = []
+    if path.exists():
+        stored = json.loads(path.read_text())
+        amendments = stored.pop("amendments", [])
+        if stored != fingerprint:
+            if not amend:
+                raise ValueError("Run configuration changed; use a new run_id or --amend")
+            if stored["permutations"] != orders or stored["prompt_sha256"] != PROMPT_SHA256:
+                raise ValueError("Tool orders or prompt changed; an amendment cannot cover this")
+            amendments.append(
+                {
+                    "utc": datetime.now(timezone.utc).isoformat(),
+                    "reason": amend,
+                    "previous_fingerprint": stored,
+                }
+            )
+    write_json(path, {**fingerprint, "amendments": amendments} if amendments else fingerprint)
     write_json(config["root"] / "results/permutations.json", orders)
     write_json(directory / "permutations.json", orders)
 
@@ -410,18 +432,28 @@ def _run_trials(
             _record_estimate(config, trial, body, estimates, examples)
         previous = existing.get(trial["trial_id"])
         if previous:
-            if previous["request_sha256"] != digest(body):
-                raise ValueError("Request changed on resume; use a new run_id")
+            if previous["request_sha256"] != digest(body) and not config.get("_amended"):
+                raise ValueError("Request changed on resume; use a new run_id or --amend")
             continue
         model = config["model_settings"][trial["model"]]
         if not dry_run and model["provider"] in config.get("batch_providers", []):
             continue  # Completed through batch-build / external submission / batch-merge.
         pending_by_model.setdefault(trial["model"], []).append((trial, body))
 
-    def work(model_key: str) -> int:
+    # One stream per prompt prefix (model, repeat, catalog): each has its own tool order and
+    # descriptions, so its cache is independent; within a stream, tasks run back to back so the
+    # cache stays warm. Per-model concurrency/rpm limits still apply in the transport.
+    streams: dict[tuple[str, int, str], list[tuple[dict[str, Any], dict[str, Any]]]] = {}
+    for model_key, items in pending_by_model.items():
+        for trial, body in items:
+            key = (model_key, trial["repeat"], trial["variant"])
+            streams.setdefault(key, []).append((trial, body))
+
+    def work(stream_key: tuple[str, int, str]) -> int:
+        model_key = stream_key[0]
         model = config["model_settings"][model_key]
         done = 0
-        for trial, body in pending_by_model[model_key]:
+        for trial, body in streams[stream_key]:
             if model_key in progress.disabled:
                 break  # remaining trials stay pending; rerun after fixing the cause
             if progress.over_budget():
@@ -439,13 +471,13 @@ def _run_trials(
             done += 1
         return done
 
-    if dry_run or len(pending_by_model) <= 1:
-        added = sum(work(model_key) for model_key in pending_by_model)
+    if dry_run or len(streams) <= 1:
+        added = sum(work(stream_key) for stream_key in streams)
     else:
         from concurrent.futures import ThreadPoolExecutor
 
-        with ThreadPoolExecutor(max_workers=len(pending_by_model)) as pool:
-            added = sum(pool.map(work, list(pending_by_model)))
+        with ThreadPoolExecutor(max_workers=len(streams)) as pool:
+            added = sum(pool.map(work, list(streams)))
     return (added, estimates)
 
 
@@ -470,6 +502,7 @@ def run(
     transport: FakeTransport | RealTransport | None = None,
     stage: dict[str, Any] | None = None,
     max_spend: float | None = None,
+    amend: str | None = None,
 ) -> dict[str, Any]:
     check_pin(config, dry_run)
     dataset = load(config["root"])
@@ -480,7 +513,8 @@ def run(
     started = datetime.now(timezone.utc).isoformat()
     progress = _Progress(max_spend)
     with run_lock(directory):
-        prepare(config, dataset, orders, directory, dry_run)
+        prepare(config, dataset, orders, directory, dry_run, amend)
+        config = {**config, "_amended": bool(amend)}
         existing = {record["trial_id"]: record for record in read_records(directory)}
         if not existing.keys() <= {item["trial_id"] for item in planned}:
             raise ValueError("Unplanned records in run")
@@ -511,6 +545,7 @@ def run(
                 "git_commit": _git_commit(config["root"]),
                 "stage": stage,
                 "max_spend_usd": max_spend,
+                "amendment": amend,
                 "python": sys.version.split()[0],
             },
         )

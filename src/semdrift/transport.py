@@ -49,7 +49,7 @@ KEY_NAMES = {
     "openrouter": "OPENROUTER_API_KEY",
 }
 REQUEST_TIMEOUT_SECONDS = 120
-MAX_BACKOFF_SECONDS = 30
+MAX_BACKOFF_SECONDS = 60
 ERROR_EXCERPT_CHARS = 400
 
 
@@ -69,10 +69,12 @@ class RealTransport:
 
     def __init__(
         self,
-        retries: int = 4,
+        retries: int = 6,
         sleep: Callable[[float], None] = time.sleep,
         clock: Callable[[], float] = time.monotonic,
     ) -> None:
+        # 6 retries with doubling waits (2..60 s, ~2.5 min in total) ride out short network
+        # outages; a 2026-11-25 blip of ~1 min exhausted the earlier 4 x 1-8 s schedule.
         self.retries, self.sleep, self.clock = retries, sleep, clock
         self.states = {}
         self.lock = threading.Lock()
@@ -95,7 +97,7 @@ class RealTransport:
                 except TransportError as exc:
                     if attempt == self.retries or not _retryable(exc.status):
                         raise RuntimeError(f"Transport failed for {name}: {exc}") from None
-                    self.sleep(min(2**attempt, MAX_BACKOFF_SECONDS))
+                    self.sleep(min(2 ** (attempt + 1), MAX_BACKOFF_SECONDS))
         raise AssertionError("unreachable")
 
     def _respect_rate_limit(self, rpm: int, rate_lock: threading.Lock, timestamps: deque) -> None:
