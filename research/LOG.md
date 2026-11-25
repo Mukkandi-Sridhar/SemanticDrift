@@ -204,3 +204,15 @@ Personal correspondence and planning notes are kept outside the repository.
 - Keys in `.env`; balances OpenRouter $35.00, OpenAI $14.55.
 - Probe: 9/10 models OK; Gemini 4 Carbon (and Neon) banned for this account → Gemini 4 Argon on the flex tier (PREREG deviation recorded). Caching confirmed on 8 models. Projected full run: **$24.90**. Details in FINDINGS.md.
 - Runner: one thread per model (thread-safe progress and errors); 28/28 tests pass.
+
+## 2026-11-25: Smoke stage done
+- Committed bf3b9e9 (pre-experiment) before any experiment data. Smoke: 90/90 OK, 0 errors, $0.378. Archived with checksums. Next: pilot (20 tasks × repeat 0, cap $10), pending Sridhar's go.
+
+## 2026-11-25: Pilot done; stopping rule triggered by cost
+- Pilot: 1,710 new trials, 0 errors, $5.89 (above estimate). Claude cache placement was wrong (top-level → per-question cache entries); fixed to a system-message breakpoint, verified with 3 calls. Added `--amend` (logged in run.json with the previous fingerprint) for settings that don't change what the model is asked. Gemini 4 Argon caches poorly (~$0.006/call), so the full k=3 is unaffordable for it.
+- First observations recorded in FINDINGS.md. Decision on Argon and on the next stage pending from Sridhar.
+
+## 2026-11-25: Data collection complete
+- 38,304/38,304 trials; archived with checksums. Total spend ≈ $36.18 (OpenRouter $29.93 + OpenAI ≈ $6.25).
+- Confirmatory scoring in two passes (10 models round 1; 9 models × 3 rounds) because Argon has k = 1. Headline: no significant accuracy changes, but model rankings and the top-ranked model change under benign and real-history rewording beyond the placebo; clear placebo-adjusted decision flips for several models, including on real IBM edits; harmful writes concentrated in small models.
+- Process notes: the run was interrupted 3 times (2 manual restarts for throughput/rate limits, 1 session end); each interruption is logged in ledger.jsonl and nothing was lost. The Anthropic API key in .env was tested (free models call): invalid (401).
