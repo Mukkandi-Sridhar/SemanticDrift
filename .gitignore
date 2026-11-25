@@ -54,9 +54,13 @@ vendor/
 # Experiment outputs: raw runs, logs and archives are large and go to Zenodo;
 # the small processed scores and analysis are committed.
 results/*
+!results/README.md
 !results/scores/
 !results/analysis/
 
 # Dry-run (fake transport) outputs are never committed
 results/scores/*-dryrun/
 results/analysis/*-dryrun/
+
+# Personal planning notes (never published)
+private/
