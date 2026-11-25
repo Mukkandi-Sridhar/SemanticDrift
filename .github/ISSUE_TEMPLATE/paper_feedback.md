@@ -1,14 +1,14 @@
 ---
-name: Research Feedback
-about: Provide feedback or raise questions on the Semantic Drift paper/proposal
-title: '[PAPER] '
+name: Research feedback
+about: Questions or feedback on the study, dataset or results
+title: '[STUDY] '
 labels: documentation, question
 assignees: ''
 
 ---
 
-**Section of the Paper**
-Which section or page are you referring to? (e.g., Abstract, Taxonomy, Section 3.1)
+**What it is about**
+Which part are you referring to? (e.g. a finding in the README, a dataset file, a result in `results/`, the pre-registration)
 
 **Feedback / Question**
 Please provide your feedback, question, or point of discussion clearly.

@@ -2,15 +2,18 @@
 
 ## Supported Versions
 
-Currently, this repository is for research and documentation purposes. When the implementation and benchmarking codebase is released, supported versions will be listed below.
+This repository holds research code and data. Only the latest version on `main` is maintained.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.1.x   | :white_check_mark: |
+| main    | :white_check_mark: |
+
+The experiment harness reads API keys from a local `.env` file, which is git-ignored, and
+redacts keys from anything it logs. Please never commit keys or paste them into issues.
 
 ## Reporting a Vulnerability
 
-If you discover any security vulnerabilities in the proposed frameworks, datasets, or (in the future) code, please report them directly via email.
+If you find a security problem in the code or data, please report it by email rather than in a public issue.
 
 **Do not report security vulnerabilities through public GitHub issues.**
 
