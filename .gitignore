@@ -56,3 +56,7 @@ vendor/
 results/*
 !results/scores/
 !results/analysis/
+
+# Dry-run (fake transport) outputs are never committed
+results/scores/*-dryrun/
+results/analysis/*-dryrun/
