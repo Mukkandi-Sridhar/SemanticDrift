@@ -100,3 +100,12 @@ Template:
 - Indistinguishable model pairs: 8 of 45.
 - Position bias: Mistral's accuracy drops when the gold tool is listed last (0.902 vs. 0.985 when first); Argon, Sol and Terra show smaller last-position drops.
 - Cost artifact: Sonnet's latency includes the client-side rate-limit wait (new-account cap of 20 rpm), so its latency isn't comparable.
+
+## 2026-11-25 · Paraphrase-equivalence judge (with controls and historical edits)
+- Data: `results/judge/judge_final/` (responses.jsonl, summary.json); config `configs/judge_final.toml`. Judges: GPT-6.2 Sol and Claude Sonnet 5.5; each changed tool judged in both directions (A→B, B→A) by both judges: 848 requests, 848 answered, 0 unparsed, **$1.28**.
+- Rule: a tool counts as "equivalent" only if all 4 votes say EQUIVALENT.
+- **Paraphrases (36 tools each):** strictly equivalent P1 19, P2 17, P3 15; clearly not equivalent P1 0, P2 1, P3 1; the rest mixed. **The judges disagree:** GPT-6.2 Sol says EQUIVALENT on 205/216 paraphrase votes (95%), Claude Sonnet 5.5 on 134/216 (62%), often noting the difference is minor ("although the two are close", "only on a small point"). Cohen's κ between judges over all 212 pairs: 0.44 (observed agreement 0.71).
+- **Negative controls behave as expected:** narrower (MS) 34/36 not equivalent, 0 equivalent; vaguer (MG) 23/36 not equivalent, 3 equivalent, 10 mixed. The judges discriminate.
+- **Real historical edits:** judged meaning-changing for 15/16 tools (H1) and 14/16 (H3); none were strictly equivalent. The AssetOpsBench developers' revisions changed content (e.g., added cross-references to sibling tools), not just wording.
+- **Sensitivity check (single-tool tasks):** restricted to tasks whose gold tool's paraphrase is strictly equivalent (P1 57, P2 55, P3 46 tasks), mean excess flip vs. placebo is +0.003 / +0.002 / +0.007, and 2 of 30 model × catalog CIs exclude 0 (vs. +0.008 / +0.002 / +0.006 and 5 of 30 on all single-tool tasks).
+- **Interpretation:** confirmed meaning-preserving rewording moves decisions by about run-to-run noise. The clearer effects come from description changes that alter content: the real historical revisions and the scope changes (MG/MS). The paper should frame results this way, and present ranking changes among near-tied models with that caveat.

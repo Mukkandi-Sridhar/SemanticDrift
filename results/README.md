@@ -38,10 +38,20 @@ profiles by task type; repeat agreement; and billed cost and latency per model.
 Latency for Claude Sonnet 5.5 includes time spent waiting for its 20-requests-per-minute
 account limit, so it isn't comparable with the other models.
 
+## `judge/judge_final/`
+
+LLM judgements of whether each rewritten description means the same as the original
+(`configs/judge_final.toml`; judges GPT-6.2 Sol and Claude Sonnet 5.5, both directions).
+`responses.jsonl` has every answer with its reason; `summary.json` gives, per catalog and tool,
+`equivalent` (all four votes), `not_equivalent`, or `mixed`, plus the agreement between judges.
+The vaguer and narrower catalogs are negative controls; the historical catalogs show which real
+AssetOpsBench edits changed meaning.
+
 ## Reproducing
 
 ```bash
 PYTHONPATH=src python3 -m semdrift.cli score   --config configs/main.toml   # needs the raw run
 PYTHONPATH=src python3 -m semdrift.cli analyze --config configs/main.toml
 python3 src/semdrift/figures.py                                            # from these files only
+PYTHONPATH=src python3 -m semdrift.cli judge-run --config configs/judge_final.toml --max-spend 4
 ```

@@ -51,7 +51,7 @@ PYTHONPATH=src python3 -m semdrift.cli run --config configs/main.toml --repeats 
 ```
 
 ## Step 5: Paraphrase judge (≈ $0.50)
-Judges: gpt-6.1-terra + claude-haiku-5.5 (`configs/budget_judge.toml`), 108 pairs × 2 directions × 2 judges.
+Run with `judge-run --config configs/judge_final.toml --max-spend 4`. Judges: GPT-6.2 Sol + Claude Sonnet 5.5; P1–P3 checked, MG/MS as negative controls, H1/H3 classified: 212 changed tools × 2 directions × 2 judges = 848 requests ($1.28).
 
 ## Safety facts (verified 2026-11-25)
 - OpenAI uses the **Responses API** (gpt-6.1-terra requires it for tools; gpt-6-luna only allows Chat Completions tools with reasoning off). `store: false`.

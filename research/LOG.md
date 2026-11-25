@@ -216,3 +216,7 @@ Personal correspondence and planning notes are kept outside the repository.
 - 38,304/38,304 trials; archived with checksums. Total spend ≈ $36.18 (OpenRouter $29.93 + OpenAI ≈ $6.25).
 - Confirmatory scoring in two passes (10 models round 1; 9 models × 3 rounds) because Argon has k = 1. Headline: no significant accuracy changes, but model rankings and the top-ranked model change under benign and real-history rewording beyond the placebo; clear placebo-adjusted decision flips for several models, including on real IBM edits; harmful writes concentrated in small models.
 - Process notes: the run was interrupted 3 times (2 manual restarts for throughput/rate limits, 1 session end); each interruption is logged in ledger.jsonl and nothing was lost. The Anthropic API key in .env was tested (free models call): invalid (401).
+
+## 2026-11-25: Paraphrase judge
+- Added `judge.run` / `cli judge-run` (resumable, spend-capped, both directions, two judges) with tests. Ran 848 requests for $1.28 (GPT-6.2 Sol + Claude Sonnet 5.5), with MG/MS as negative controls and H1/H3 as an exploratory classification.
+- Result: strict equivalence for 15–19 of 36 tools per paraphrase catalog; controls correctly rejected; 30/32 real historical edits judged meaning-changing. A sensitivity check shows confirmed-equivalent paraphrases move decisions only at noise level. README and FINDINGS updated so the claim matches the evidence.

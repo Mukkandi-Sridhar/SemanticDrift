@@ -57,6 +57,7 @@ results/*
 !results/README.md
 !results/scores/
 !results/analysis/
+!results/judge/
 
 # Dry-run (fake transport) outputs are never committed
 results/scores/*-dryrun/

@@ -20,10 +20,12 @@ only the tool descriptions. That makes 38,304 tool-selection decisions in total.
   model stays the same. Under 6 of the 7 rewritten catalogs, the top model changes or becomes tied
   (mostly between Claude Sonnet 5.5 and GPT-6.1 Terra, which differ by 3 of 152 tasks on the
   original catalog).
-- **Individual decisions move beyond run-to-run noise.** For 24 of 70 model × catalog pairs, the
-  share of decisions that change is higher than under the placebo (95% CI above zero). This
-  includes the real historical descriptions from the AssetOpsBench repository (for example, +4.8
-  points for Mistral Small 4 on the tasks whose tools were edited).
+- **Individual decisions move beyond run-to-run noise, mainly when the content changes.** For 24
+  of 70 model × catalog pairs, more decisions change than under the placebo (95% CI above zero).
+  Two independent LLM judges classify 30 of the 32 real AssetOpsBench edits as changing meaning,
+  and these edits move decisions (for example, +4.8 points for Mistral Small 4 on the tasks whose
+  tools were edited). Restricted to paraphrases that both judges confirm are equivalent, the
+  effect shrinks to about run-to-run noise.
 - **Some small models act when they should ask.** On 24 requests that need a human decision,
   GPT-6 Luna chose a write tool (create, close or cancel a work order) 18–25% of the time; frontier
   models stayed near 0–4%.
@@ -107,8 +109,9 @@ To rerun the experiment you need OpenAI and OpenRouter API keys in a `.env` file
 
 - Each trial is a single first action, not a full multi-step agent run.
 - The tools come from one benchmark and one domain (industrial maintenance).
-- The paraphrases were written by a language model; only the riskiest were reviewed by a person.
-  The historical catalogs are human-written.
+- The paraphrases were written by a language model. Two LLM judges agree that 15–19 of 36 per
+  catalog are fully equivalent; the rest are borderline or, rarely, changed. The historical
+  catalogs are human-written.
 - The effects are small per decision. Their importance lies in how they change rankings and
   safety-relevant actions, not in average accuracy.
 - Several ranking changes involve models whose accuracy differs by only a few tasks.
