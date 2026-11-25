@@ -1,7 +1,18 @@
 [project]
 name = "semdrift"
-version = "0.1.0"
+version = "0.2.0"
+description = "Does rewording MCP tool descriptions change which agent looks best? Data, harness and results."
+readme = "README.md"
 requires-python = ">=3.11"
+license = "CC-BY-4.0"
+authors = [{ name = "Mukkandi Sridhar" }]
+dependencies = []
+
+[project.optional-dependencies]
+figures = ["matplotlib>=3.10"]
+
+[project.urls]
+Repository = "https://github.com/Mukkandi-Sridhar/SemanticDrift"
 
 [tool.ruff]
 line-length = 100

@@ -29,6 +29,7 @@ only the tool descriptions. That makes 38,304 tool-selection decisions in total.
   models stayed near 0–4%.
 
 The full results, with sources for every number, are in [`research/FINDINGS.md`](research/FINDINGS.md).
+For a concrete case, see [one request under all nine catalogs](docs/example.md).
 
 ## What's in this repository
 
@@ -41,7 +42,7 @@ The full results, with sources for every number, are in [`research/FINDINGS.md`]
 | `configs/` | Models, prices, reasoning settings and run configuration |
 | `results/` | Processed scores and analysis (raw responses are archived separately) |
 | `research/` | Pre-registration, design, findings notebook, decision log |
-| `docs/history/` | The original June 2026 research proposal |
+| `docs/` | A worked example, and the original June 2026 proposal in `docs/history/` |
 
 ## Quick start
 
@@ -52,9 +53,8 @@ git clone https://github.com/Mukkandi-Sridhar/SemanticDrift && cd SemanticDrift
 git clone https://github.com/IBM/AssetOpsBench vendor/AssetOpsBench
 git -C vendor/AssetOpsBench checkout 0d044061ab3ffd4b213ddf6a0868c360d7e9667c
 
-python3 src/semdrift/validate_dataset.py             # check the dataset against its manifest
-PYTHONPATH=src python3 -m unittest discover -s tests  # run the tests
-pip install -r requirements.txt && python3 src/semdrift/figures.py   # redraw the figures
+make check     # validate the dataset and run the tests
+make figures   # redraw the figures (needs matplotlib: pip install -r requirements.txt)
 ```
 
 ## The dataset
