@@ -507,3 +507,49 @@ def batch_responses(index: dict[str, Any]) -> list[dict[str, Any]]:
                 }
             )
     return items
+
+
+class JudgeRunTests(unittest.TestCase):
+    def test_labels_are_read_from_the_start_of_the_answer(self) -> None:
+        self.assertEqual(judge.parse_label("EQUIVALENT. Same scope."), "EQUIVALENT")
+        self.assertEqual(judge.parse_label("**NOT_EQUIVALENT** - narrower."), "NOT_EQUIVALENT")
+        self.assertEqual(judge.parse_label("Not equivalent: B adds a limit."), "NOT_EQUIVALENT")
+        self.assertIsNone(judge.parse_label("They look similar, EQUIVALENT"))
+
+    def test_answer_text_is_read_for_each_provider(self) -> None:
+        responses_api = {
+            "output": [
+                {"type": "reasoning", "summary": []},
+                {"type": "message", "content": [{"type": "output_text", "text": "EQUIVALENT."}]},
+            ]
+        }
+        chat = {"choices": [{"message": {"content": "NOT_EQUIVALENT. Scope differs."}}]}
+        self.assertEqual(judge._response_text(responses_api, "openai"), "EQUIVALENT.")
+        self.assertEqual(judge._response_text(chat, "openrouter")[:14], "NOT_EQUIVALENT")
+
+    def test_summary_requires_every_judge_and_direction(self) -> None:
+        entries, done = [], {}
+        votes = {
+            ("P1", "t1"): ["EQUIVALENT"] * 4,
+            ("P1", "t2"): ["EQUIVALENT"] * 3 + ["NOT_EQUIVALENT"],
+            ("MG", "t1"): ["NOT_EQUIVALENT"] * 4,
+        }
+        for (variant, tool), labels in votes.items():
+            combos = [(m, d) for m in ("a", "b") for d in ("V0_to_X", "X_to_V0")]
+            for (model, direction), label in zip(combos, labels):
+                judge_id = f"{variant}-{tool}-{model}-{direction}"
+                entries.append(
+                    {
+                        "judge_id": judge_id,
+                        "variant": variant,
+                        "tool_name": tool,
+                        "model": model,
+                        "direction": direction,
+                    }
+                )
+                done[judge_id] = {"label": label}
+        summary = judge.summarize(entries, done)
+        self.assertEqual(summary["by_variant"]["P1"]["equivalent"], 1)
+        self.assertEqual(summary["by_variant"]["P1"]["mixed"], 1)
+        self.assertEqual(summary["by_variant"]["MG"]["not_equivalent"], 1)
+        self.assertEqual(summary["judge_agreement"]["n"], 3)

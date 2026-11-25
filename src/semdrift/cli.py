@@ -79,6 +79,8 @@ def _dispatch(
         result = probe.run_probe(config, args.models.split(",") if args.models else None)
     elif args.command == "judge":
         result = judge.build(config, args.dry_run)
+    elif args.command == "judge-run":
+        result = judge.run(config, args.max_spend)
     else:
         result = _summarize_run(config, args)
     return result
@@ -98,6 +100,7 @@ def main(argv: list[str] | None = None) -> None:
             "score",
             "cost",
             "judge",
+            "judge-run",
         ],
     )
     parser.add_argument("--config", required=True)

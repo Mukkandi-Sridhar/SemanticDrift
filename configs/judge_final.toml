@@ -1,0 +1,9 @@
+# Paraphrase-equivalence judge (research/RUNBOOK.md step 5).
+# P1-P3: the check itself. MG/MS: negative controls (designed to change meaning).
+# H1/H3: exploratory classification of the real AssetOpsBench edits.
+run_id = "judge_final"
+models_file = "models.toml"
+models = ["gpt-6.2-sol", "anthropic/claude-sonnet-5.5"]
+variants = ["P1", "P2", "P3", "MG", "MS", "H1", "H3"]
+k = 1
+seed = 20261124
