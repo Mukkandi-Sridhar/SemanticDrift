@@ -1,124 +1,128 @@
 # SemanticDrift
 
-<div align="center">
-  <h3>Semantic Drift</h3>
-  <p>A novel reliability challenge in Model Context Protocol (MCP) tool descriptions for Agentic AI systems.</p>
-</div>
+**Does rewording an agent's tool descriptions change which model looks best?**
+A pre-registered study on the MCP tools of [IBM AssetOpsBench](https://github.com/IBM/AssetOpsBench),
+using wording changes that the benchmark's own developers made over 2026.
 
-<p align="center">
-  <a href="https://github.com/Mukkandi-Sridhar/SemanticDrift/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/Mukkandi-Sridhar/SemanticDrift?style=flat-square" alt="License">
-  </a>
-  <a href="https://github.com/Mukkandi-Sridhar/SemanticDrift/commits/main">
-    <img src="https://img.shields.io/github/last-commit/Mukkandi-Sridhar/SemanticDrift?style=flat-square" alt="Last Commit">
-  </a>
-  <a href="https://github.com/Mukkandi-Sridhar/SemanticDrift">
-    <img src="https://img.shields.io/github/repo-size/Mukkandi-Sridhar/SemanticDrift?style=flat-square" alt="Repo Size">
-  </a>
-  <a href="https://github.com/Mukkandi-Sridhar/SemanticDrift/stargazers">
-    <img src="https://img.shields.io/github/stars/Mukkandi-Sridhar/SemanticDrift?style=flat-square" alt="Stars">
-  </a>
-  <a href="https://github.com/Mukkandi-Sridhar/SemanticDrift/issues">
-    <img src="https://img.shields.io/github/issues/Mukkandi-Sridhar/SemanticDrift?style=flat-square" alt="Issues">
-  </a>
-</p>
+[![Tests](https://github.com/Mukkandi-Sridhar/SemanticDrift/actions/workflows/tests.yml/badge.svg)](https://github.com/Mukkandi-Sridhar/SemanticDrift/actions/workflows/tests.yml)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](LICENSE)
 
-> **Status:** Research Proposal & Pilot Study. This repository contains the first public release of the SemanticDrift research proposal and pilot study. The full implementation, empirical evaluation, datasets, and benchmark results will be released in future versions.
+![Model rank under each description catalog](figures/fig1_rankings.png)
 
-## Abstract
-As Agentic AI systems increasingly rely on the Model Context Protocol (MCP) for tool invocation, the semantic alignment between tool descriptions and model interpretation becomes critical. We introduce "Semantic Drift," a phenomenon where an LLM's understanding of a tool's purpose diverges from the developer's intent due to contextual variations, prompting nuances, or descriptive ambiguity. This research proposes a framework to quantify and mitigate Semantic Drift, ensuring robust tool execution in complex agentic workflows.
+## Key findings
 
-## Motivation
-With the advent of autonomous agents, tools are documented via natural language schemas (e.g., OpenAPI, JSON schemas). However, natural language is inherently ambiguous. A tool described as "fetches user data" might be invoked by an LLM for authentication, retrieval, or profiling. This misalignment causes unexpected behaviors, system failures, and security vulnerabilities.
+We gave 10 models from 6 providers the same 36 AssetOpsBench tools and 152 requests, and changed
+only the tool descriptions. That makes 38,304 tool-selection decisions in total.
 
-## Research Problem
-How can we formally define, measure, and mitigate Semantic Drift in tool descriptions provided to Large Language Models?
+- **Aggregate accuracy hardly moves.** No accuracy difference between the original catalog and any
+  rewritten catalog survives correction for multiple comparisons.
+- **The leaderboard does move.** Under an identical copy of the catalog (our placebo), the top
+  model stays the same. Under 6 of the 7 rewritten catalogs, the top model changes or becomes tied
+  (mostly between Claude Sonnet 5.5 and GPT-6.1 Terra, which differ by 3 of 152 tasks on the
+  original catalog).
+- **Individual decisions move beyond run-to-run noise.** For 24 of 70 model × catalog pairs, the
+  share of decisions that change is higher than under the placebo (95% CI above zero). This
+  includes the real historical descriptions from the AssetOpsBench repository (for example, +4.8
+  points for Mistral Small 4 on the tasks whose tools were edited).
+- **Some small models act when they should ask.** On 24 requests that need a human decision,
+  GPT-6 Luna chose a write tool (create, close or cancel a work order) 18–25% of the time; frontier
+  models stayed near 0–4%.
 
-## Proposed Solution
-We propose a novel evaluation framework and taxonomy for Semantic Drift. The solution involves:
-1. **Taxonomy:** Categorizing types of drift (e.g., Over-generalization, Over-specialization, Contextual Misalignment).
-2. **Measurement:** A benchmark dataset designed to evaluate LLMs on tool selection accuracy under ambiguous conditions.
-3. **Mitigation Pipeline:** An automated pipeline for refining tool descriptions and enforcing semantic strictness during MCP configuration.
+The full results, with sources for every number, are in [`research/FINDINGS.md`](research/FINDINGS.md).
 
-## Key Contributions
-* Definition and formalization of "Semantic Drift" in Agentic AI.
-* A comprehensive taxonomy of tool description failure modes.
-* An empirical pilot study evaluating leading LLMs on tool selection drift.
-* Open-source tools for semantic validation of MCP schemas.
+## What's in this repository
 
-## Semantic Drift Taxonomy
+| Path | Contents |
+|---|---|
+| `datasets/tools/` | The 36 tools (29 read, 7 write) and the 9 description catalogs |
+| `datasets/history/` | 42 earlier, developer-written descriptions recovered from AssetOpsBench's git history |
+| `datasets/tasks/` | 152 requests with gold labels (103 single-tool, 49 that need no tool) |
+| `src/semdrift/` | Extraction, request building, the experiment runner, scoring, analysis and figures |
+| `configs/` | Models, prices, reasoning settings and run configuration |
+| `results/` | Processed scores and analysis (raw responses are archived separately) |
+| `research/` | Pre-registration, design, findings notebook, decision log |
+| `docs/history/` | The original June 2026 research proposal |
 
-| Drift Type | Description | Example Consequence |
-| :--- | :--- | :--- |
-| **Over-generalization** | LLM applies a specific tool to a broad, unintended set of tasks. | Using `get_user_email` to find any user's contact info. |
-| **Over-specialization** | LLM fails to recognize a tool's applicability to a broader task. | Missing that `search_docs` can also search code snippets. |
-| **Contextual Misalignment** | Tool interpretation shifts based on surrounding conversation context. | Using `delete_file` for "cleaning up" memory. |
-| **Parameter Hallucination** | LLM infers parameters not present in the tool schema. | Passing `force=True` to a read-only tool. |
+## Quick start
 
-## SemanticDrift Pipeline Overview
+Requires Python 3.11 or newer. The harness uses only the standard library.
 
-```mermaid
-graph TD;
-    A[Tool Description Schema] --> B(Semantic Parser);
-    B --> C{Drift Evaluator};
-    C -- High Drift Risk --> D[Refinement Engine];
-    D --> A;
-    C -- Safe --> E[MCP Registration];
-    E --> F[Agent Execution];
+```bash
+git clone https://github.com/Mukkandi-Sridhar/SemanticDrift && cd SemanticDrift
+git clone https://github.com/IBM/AssetOpsBench vendor/AssetOpsBench
+git -C vendor/AssetOpsBench checkout 0d044061ab3ffd4b213ddf6a0868c360d7e9667c
+
+python3 src/semdrift/validate_dataset.py             # check the dataset against its manifest
+PYTHONPATH=src python3 -m unittest discover -s tests  # run the tests
+pip install -r requirements.txt && python3 src/semdrift/figures.py   # redraw the figures
 ```
 
-## Planned Evaluation
-The upcoming empirical study will evaluate GPT-4, Claude 3.5 Sonnet, and Gemini 1.5 Pro on our custom benchmark dataset, measuring Drift Rate (DR) and Tool Selection Accuracy (TSA) across varying levels of description ambiguity.
+## The dataset
 
-## Repository Structure
+**Tools.** Names, descriptions and input schemas are extracted statically from four AssetOpsBench
+MCP servers (`iot`, `utilities`, `fmsr`, `wo`) at commit `0d04406`. Nothing from upstream is
+imported or executed.
 
-```text
-SemanticDrift/
-├── paper/           # Research paper (PDF/Word format)
-├── figures/         # Generated diagrams and plots
-├── assets/          # Static assets for documentation
-├── future-code/     # Placeholder for upcoming implementation
-├── datasets/        # Benchmark datasets for tool descriptions
-├── docs/            # Detailed documentation
-└── examples/        # Examples of Semantic Drift
-```
+**Catalogs.** Every catalog keeps the same tool names, order and schemas; only description text
+differs.
 
-## Paper
-- [SemanticDrift.pdf (Direct Link)](paper/SemanticDrift.pdf)
-- [SemanticDrift.docx (Word Source)](paper/SemanticDrift.docx)
+| ID | Catalog | How it was made |
+|---|---|---|
+| V0 | Original | Upstream, verbatim |
+| V0R | Placebo | Byte-identical copy of V0 (measures run-to-run noise) |
+| P1–P3 | Paraphrases | Meaning-preserving rewrites; the 15 riskiest were checked by hand |
+| MG | Vaguer | Scope widened, parameter docs unchanged |
+| MS | Narrower | One plausible narrowing per tool |
+| H1 | Historical, earliest | Each tool's oldest description in the git history with an identical schema |
+| H3 | Historical, previous | Each tool's last description before V0 |
+
+**Tasks.** 103 requests have exactly one correct tool; 49 should get a text reply instead
+(20 easy, 24 "tempting" requests that resemble a write action but need a human decision, and
+5 out of scope). Provenance and checks are described in `datasets/tasks/SOURCES.md` and
+`research/03-dataset/`.
+
+## How the study was run
+
+The hypotheses, metrics and analysis were fixed before any data was collected
+([`research/PREREG.md`](research/PREREG.md)). Every later change is listed there with its date and
+reason.
+
+- Each request goes to each model once per catalog and repeat. The first action counts: a tool
+  call or a text reply. No tool is ever executed.
+- Models use their lowest available reasoning setting, the provider's default temperature, and a
+  fixed system prompt. Each OpenRouter model is pinned to one host.
+- Tool order is shuffled per repeat and shared by all models and catalogs.
+- Nine models ran three repeats; Gemini 4 Argon ran one (budget).
+
+| | |
+|---|---|
+| Models | GPT-6 Luna, GPT-6.1 Terra, GPT-6.2 Sol, Claude Haiku 5.5, Claude Sonnet 5.5, Gemini 3.1 Flash-Lite, Gemini 4 Argon, DeepSeek V4.1 Flash, Qwen 3.8 27B, Mistral Small 4 |
+| Decisions | 38,304, run on 2026-11-25 |
+| API cost | ≈ $36 (OpenRouter $29.93, OpenAI ≈ $6.25) |
+
+To rerun the experiment you need OpenAI and OpenRouter API keys in a `.env` file
+(see `.env.example`) and the steps in [`research/RUNBOOK.md`](research/RUNBOOK.md).
+
+## Limitations
+
+- Each trial is a single first action, not a full multi-step agent run.
+- The tools come from one benchmark and one domain (industrial maintenance).
+- The paraphrases were written by a language model; only the riskiest were reviewed by a person.
+  The historical catalogs are human-written.
+- The effects are small per decision. Their importance lies in how they change rankings and
+  safety-relevant actions, not in average accuracy.
+- Several ranking changes involve models whose accuracy differs by only a few tasks.
 
 ## Citation
-If you find this research helpful, please cite us:
 
-```bibtex
-@techreport{sridhar2026semanticdrift,
-  title={Semantic Drift: A Novel Reliability Challenge in MCP Tool Descriptions},
-  author={Sridhar, Mukkandi},
-  institution={Rajeev Gandhi Memorial College of Engineering and Technology},
-  year={2026},
-  url={https://github.com/Mukkandi-Sridhar/SemanticDrift}
-}
-```
+If you use this work, please cite it as described in [`CITATION.cff`](CITATION.cff).
 
-## Future Work
-- Release of the `DriftBench` dataset.
-- Open-sourcing the MCP semantic validation library.
-- Comprehensive empirical study across open-source and proprietary LLMs.
+## Acknowledgements
 
-## Roadmap
-- [x] Phase 1: Research Proposal and Pilot Study.
-- [ ] Phase 2: Benchmark Dataset Construction (Expected Q3).
-- [ ] Phase 3: Empirical Evaluation and Framework Release.
-
-## Contributing
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get involved.
+The tools, descriptions and historical versions come from
+[IBM AssetOpsBench](https://github.com/IBM/AssetOpsBench) (Apache-2.0); see
+`datasets/tools/LICENSE.AssetOpsBench` and `datasets/tools/SOURCE.md`.
 
 ## License
-This project is licensed under the Creative Commons Attribution 4.0 International License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
-**Mukkandi Sridhar**
-* Affiliation: Department of Artificial Intelligence, Rajeev Gandhi Memorial College of Engineering and Technology, Nandyal, Andhra Pradesh, India
-* Email: [sridharraoyalls@gmail.com](mailto:sridharraoyalls@gmail.com)
-* GitHub: [@Mukkandi-Sridhar](https://github.com/Mukkandi-Sridhar)
-* LinkedIn: [Sridhar M](https://linkedin.com/in/sridhar-m-a40663331)
+[CC BY 4.0](LICENSE). Material derived from AssetOpsBench keeps its Apache-2.0 license.

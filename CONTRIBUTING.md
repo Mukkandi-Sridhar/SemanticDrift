@@ -16,10 +16,13 @@ If you are contributing code, datasets, or documentation:
 - Make sure your PR clearly describes the problem and solution.
 
 ### 3. Feedback on the Paper
-If you have feedback on the research proposal or pilot study, please use the `Research Feedback` issue template to share your thoughts.
+If you have feedback on the study or its results, please use the `Research Feedback` issue template to share your thoughts.
 
 ## Development Environment
-Currently, this project consists mainly of documentation. Future code contributions will require setting up the Python environment (instructions will be provided when code is released).
+Python 3.11 or newer; the harness uses only the standard library (figures need `matplotlib`).
+See the Quick start in the README for cloning the pinned AssetOpsBench source, validating the
+dataset and running the tests. Please keep `python3 src/semdrift/validate_dataset.py` and the
+test suite passing, and do not edit files listed in `datasets/MANIFEST.json` by hand.
 
 ## Code of Conduct
 By participating, you are expected to uphold our [Code of Conduct](CODE_OF_CONDUCT.md).

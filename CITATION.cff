@@ -5,11 +5,15 @@ authors:
   given-names: "Mukkandi"
   affiliation: "Department of Artificial Intelligence, Rajeev Gandhi Memorial College of Engineering and Technology, Nandyal, Andhra Pradesh, India"
   email: "sridharraoyalls@gmail.com"
-title: "Semantic Drift: A Novel Reliability Challenge in MCP Tool Descriptions"
+title: "SemanticDrift: How Rewording Tool Descriptions Changes Agent Benchmark Evidence"
 version: 0.1.0
 date-released: 2026-06-29
 url: "https://github.com/Mukkandi-Sridhar/SemanticDrift"
 repository-code: "https://github.com/Mukkandi-Sridhar/SemanticDrift"
 abstract: >
-  This repository contains the research proposal and pilot study introducing "Semantic Drift", a phenomenon where an LLM's understanding of a tool's purpose diverges from the developer's intent due to contextual variations, prompting nuances, or descriptive ambiguity within the Model Context Protocol (MCP).
+  Code, data and results for a pre-registered study of how rewriting the descriptions of MCP
+  tools affects tool selection by LLM agents. Using the 36 MCP tools of IBM AssetOpsBench,
+  152 requests, nine description catalogs (including earlier descriptions recovered from the
+  benchmark's git history) and ten models, it reports 38,304 decisions: aggregate accuracy is
+  stable, but model rankings, individual decisions and safety-relevant write actions change.
 license: CC-BY-4.0
