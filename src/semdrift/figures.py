@@ -34,8 +34,15 @@ FAMILY_COLOR = {  # Okabe-Ito, colour-blind safe
     "scope": "#E69F00",
     "history": "#009E73",
 }
-FAMILY = {"P1": "paraphrase", "P2": "paraphrase", "P3": "paraphrase", "MG": "scope",
-          "MS": "scope", "H1": "history", "H3": "history"}
+FAMILY = {
+    "P1": "paraphrase",
+    "P2": "paraphrase",
+    "P3": "paraphrase",
+    "MG": "scope",
+    "MS": "scope",
+    "H1": "history",
+    "H3": "history",
+}
 SHORT = {
     "anthropic/claude-sonnet-5.5": "Claude Sonnet 5.5",
     "anthropic/claude-haiku-5.5": "Claude Haiku 5.5",
@@ -49,20 +56,22 @@ SHORT = {
     "mistralai/mistral-small-2603": "Mistral Small 4",
 }
 
-plt.rcParams.update({
-    "font.family": "DejaVu Sans",
-    "font.size": 8,
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-    "axes.titlesize": 9,
-    "savefig.bbox": "tight",
-    "savefig.dpi": 300,
-})
+plt.rcParams.update(
+    {
+        "font.family": "DejaVu Sans",
+        "font.size": 8,
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+        "axes.titlesize": 9,
+        "savefig.bbox": "tight",
+        "savefig.dpi": 300,
+    }
+)
 
 
 def save(fig, name: str) -> None:
     OUT.mkdir(exist_ok=True)
-    fig.savefig(OUT / f"{name}.pdf")
+    fig.savefig(OUT / f"{name}.pdf", metadata={"CreationDate": None})  # reproducible bytes
     fig.savefig(OUT / f"{name}.png")
     plt.close(fig)
 
@@ -89,11 +98,9 @@ def ranking_figure(accuracy: dict[str, dict[str, float]]) -> None:
     for i, model in enumerate(by_v0):
         ys = [ranks[c][model] for c in CATALOG_ORDER]
         ax.plot(xs, ys, marker="o", markersize=3.5, linewidth=1.2, color=palette(i))
-        ax.text(-0.15, ys[0], SHORT[model], ha="right", va="center", fontsize=7,
-                color=palette(i))
+        ax.text(-0.15, ys[0], SHORT[model], ha="right", va="center", fontsize=7, color=palette(i))
     ax.axvspan(0.6, 1.4, color="0.92", zorder=0)  # placebo column
-    ax.set_xticks(list(xs), [CATALOG_LABELS[c] for c in CATALOG_ORDER], rotation=30,
-                  ha="right")
+    ax.set_xticks(list(xs), [CATALOG_LABELS[c] for c in CATALOG_ORDER], rotation=30, ha="right")
     ax.set_yticks(range(1, len(by_v0) + 1), [])
     ax.tick_params(axis="y", length=0)
     ax.invert_yaxis()
@@ -119,17 +126,33 @@ def excess_flip_figure(analysis: dict) -> None:
         low, high = row["ci95"]
         ax.plot([low, high], [y, y], color=colour, linewidth=0.8, alpha=0.7)
         filled = low > 0
-        ax.plot(row["excess_flip_rate"], y, marker="o", markersize=3.5,
-                color=colour, markerfacecolor=colour if filled else "white")
+        ax.plot(
+            row["excess_flip_rate"],
+            y,
+            marker="o",
+            markersize=3.5,
+            color=colour,
+            markerfacecolor=colour if filled else "white",
+        )
     ax.axvline(0, color="0.3", linewidth=0.8, linestyle="--")
     ax.set_yticks(range(len(models)), [SHORT[m] for m in models])
     ax.set_xlabel("Excess decision-change rate vs. placebo (filled: 95% CI above 0)")
-    handles = [plt.Line2D([], [], color=c, marker="o", linestyle="", label=label)
-               for label, c in (("Paraphrases (P1-P3)", FAMILY_COLOR["paraphrase"]),
-                                ("Vaguer / narrower (MG, MS)", FAMILY_COLOR["scope"]),
-                                ("Real historical (H1, H3)", FAMILY_COLOR["history"]))]
-    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=3,
-              frameon=False, fontsize=7)
+    handles = [
+        plt.Line2D([], [], color=c, marker="o", linestyle="", label=label)
+        for label, c in (
+            ("Paraphrases (P1-P3)", FAMILY_COLOR["paraphrase"]),
+            ("Vaguer / narrower (MG, MS)", FAMILY_COLOR["scope"]),
+            ("Real historical (H1, H3)", FAMILY_COLOR["history"]),
+        )
+    ]
+    ax.legend(
+        handles=handles,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.16),
+        ncol=3,
+        frameon=False,
+        fontsize=7,
+    )
     ax.set_title("How often wording changes a model's decision, beyond run-to-run noise")
     save(fig, "fig2_excess_flips")
 
@@ -147,8 +170,13 @@ def harmful_write_figure(analysis: dict) -> None:
     colours = {"V0": "0.35", "MG": FAMILY_COLOR["scope"], "H1": FAMILY_COLOR["history"]}
     for j, catalog in enumerate(shown):
         xs = [i + (j - 1) * width for i in range(len(models))]
-        ax.bar(xs, [100 * rate[m].get(catalog, 0) for m in models], width,
-               color=colours[catalog], label=CATALOG_LABELS[catalog])
+        ax.bar(
+            xs,
+            [100 * rate[m].get(catalog, 0) for m in models],
+            width,
+            color=colours[catalog],
+            label=CATALOG_LABELS[catalog],
+        )
     ax.set_xticks(range(len(models)), [SHORT[m] for m in models], rotation=30, ha="right")
     ax.set_ylabel("Harmful writes (%)")
     ax.legend(frameon=False, fontsize=7)

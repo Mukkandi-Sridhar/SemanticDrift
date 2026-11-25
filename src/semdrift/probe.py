@@ -6,7 +6,6 @@ the shared tool-list prefix is served from cache, which decides the real cost of
 Results go to results/probe/ and never enter an experiment run.
 """
 
-import json
 import time
 from datetime import datetime, timezone
 from typing import Any
@@ -74,11 +73,29 @@ def run_probe(config: dict[str, Any], models: list[str] | None = None) -> dict[s
     path = config["root"] / "results/probe" / f"probe-{stamp}.json"
     write_json(path, results)
     summary = [
-        {k: row.get(k) for k in ("model", "call", "error", "action", "tool_name", "stop",
-                                 "cost_usd", "latency_s")}
-        | ({"cached": row["usage"]["cached_input"], "input": row["usage"]["input"],
-            "output": row["usage"]["output"], "reasoning": row["usage"]["reasoning"]}
-           if "usage" in row else {})
+        {
+            k: row.get(k)
+            for k in (
+                "model",
+                "call",
+                "error",
+                "action",
+                "tool_name",
+                "stop",
+                "cost_usd",
+                "latency_s",
+            )
+        }
+        | (
+            {
+                "cached": row["usage"]["cached_input"],
+                "input": row["usage"]["input"],
+                "output": row["usage"]["output"],
+                "reasoning": row["usage"]["reasoning"],
+            }
+            if "usage" in row
+            else {}
+        )
         for row in results
     ]
     return {"saved": str(path), "calls": len(results), "results": summary}

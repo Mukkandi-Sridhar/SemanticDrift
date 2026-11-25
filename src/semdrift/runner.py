@@ -92,9 +92,7 @@ def cache_friendly_order(trials: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
     Ordering changes cost only: trial identity, requests and records are unaffected.
     """
-    return sorted(
-        trials, key=lambda t: (t["model"], t["variant"], t["repeat"], t["task_id"])
-    )
+    return sorted(trials, key=lambda t: (t["model"], t["variant"], t["repeat"], t["task_id"]))
 
 
 def select_stage(
@@ -460,9 +458,7 @@ def _run_trials(
                 progress.mark_budget_stop()
                 break
             try:
-                record = _execute_trial(
-                    config, dataset, trial, body, directory, dry_run, transport
-                )
+                record = _execute_trial(config, dataset, trial, body, directory, dry_run, transport)
             except (RuntimeError, ValueError) as exc:
                 # Never lose a failure: log it (messages are redacted) and keep going.
                 progress.log_error(directory, trial, exc)

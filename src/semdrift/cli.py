@@ -66,8 +66,10 @@ def _dispatch(
             parser.error("--input is required for batch-merge")
         result = batch.merge(config, args.input, args.dry_run)
     elif args.command == "analyze":
-        run_dir = config["root"] / "results/raw" / (
-            config["run_id"] + ("-dryrun" if args.dry_run else "")
+        run_dir = (
+            config["root"]
+            / "results/raw"
+            / (config["run_id"] + ("-dryrun" if args.dry_run else ""))
         )
         output = analysis.analyze(runner.read_records(run_dir), config["root"], run_dir)
         path = config["root"] / "results/analysis" / run_dir.name / "analysis.json"
@@ -87,7 +89,14 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument(
         "command",
         choices=[
-            "plan", "run", "probe", "analyze", "batch-build", "batch-merge", "score", "cost",
+            "plan",
+            "run",
+            "probe",
+            "analyze",
+            "batch-build",
+            "batch-merge",
+            "score",
+            "cost",
             "judge",
         ],
     )
