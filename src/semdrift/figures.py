@@ -153,8 +153,7 @@ def excess_flip_figure(analysis: dict) -> None:
         frameon=False,
         fontsize=7,
     )
-    ax.set_title("How often wording changes a model's decision, beyond run-to-run noise")
-    save(fig, "fig2_excess_flips")
+    save(fig, "fig2_excess_flips")  # no title: the paper caption describes it
 
 
 def harmful_write_figure(analysis: dict) -> None:
