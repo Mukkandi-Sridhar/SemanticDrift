@@ -51,5 +51,8 @@ venv.bak/
 # Upstream source checkouts (not committed)
 vendor/
 
-# Experiment outputs (committed deliberately later, not dry-run noise)
-results/
+# Experiment outputs: raw runs, logs and archives are large and go to Zenodo;
+# the small processed scores and analysis are committed.
+results/*
+!results/scores/
+!results/analysis/

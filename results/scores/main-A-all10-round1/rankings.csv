@@ -1,0 +1,9 @@
+variant,kendall_tau_b,top1_changed,v0_top_set,variant_top_set,pairwise_rank_flip_share,kendall_tau_ci95
+H1,0.9050184656361279,True,['anthropic/claude-sonnet-5.5'],['gpt-6.1-terra'],0.022222222222222223,"{'low': 0.6590909090909091, 'high': 0.9655810287305759, 'valid_resamples': 10000}"
+H3,0.8434347122457898,True,['anthropic/claude-sonnet-5.5'],['gpt-6.1-terra'],0.044444444444444446,"{'low': 0.5843065474681431, 'high': 0.9182191382286217, 'valid_resamples': 10000}"
+MG,0.8335696394016967,True,['anthropic/claude-sonnet-5.5'],['gpt-6.1-terra'],0.044444444444444446,"{'low': 0.6292532049656926, 'high': 0.9438798074485389, 'valid_resamples': 10000}"
+MS,0.7859370885787426,True,['anthropic/claude-sonnet-5.5'],['google/gemini-4-argon-flex'],0.06666666666666667,"{'low': 0.5683286162253945, 'high': 0.9069828782098579, 'valid_resamples': 10000}"
+P1,0.8613973647824799,False,['anthropic/claude-sonnet-5.5'],['anthropic/claude-sonnet-5.5'],0.044444444444444446,"{'low': 0.674199862463242, 'high': 0.9655810287305759, 'valid_resamples': 10000}"
+P2,0.9050184656361279,True,['anthropic/claude-sonnet-5.5'],['gpt-6.1-terra'],0.022222222222222223,"{'low': 0.6292532049656926, 'high': 0.9526510164590819, 'valid_resamples': 10000}"
+P3,0.9288347410476049,True,['anthropic/claude-sonnet-5.5'],"['anthropic/claude-sonnet-5.5', 'gpt-6.1-terra']",0.0,"{'low': 0.6897007348075542, 'high': 0.9660917830792959, 'valid_resamples': 10000}"
+V0R,0.9653072991634227,False,['anthropic/claude-sonnet-5.5'],['anthropic/claude-sonnet-5.5'],0.0,"{'low': 0.7777777777777778, 'high': 0.9888264649460884, 'valid_resamples': 10000}"

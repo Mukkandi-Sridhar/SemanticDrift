@@ -1,0 +1,9 @@
+variant,kendall_tau_b,top1_changed,v0_top_set,variant_top_set,pairwise_rank_flip_share,kendall_tau_ci95
+H1,0.7777777777777778,True,['anthropic/claude-sonnet-5.5'],['gpt-6.1-terra'],0.1111111111111111,"{'low': 0.6857142857142857, 'high': 0.9860132971832692, 'valid_resamples': 10000}"
+H3,0.8888888888888888,False,['anthropic/claude-sonnet-5.5'],['anthropic/claude-sonnet-5.5'],0.05555555555555555,"{'low': 0.6666666666666666, 'high': 0.9860132971832692, 'valid_resamples': 10000}"
+MG,0.9444444444444444,True,['anthropic/claude-sonnet-5.5'],['gpt-6.1-terra'],0.027777777777777776,"{'low': 0.7222222222222222, 'high': 1.0, 'valid_resamples': 10000}"
+MS,0.9444444444444444,False,['anthropic/claude-sonnet-5.5'],['anthropic/claude-sonnet-5.5'],0.027777777777777776,"{'low': 0.7042952122737638, 'high': 1.0, 'valid_resamples': 10000}"
+P1,0.8888888888888888,False,['anthropic/claude-sonnet-5.5'],['anthropic/claude-sonnet-5.5'],0.05555555555555555,"{'low': 0.7042952122737638, 'high': 1.0, 'valid_resamples': 10000}"
+P2,0.873326063219467,True,['anthropic/claude-sonnet-5.5'],"['anthropic/claude-sonnet-5.5', 'gpt-6.1-terra']",0.05555555555555555,"{'low': 0.7222222222222222, 'high': 1.0, 'valid_resamples': 10000}"
+P3,0.8888888888888888,True,['anthropic/claude-sonnet-5.5'],['gpt-6.1-terra'],0.05555555555555555,"{'low': 0.7222222222222222, 'high': 1.0, 'valid_resamples': 10000}"
+V0R,0.9444444444444444,False,['anthropic/claude-sonnet-5.5'],['anthropic/claude-sonnet-5.5'],0.027777777777777776,"{'low': 0.7222222222222222, 'high': 1.0, 'valid_resamples': 10000}"

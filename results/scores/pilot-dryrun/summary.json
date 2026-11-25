@@ -1,0 +1,1935 @@
+{
+  "dry_run": true,
+  "k": 2,
+  "n_tasks": 20,
+  "metrics": [
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "MG",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "MS",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "P1",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "P2",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "P3",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "V0",
+      "n_trials": 40,
+      "accuracy": 0.4,
+      "pass^k": 0.4,
+      "false_action_rate": 0.0,
+      "unsafe_write_rate": 0.0,
+      "parameter_validity": null,
+      "correct_tool_calls": 0,
+      "protocol_violation_rate": 0.0,
+      "false_action_easy": 0.0,
+      "n_easy": 6,
+      "false_action_tempting": 0.0,
+      "n_tempting": 8,
+      "false_action_out_of_scope": 0.0,
+      "n_out_of_scope": 2,
+      "accuracy_ms_conflict_true": 0.0,
+      "accuracy_ms_conflict_false": 0.0
+    }
+  ],
+  "comparisons": [
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "MG",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "MS",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "P1",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "P2",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-opus-5-5",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6-luna",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-astra",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "gpt-6.2-sol",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    },
+    {
+      "model": "qwen/qwen3.8-27b",
+      "variant": "P3",
+      "delta_accuracy": 0.0,
+      "flip_rate": 0.0,
+      "mcnemar_b": 0,
+      "mcnemar_c": 0,
+      "mcnemar_p": 1.0,
+      "mcnemar_p_holm": 1.0,
+      "delta_accuracy_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      },
+      "flip_rate_ci95": {
+        "low": 0.0,
+        "high": 0.0,
+        "valid_resamples": 10000
+      }
+    }
+  ],
+  "rankings": [
+    {
+      "variant": "MG",
+      "kendall_tau_b": null,
+      "top1_changed": false,
+      "v0_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "variant_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "pairwise_rank_flip_share": 0.0,
+      "kendall_tau_ci95": {
+        "low": null,
+        "high": null,
+        "valid_resamples": 0
+      }
+    },
+    {
+      "variant": "MS",
+      "kendall_tau_b": null,
+      "top1_changed": false,
+      "v0_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "variant_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "pairwise_rank_flip_share": 0.0,
+      "kendall_tau_ci95": {
+        "low": null,
+        "high": null,
+        "valid_resamples": 0
+      }
+    },
+    {
+      "variant": "P1",
+      "kendall_tau_b": null,
+      "top1_changed": false,
+      "v0_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "variant_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "pairwise_rank_flip_share": 0.0,
+      "kendall_tau_ci95": {
+        "low": null,
+        "high": null,
+        "valid_resamples": 0
+      }
+    },
+    {
+      "variant": "P2",
+      "kendall_tau_b": null,
+      "top1_changed": false,
+      "v0_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "variant_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "pairwise_rank_flip_share": 0.0,
+      "kendall_tau_ci95": {
+        "low": null,
+        "high": null,
+        "valid_resamples": 0
+      }
+    },
+    {
+      "variant": "P3",
+      "kendall_tau_b": null,
+      "top1_changed": false,
+      "v0_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "variant_top_set": [
+        "claude-haiku-5-5",
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "deepseek-flash",
+        "gpt-6-luna",
+        "gpt-6.2-astra",
+        "gpt-6.2-sol",
+        "qwen/qwen3.8-27b"
+      ],
+      "pairwise_rank_flip_share": 0.0,
+      "kendall_tau_ci95": {
+        "low": null,
+        "high": null,
+        "valid_resamples": 0
+      }
+    }
+  ],
+  "top1_changed_variants": 0,
+  "statistics": {
+    "bootstrap_resamples": 10000,
+    "seed": 20261124,
+    "holm_family": "all model × non-V0 comparisons",
+    "majority_tie_break": "lexicographically smallest label",
+    "tau": "tau-b; undefined ties return null"
+  },
+  "limitations": "Task bootstrap does not account for dependence between tasks from the same source family."
+}
