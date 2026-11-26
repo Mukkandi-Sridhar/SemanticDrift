@@ -183,11 +183,32 @@ def harmful_write_figure(analysis: dict) -> None:
     save(fig, "fig3_harmful_writes")
 
 
+def summary_figure() -> None:
+    """Rankings and harmful writes stacked in one image, for a quick overview (README, issues)."""
+    panels = [
+        ("A. The top of the ranking reshuffles when descriptions are edited", "fig1_rankings"),
+        ("B. Some small models act when they should ask a person", "fig3_harmful_writes"),
+    ]
+    images = [plt.imread(OUT / f"{name}.png") for _, name in panels]
+    heights = [image.shape[0] / image.shape[1] for image in images]
+    fig, axes = plt.subplots(
+        2, 1, figsize=(7.0, 7.0 * sum(heights) * 1.08), gridspec_kw={"height_ratios": heights}
+    )
+    for ax, (label, _), image in zip(axes, panels, images):
+        ax.imshow(image)
+        ax.set_axis_off()
+        ax.set_title(label, loc="left", fontsize=9, fontweight="bold")
+    fig.tight_layout(h_pad=1.2)
+    fig.savefig(OUT / "fig_summary.png", dpi=200)
+    plt.close(fig)
+
+
 def main() -> None:
     analysis = json.loads((ROOT / "results/analysis/main/analysis.json").read_text())
     ranking_figure(load_accuracy())
     excess_flip_figure(analysis)
     harmful_write_figure(analysis)
+    summary_figure()
     print("wrote", sorted(p.name for p in OUT.glob("fig*")))
 
 
