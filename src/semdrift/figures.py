@@ -129,52 +129,45 @@ GRID_NAME = {
 
 
 def rank_grid_figure(accuracy: dict[str, dict[str, float]]) -> None:
-    """Rank of each model under each catalog; cells whose rank differs from V0 are highlighted."""
+    """Rank of each model under each catalog: first place dark, changed ranks shaded."""
     ranks = {}
     for catalog in CATALOG_ORDER:
         ordered = sorted(accuracy, key=lambda m: (-accuracy[m][catalog], SHORT[m]))
         ranks[catalog] = {model: i + 1 for i, model in enumerate(ordered)}
     models = sorted(accuracy, key=lambda m: ranks["V0"][m])
-    fig, ax = plt.subplots(figsize=(3.4, 2.55))
+    fig, ax = plt.subplots(figsize=(3.4, 2.5))
+    gap = 0.06
     for row, model in enumerate(models):
         for col, catalog in enumerate(CATALOG_ORDER):
             rank = ranks[catalog][model]
             moved = rank != ranks["V0"][model]
-            face = "#F2B45C" if moved else "#EEF1F4"
-            ax.add_patch(
-                Rectangle((col, row), 1, 1, facecolor=face, edgecolor="white", linewidth=1.2)
-            )
             if rank == 1:
-                ax.add_patch(
-                    Rectangle(
-                        (col + 0.06, row + 0.08),
-                        0.88,
-                        0.84,
-                        fill=False,
-                        edgecolor="#0B3D6B",
-                        linewidth=1.3,
-                    )
+                face, ink, weight = "#1F4E79", "white", "bold"
+            elif moved:
+                face, ink, weight = "#F6D3A1", "#5A3300", "bold"
+            else:
+                face, ink, weight = "#F1F3F5", "0.35", "normal"
+            ax.add_patch(
+                Rectangle(
+                    (col + gap, row + gap), 1 - 2 * gap, 1 - 2 * gap, facecolor=face, linewidth=0
                 )
+            )
             ax.text(
                 col + 0.5,
-                row + 0.52,
+                row + 0.5,
                 str(rank),
                 ha="center",
                 va="center",
                 fontsize=7,
-                color="0.1",
-                fontweight="bold" if moved or rank == 1 else "normal",
+                color=ink,
+                fontweight=weight,
             )
-    ax.add_patch(  # the placebo column
-        Rectangle(
-            (1, 0), 1, len(models), fill=False, edgecolor="0.2", linewidth=1.2, linestyle="--"
-        )
-    )
     ax.set_xlim(0, len(CATALOG_ORDER))
     ax.set_ylim(len(models), 0)
     ax.set_xticks([i + 0.5 for i in range(len(CATALOG_ORDER))], CATALOG_ORDER, fontsize=7)
+    ax.get_xticklabels()[1].set_fontweight("bold")  # the placebo copy
     ax.xaxis.tick_top()
-    ax.tick_params(length=0)
+    ax.tick_params(length=0, pad=2)
     ax.set_yticks([i + 0.5 for i in range(len(models))], [GRID_NAME[m] for m in models], fontsize=7)
     for spine in ax.spines.values():
         spine.set_visible(False)
