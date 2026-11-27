@@ -113,6 +113,55 @@ def ranking_figure(accuracy: dict[str, dict[str, float]]) -> None:
     save(fig, "fig1_rankings")
 
 
+LEADER_NAME = {
+    "anthropic/claude-sonnet-5.5": "Sonnet 5.5",
+    "gpt-6.1-terra": "GPT-6.1 Terra",
+    "gpt-6.2-sol": "GPT-6.2 Sol",
+    "google/gemini-4-argon-flex": "Gemini 4 Argon",
+}
+
+
+def leader_figure(accuracy: dict[str, dict[str, float]]) -> None:
+    """One-column version of the ranking chart that colours only the four leading models."""
+    ranks = {}
+    for catalog in CATALOG_ORDER:
+        ordered = sorted(accuracy, key=lambda m: (-accuracy[m][catalog], SHORT[m]))
+        ranks[catalog] = {model: i + 1 for i, model in enumerate(ordered)}
+    xs = list(range(len(CATALOG_ORDER)))
+    fig, ax = plt.subplots(figsize=(3.4, 2.3))
+    ax.axvspan(0.6, 1.4, color="0.92", zorder=0, linewidth=0)
+    ax.text(1, 0.05, "placebo", ha="center", va="center", fontsize=6.5, color="0.35")
+    palette = ["#0072B2", "#D55E00", "#009E73", "#CC79A7"]
+    leaders = sorted(LEADER_NAME, key=lambda m: ranks["V0"][m])
+    for model in sorted(accuracy, key=lambda m: m in LEADER_NAME):
+        ys = [ranks[c][model] for c in CATALOG_ORDER]
+        if model in LEADER_NAME:
+            colour = palette[leaders.index(model)]
+            ax.plot(xs, ys, marker="o", markersize=3, linewidth=1.5, color=colour, zorder=3)
+            ax.text(
+                -0.25,
+                ys[0],
+                LEADER_NAME[model],
+                ha="right",
+                va="center",
+                fontsize=6.5,
+                color=colour,
+            )
+        else:
+            ax.plot(xs, ys, linewidth=0.8, color="0.8", zorder=2)
+    ax.set_xticks(xs, ["V0", "V0R", "P1", "P2", "P3", "MG", "MS", "H3", "H1"], fontsize=7)
+    ax.set_yticks([1, 4, 7, 10])
+    ax.tick_params(axis="y", labelsize=7)
+    ax.set_ylabel("Rank by accuracy", fontsize=7)
+    ax.yaxis.set_label_position("right")
+    ax.yaxis.tick_right()
+    ax.spines["left"].set_visible(False)
+    ax.spines["right"].set_visible(True)
+    ax.set_ylim(10.9, -0.35)
+    ax.set_xlim(-0.3, len(xs) - 0.7)
+    save(fig, "fig_leaders")
+
+
 MARKER = {"P1": "o", "P2": "s", "P3": "D", "MG": "^", "MS": "v", "H3": "o", "H1": "s"}
 
 
@@ -238,6 +287,7 @@ def summary_figure() -> None:
 def main() -> None:
     analysis = json.loads((ROOT / "results/analysis/main/analysis.json").read_text())
     ranking_figure(load_accuracy())
+    leader_figure(load_accuracy())
     excess_flip_figure(analysis)
     harmful_write_figure(analysis)
     summary_figure()
