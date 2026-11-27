@@ -14,6 +14,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib.patches import Rectangle  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "figures"
@@ -113,53 +114,71 @@ def ranking_figure(accuracy: dict[str, dict[str, float]]) -> None:
     save(fig, "fig1_rankings")
 
 
-LEADER_NAME = {
+GRID_NAME = {
     "anthropic/claude-sonnet-5.5": "Sonnet 5.5",
     "gpt-6.1-terra": "GPT-6.1 Terra",
     "gpt-6.2-sol": "GPT-6.2 Sol",
     "google/gemini-4-argon-flex": "Gemini 4 Argon",
+    "anthropic/claude-haiku-5.5": "Haiku 5.5",
+    "deepseek/deepseek-v4.1-flash-1017": "DeepSeek V4.1",
+    "qwen/qwen3.8-27b-fp8": "Qwen 3.8 27B",
+    "mistralai/mistral-small-2603": "Mistral Small 4",
+    "gpt-6-luna": "GPT-6 Luna",
+    "google/gemini-3.1-flash-lite": "Flash-Lite 3.1",
 }
 
 
-def leader_figure(accuracy: dict[str, dict[str, float]]) -> None:
-    """One-column version of the ranking chart that colours only the four leading models."""
+def rank_grid_figure(accuracy: dict[str, dict[str, float]]) -> None:
+    """Rank of each model under each catalog; cells whose rank differs from V0 are highlighted."""
     ranks = {}
     for catalog in CATALOG_ORDER:
         ordered = sorted(accuracy, key=lambda m: (-accuracy[m][catalog], SHORT[m]))
         ranks[catalog] = {model: i + 1 for i, model in enumerate(ordered)}
-    xs = list(range(len(CATALOG_ORDER)))
-    fig, ax = plt.subplots(figsize=(3.4, 2.3))
-    ax.axvspan(0.6, 1.4, color="0.92", zorder=0, linewidth=0)
-    ax.text(1, 0.05, "placebo", ha="center", va="center", fontsize=6.5, color="0.35")
-    palette = ["#0072B2", "#D55E00", "#009E73", "#CC79A7"]
-    leaders = sorted(LEADER_NAME, key=lambda m: ranks["V0"][m])
-    for model in sorted(accuracy, key=lambda m: m in LEADER_NAME):
-        ys = [ranks[c][model] for c in CATALOG_ORDER]
-        if model in LEADER_NAME:
-            colour = palette[leaders.index(model)]
-            ax.plot(xs, ys, marker="o", markersize=3, linewidth=1.5, color=colour, zorder=3)
-            ax.text(
-                -0.25,
-                ys[0],
-                LEADER_NAME[model],
-                ha="right",
-                va="center",
-                fontsize=6.5,
-                color=colour,
+    models = sorted(accuracy, key=lambda m: ranks["V0"][m])
+    fig, ax = plt.subplots(figsize=(3.4, 2.55))
+    for row, model in enumerate(models):
+        for col, catalog in enumerate(CATALOG_ORDER):
+            rank = ranks[catalog][model]
+            moved = rank != ranks["V0"][model]
+            face = "#F2B45C" if moved else "#EEF1F4"
+            ax.add_patch(
+                Rectangle((col, row), 1, 1, facecolor=face, edgecolor="white", linewidth=1.2)
             )
-        else:
-            ax.plot(xs, ys, linewidth=0.8, color="0.8", zorder=2)
-    ax.set_xticks(xs, ["V0", "V0R", "P1", "P2", "P3", "MG", "MS", "H3", "H1"], fontsize=7)
-    ax.set_yticks([1, 4, 7, 10])
-    ax.tick_params(axis="y", labelsize=7)
-    ax.set_ylabel("Rank by accuracy", fontsize=7)
-    ax.yaxis.set_label_position("right")
-    ax.yaxis.tick_right()
-    ax.spines["left"].set_visible(False)
-    ax.spines["right"].set_visible(True)
-    ax.set_ylim(10.9, -0.35)
-    ax.set_xlim(-0.3, len(xs) - 0.7)
-    save(fig, "fig_leaders")
+            if rank == 1:
+                ax.add_patch(
+                    Rectangle(
+                        (col + 0.06, row + 0.08),
+                        0.88,
+                        0.84,
+                        fill=False,
+                        edgecolor="#0B3D6B",
+                        linewidth=1.3,
+                    )
+                )
+            ax.text(
+                col + 0.5,
+                row + 0.52,
+                str(rank),
+                ha="center",
+                va="center",
+                fontsize=7,
+                color="0.1",
+                fontweight="bold" if moved or rank == 1 else "normal",
+            )
+    ax.add_patch(  # the placebo column
+        Rectangle(
+            (1, 0), 1, len(models), fill=False, edgecolor="0.2", linewidth=1.2, linestyle="--"
+        )
+    )
+    ax.set_xlim(0, len(CATALOG_ORDER))
+    ax.set_ylim(len(models), 0)
+    ax.set_xticks([i + 0.5 for i in range(len(CATALOG_ORDER))], CATALOG_ORDER, fontsize=7)
+    ax.xaxis.tick_top()
+    ax.tick_params(length=0)
+    ax.set_yticks([i + 0.5 for i in range(len(models))], [GRID_NAME[m] for m in models], fontsize=7)
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    save(fig, "fig_rank_grid")
 
 
 MARKER = {"P1": "o", "P2": "s", "P3": "D", "MG": "^", "MS": "v", "H3": "o", "H1": "s"}
@@ -287,7 +306,7 @@ def summary_figure() -> None:
 def main() -> None:
     analysis = json.loads((ROOT / "results/analysis/main/analysis.json").read_text())
     ranking_figure(load_accuracy())
-    leader_figure(load_accuracy())
+    rank_grid_figure(load_accuracy())
     excess_flip_figure(analysis)
     harmful_write_figure(analysis)
     summary_figure()
