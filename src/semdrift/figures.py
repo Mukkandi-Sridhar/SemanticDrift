@@ -113,47 +113,79 @@ def ranking_figure(accuracy: dict[str, dict[str, float]]) -> None:
     save(fig, "fig1_rankings")
 
 
+MARKER = {"P1": "o", "P2": "s", "P3": "D", "MG": "^", "MS": "v", "H3": "o", "H1": "s"}
+
+
 def excess_flip_figure(analysis: dict) -> None:
     """Decision changes beyond the placebo, per model and catalog, with 95% CIs."""
     rows = analysis["excess_flip_rates_all_tasks"]
-    models = sorted({r["model"] for r in rows}, key=lambda m: SHORT[m])
     catalogs = [c for c in CATALOG_ORDER if c not in ("V0", "V0R")]
-    fig, ax = plt.subplots(figsize=(7.0, 3.4))
-    offsets = {c: (i - (len(catalogs) - 1) / 2) * 0.1 for i, c in enumerate(catalogs)}
+    mean = defaultdict(list)
+    for row in rows:
+        mean[row["model"]].append(row["excess_flip_rate"])
+    # Largest average effect at the top.
+    models = sorted(mean, key=lambda m: sum(mean[m]) / len(mean[m]))
+    fig, ax = plt.subplots(figsize=(7.0, 3.6))
+    for i in range(len(models)):
+        if i % 2 == 0:
+            ax.axhspan(i - 0.5, i + 0.5, color="0.95", zorder=0, linewidth=0)
+    offsets = {c: (i - (len(catalogs) - 1) / 2) * 0.11 for i, c in enumerate(catalogs)}
     for row in rows:
         y = models.index(row["model"]) + offsets[row["variant"]]
         colour = FAMILY_COLOR[FAMILY[row["variant"]]]
-        low, high = row["ci95"]
-        ax.plot([low, high], [y, y], color=colour, linewidth=0.8, alpha=0.7)
-        filled = low > 0
+        low, high = (100 * v for v in row["ci95"])
+        ax.plot([low, high], [y, y], color=colour, linewidth=0.7, alpha=0.55, zorder=2)
         ax.plot(
-            row["excess_flip_rate"],
+            100 * row["excess_flip_rate"],
             y,
-            marker="o",
-            markersize=3.5,
+            marker=MARKER[row["variant"]],
+            markersize=3.6,
             color=colour,
-            markerfacecolor=colour if filled else "white",
+            markerfacecolor=colour if low > 0 else "white",
+            markeredgewidth=0.9,
+            linestyle="",
+            zorder=3,
         )
-    ax.axvline(0, color="0.3", linewidth=0.8, linestyle="--")
+    ax.axvline(0, color="0.3", linewidth=0.8, linestyle="--", zorder=1)
     ax.set_yticks(range(len(models)), [SHORT[m] for m in models])
-    ax.set_xlabel("Excess decision-change rate vs. placebo (filled: 95% CI above 0)")
+    ax.set_ylim(-0.5, len(models) - 0.5)
+    ax.tick_params(axis="y", length=0)
+    ax.set_xlabel("Extra decisions changed vs. the identical copy (percentage points)")
     handles = [
-        plt.Line2D([], [], color=c, marker="o", linestyle="", label=label)
-        for label, c in (
-            ("Paraphrases (P1-P3)", FAMILY_COLOR["paraphrase"]),
-            ("Vaguer / narrower (MG, MS)", FAMILY_COLOR["scope"]),
-            ("Real historical (H1, H3)", FAMILY_COLOR["history"]),
+        plt.Line2D(
+            [],
+            [],
+            color=FAMILY_COLOR[FAMILY[c]],
+            marker=MARKER[c],
+            linestyle="",
+            markersize=4,
+            label=CATALOG_LABELS[c],
         )
+        for c in catalogs
     ]
+    handles.append(
+        plt.Line2D(
+            [],
+            [],
+            color="0.3",
+            marker="o",
+            markerfacecolor="white",
+            linestyle="",
+            markersize=4,
+            label="hollow: CI includes 0",
+        )
+    )
     ax.legend(
         handles=handles,
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.16),
-        ncol=3,
+        bbox_to_anchor=(0.5, -0.15),
+        ncol=4,
         frameon=False,
-        fontsize=7,
+        fontsize=7.5,
+        columnspacing=1.2,
+        handletextpad=0.3,
     )
-    save(fig, "fig2_excess_flips")  # no title: the paper caption describes it
+    save(fig, "fig2_excess_flips")
 
 
 def harmful_write_figure(analysis: dict) -> None:
